@@ -78,7 +78,7 @@ button{cursor:pointer}
 .board{margin-top:4px;border-radius:3px 3px 14px 14px;overflow:hidden;background:var(--board);color:var(--ink);position:relative;box-shadow:inset 0 0 0 1.5px var(--ink)}
 .board::after{display:none}
 .board .band{background:var(--ink);color:#fff;padding:clamp(14px,3vw,22px) clamp(18px,4vw,30px);display:flex;justify-content:space-between;align-items:flex-end;gap:12px;position:relative}
-.board .band::after{content:"";position:absolute;left:0;right:0;bottom:0;height:6px;background:linear-gradient(90deg,var(--s-red) 0 20%,var(--s-orange) 20% 40%,var(--s-yellow) 40% 60%,var(--s-green) 60% 80%,var(--s-blue) 80%)}
+.board .band::after{content:"";position:absolute;left:0;right:0;bottom:0;height:6px;background:linear-gradient(90deg,#F25022 0 25%,#7FBA00 25% 50%,#00A4EF 50% 75%,#FFB900 75%)}
 .band h1{margin:0;font-weight:800;font-size:clamp(28px,6.4vw,46px);letter-spacing:-.045em;line-height:1.1}
 .band span{font-family:var(--cond);font-weight:700;font-size:clamp(13px,2.4vw,16px);letter-spacing:.08em;opacity:.75;text-align:right;line-height:1.2}
 .fields{padding:8px clamp(18px,4vw,30px) 18px}
@@ -134,7 +134,7 @@ button{cursor:pointer}
 #roomScreen{flex-direction:column;background:var(--ground)}
 .topbar{display:flex;align-items:center;gap:18px;padding:12px 20px;border-bottom:1px solid var(--line);flex:none;flex-wrap:wrap;background:var(--surface)}
 .logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:15px;letter-spacing:-.03em}
-.logo i{width:30px;height:14px;border-radius:1px;background:linear-gradient(90deg,var(--s-red) 0 20%,var(--s-orange) 20% 40%,var(--s-yellow) 40% 60%,var(--s-green) 60% 80%,var(--s-blue) 80%);display:block}
+.logo i{width:30px;height:14px;border-radius:1px;background:linear-gradient(90deg,#F25022 0 25%,#7FBA00 25% 50%,#00A4EF 50% 75%,#FFB900 75%);display:block}
 .logo small{font-family:var(--cond);font-weight:700;letter-spacing:.12em;color:var(--dim);font-size:12px}
 .meta{font-family:var(--cond);font-weight:700;letter-spacing:.08em;color:var(--muted);font-size:13px;display:flex;gap:18px;flex-wrap:wrap}
 .meta b{color:var(--text);font-weight:700;margin-left:4px}
@@ -283,7 +283,7 @@ button{cursor:pointer}
 .modal.on{display:flex;animation:fadein .4s}
 .theater{background:var(--surface);color:var(--text);border-radius:4px;width:min(500px,100%);padding:30px 26px 24px;text-align:center;box-shadow:0 0 0 1px var(--line),0 24px 60px rgba(17,17,17,.12);position:relative;overflow:hidden}
 .theater::before{display:none}
-.theater .screenline{height:4px;border-radius:0;background:linear-gradient(90deg,var(--s-red) 0 20%,var(--s-orange) 20% 40%,var(--s-yellow) 40% 60%,var(--s-green) 60% 80%,var(--s-blue) 80%);margin:0 18% 26px}
+.theater .screenline{height:4px;border-radius:0;background:linear-gradient(90deg,#F25022 0 25%,#7FBA00 25% 50%,#00A4EF 50% 75%,#FFB900 75%);margin:0 18% 26px}
 .theater h3{margin:0 0 4px;font-size:22px;font-weight:900;letter-spacing:-.05em}
 .theater p{margin:0 0 24px;color:var(--muted);font-size:13px}
 .seats{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
@@ -352,7 +352,7 @@ button{cursor:pointer}
 .endcard{background:#0B0B0B;color:#F2F2F0}
 .er{position:absolute;inset:0;overflow:hidden}
 .er-meta{position:absolute;left:clamp(16px,3vw,32px);top:clamp(14px,3vw,28px);display:flex;align-items:center;gap:12px;font-family:var(--cond);font-weight:700;font-size:12px;letter-spacing:.12em;color:var(--muted);z-index:2}
-.er-meta i{display:block;width:26px;height:12px;background:linear-gradient(90deg,var(--s-red) 0 20%,var(--s-orange) 20% 40%,var(--s-yellow) 40% 60%,var(--s-green) 60% 80%,var(--s-blue) 80%)}
+.er-meta i{display:block;width:26px;height:12px;background:linear-gradient(90deg,#F25022 0 25%,#7FBA00 25% 50%,#00A4EF 50% 75%,#FFB900 75%)}
 .er-meta b{color:var(--text)}
 .er-now{position:absolute;right:clamp(16px,3vw,32px);bottom:clamp(64px,8vw,84px);text-align:right;z-index:2;max-width:min(380px,40vw);transition:opacity .5s}
 .er-now small{display:block;font-family:var(--cond);font-weight:700;font-size:11px;letter-spacing:.14em;color:var(--dim)}
@@ -382,7 +382,7 @@ button{cursor:pointer}
 .er-paper{background:var(--surface);color:var(--ink);display:flex;flex-direction:column;justify-content:center;padding:0 24px;gap:6px}
 .er-paper b{font-family:var(--cond);font-weight:700;font-size:44px;line-height:.9;letter-spacing:-.01em;text-transform:uppercase}
 .er-paper span{font-size:13px;font-weight:600;color:var(--muted);letter-spacing:-.02em}
-.er-paper i{display:block;height:10px;margin-top:6px;background:linear-gradient(90deg,var(--s-red) 0 20%,var(--s-orange) 20% 40%,var(--s-yellow) 40% 60%,var(--s-green) 60% 80%,var(--s-blue) 80%)}
+.er-paper i{display:block;height:10px;margin-top:6px;background:linear-gradient(90deg,#F25022 0 25%,#7FBA00 25% 50%,#00A4EF 50% 75%,#FFB900 75%)}
 @media (max-width:900px){.er-stage{left:50%;top:44%}.er-now{max-width:80vw}}
 @media (max-width:640px){.er-loop{scale:.62}}
 
@@ -469,11 +469,420 @@ button{cursor:pointer}
 .track .t-all{text-align:center;font-weight:800;font-size:clamp(22px,2.6vw,32px);letter-spacing:-.03em;color:#F4F4F2;margin:0 0 22vh}
 .track .t-ty{text-align:center;font-family:var(--cond);font-weight:700;font-size:clamp(40px,6vw,76px);letter-spacing:.04em;color:#F4F4F2;margin-bottom:30vh}
 .endcard{background:#000!important}
+
+/* =========================================================
+   사용자 친화 개선 (index_v2)
+   쉬운 말이 먼저, 영화 용어는 작은 보조 라벨.
+   ========================================================= */
+/* 공통 머리글: 로고 + 진행 단계 + 도움말 */
+.apphdr{position:fixed;left:0;right:0;top:0;z-index:55;height:calc(52px + env(safe-area-inset-top,0px));padding:env(safe-area-inset-top,0px) 18px 0;display:flex;align-items:center;gap:18px;background:var(--surface);border-bottom:1px solid var(--line);transition:background .4s,border-color .4s,color .4s}
+.apphdr[hidden]{display:none!important}
+.brand{display:flex;align-items:center;gap:9px;flex:none}
+.brand svg{width:30px;height:30px;display:block;flex:none}
+.brand b{font-weight:800;font-size:15px;letter-spacing:-.03em;white-space:nowrap}
+.steps{list-style:none;margin:0 auto;padding:0;display:flex;align-items:center;overflow-x:auto;scrollbar-width:none;min-width:0}
+.steps::-webkit-scrollbar{display:none}
+.steps li{display:flex;align-items:center;gap:7px;padding:4px 11px 4px 5px;border-radius:999px;color:var(--dim);white-space:nowrap;font-size:13px;position:relative;flex:none}
+.steps li::before{content:attr(data-s);width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font-family:var(--cond);font-weight:700;font-size:11px;border:1.5px solid currentColor;flex:none}
+.steps li b{font-weight:700;letter-spacing:-.02em}
+.steps li small{font-size:11px;font-weight:500;opacity:.85}
+.steps li+li{margin-left:18px}
+.steps li+li::after{content:"";position:absolute;left:-15px;top:50%;width:12px;height:1.5px;background:var(--line-2)}
+.steps li.done{color:var(--muted)}
+.steps li.done::before{content:"✓";background:var(--ink);border-color:var(--ink);color:#fff}
+.steps li.on{color:var(--text);background:var(--raise)}
+.steps li.on::before{background:var(--ink);border-color:var(--ink);color:#fff}
+.helpbtn{flex:none;width:32px;height:32px;border-radius:50%;border:1.5px solid var(--ink);background:none;font-weight:800;font-size:15px;line-height:1;transition:background .2s,color .2s}
+.helpbtn:hover{background:var(--ink);color:#fff}
+body.hdr .screen{padding-top:calc(52px + env(safe-area-inset-top,0px))}
+body.hdr #rollScreen{padding-top:calc(76px + env(safe-area-inset-top,0px))}
+body.dark-hdr .apphdr{background:#000;border-color:#1E1E1E;color:#F2F2F0}
+body.dark-hdr .steps li{color:#5E5E5A}
+body.dark-hdr .steps li.done{color:#8E8E89}
+body.dark-hdr .steps li.done::before,body.dark-hdr .steps li.on::before{background:#F2F2F0;border-color:#F2F2F0;color:#000}
+body.dark-hdr .steps li.on{background:#1C1C1C;color:#F2F2F0}
+body.dark-hdr .steps li+li::after{background:#333}
+body.dark-hdr .helpbtn{border-color:#F2F2F0;color:#F2F2F0}
+body.dark-hdr .helpbtn:hover{background:#F2F2F0;color:#000}
+.rollfs{padding-top:0}
+@media (max-width:760px){.brand b,.steps li small{display:none}.steps li:not(.on) b{display:none}.steps li{padding-right:5px}.steps li.on{padding-right:11px}.steps li+li{margin-left:14px}.apphdr{gap:10px;padding-left:12px;padding-right:12px}}
+
+/* 첫 화면: 역할 한 줄 */
+.role-line{margin:-8px 0 0;max-width:min(500px,86vw);text-align:center;font-size:13px;line-height:1.55;color:var(--muted);letter-spacing:-.015em}
+.role-line b{color:var(--text);font-weight:800}
+
+/* 2. 분석 화면 */
+.feet #pct{color:var(--ink);font-weight:700}
+.counter h2{font-size:clamp(19px,2.2vw,24px)}
+.reading{margin:6px 0 0!important;font-size:12.5px;color:var(--dim)!important;min-height:1.5em}
+.roll-note{margin:14px auto 0!important;max-width:520px;font-size:12.5px;line-height:1.55;color:var(--muted)!important;border-top:1px solid var(--line);padding-top:12px}
+#skipWait{margin-top:14px}
+.uf small{line-height:1.4}
+.uf.done small{font-weight:700;color:#fff}
+
+/* 3. 편집실: 할 일 안내 바 */
+.taskbar{gap:14px 18px}
+.task{display:flex;flex-direction:column;gap:3px;min-width:0;flex:1 1 360px}
+.task-t{margin:0;font-weight:800;font-size:15px;line-height:1.4;letter-spacing:-.03em}
+.taskbar .meta{font-family:var(--ui);font-weight:500;letter-spacing:-.01em;font-size:12.5px;gap:14px}
+.taskbar .meta b{font-weight:800}
+.taskbar .sp{display:none}
+.taskbar .btn{flex:none}
+.prog{height:4px;background:var(--raise);border-radius:2px;overflow:hidden;max-width:420px}
+.prog i{display:block;height:100%;background:var(--ink);transition:width .5s var(--ease)}
+
+/* 목록으로 보기 */
+.listview{flex:1;overflow:auto;padding:20px clamp(16px,3vw,40px) 12px;display:flex;flex-direction:column;gap:6px;min-height:0}
+.listview[hidden]{display:none}
+.stage3d[hidden]{display:none}
+.lv-h{margin:10px 0 4px;font-size:13px;font-weight:800;letter-spacing:-.02em}
+.lv-h small{font-weight:500;color:var(--muted);margin-left:6px}
+.lv-row{display:grid;grid-template-columns:44px minmax(64px,auto) 1fr auto;align-items:center;gap:12px;text-align:left;border:1px solid var(--line);background:var(--surface);padding:10px 14px;transition:border-color .15s,transform .15s var(--ease)}
+.lv-row:hover{border-color:var(--ink);transform:translateY(-1px)}
+.lv-row.on{border-color:var(--ink);box-shadow:inset 3px 0 0 var(--ink)}
+.lv-row.cand{background:var(--surface-2);border-style:dashed}
+.lv-no{font-family:var(--cond);font-weight:700;font-size:12px;letter-spacing:.06em;color:var(--muted)}
+.lv-nm{font-weight:800;letter-spacing:-.03em}
+.lv-rl{color:var(--muted);font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lv-sw{width:10px;height:10px;border-radius:2px;display:inline-block;margin-right:6px;vertical-align:1px}
+
+/* 크레딧 정보 패널 */
+.fl{display:block;font-size:11.5px;font-weight:700;color:var(--dim);letter-spacing:-.01em;margin-bottom:2px}
+.fmt{margin:0;font-size:12px;color:var(--muted);background:var(--surface-2);padding:7px 10px;border-left:2px solid var(--line-2)}
+.why{margin:4px 0 0;font-size:12px;color:var(--muted)}
+.srcbtn{margin-left:6px;border:0;background:none;padding:0;font-size:12px;font-weight:700;color:var(--text);border-bottom:1px solid var(--ink);cursor:pointer}
+.src{border:1px solid var(--line);background:var(--surface-2);padding:10px 12px;display:flex;flex-direction:column;gap:8px}
+.src[hidden]{display:none}
+.src p{margin:0;font-size:12.5px;line-height:1.5}
+.src i{display:block;font-style:normal;font-size:11px;font-weight:700;color:var(--dim);margin-bottom:1px}
+.how-list{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;counter-reset:hw}
+.how-list li{display:grid;grid-template-columns:24px 1fr;gap:10px;font-size:13.5px;line-height:1.5;color:var(--muted)}
+.how-list li::before{counter-increment:hw;content:counter(hw);width:22px;height:22px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-family:var(--cond);font-weight:700;font-size:12px}
+.how-list b{color:var(--text)}
+.chips-h{margin:2px 0 -2px;font-size:12px;font-weight:700;color:var(--dim)}
+.m.me::before{content:"감독 (나)"!important;font-family:var(--ui)!important;letter-spacing:0!important;font-size:11px!important}
+.m.ag::before{content:"크레딧 작가 에이전트"!important;font-family:var(--ui)!important;letter-spacing:0!important;font-size:11px!important}
+.cutbtn{font-family:var(--ui)!important;letter-spacing:-.01em!important;font-size:14px!important}
+.composer .lbl{font-family:var(--ui)!important;letter-spacing:-.01em!important;font-size:12px!important;font-weight:700}
+.labtabs button{font-family:var(--ui)!important;letter-spacing:-.01em!important;font-size:13.5px!important}
+.notes-h{font-family:var(--ui)!important;letter-spacing:-.01em!important;font-size:13px!important;color:var(--text)!important;font-weight:800}
+.notes-h small{font-weight:500;color:var(--muted);margin-left:6px}
+.scene-no{font-family:var(--ui)!important;letter-spacing:-.01em!important;font-size:13px!important;font-weight:800}
+.facts dt{font-family:var(--ui)!important;letter-spacing:-.01em!important;font-size:12px!important}
+.take div b{font-family:var(--ui)!important;letter-spacing:-.01em!important;font-size:11.5px!important}
+.caption i{display:block;font-style:normal;margin-top:4px;color:rgba(255,255,255,.6);font-size:11.5px}
+.caption b{font-family:var(--ui)!important;letter-spacing:0!important}
+
+/* 첫 진입 안내 */
+.coach{position:fixed;inset:0;z-index:80}
+.coach[hidden]{display:none}
+.coach-spot{position:fixed;border-radius:6px;box-shadow:0 0 0 9999px rgba(17,17,17,.55);outline:2px solid #fff;transition:all .35s var(--ease);pointer-events:none}
+.coach-card{position:fixed;width:min(340px,calc(100vw - 32px));background:var(--surface);border-radius:6px;padding:18px 20px 16px;box-shadow:0 20px 50px rgba(0,0,0,.3);transition:left .35s var(--ease),top .35s var(--ease)}
+.coach-card small{font-family:var(--cond);font-weight:700;font-size:11px;letter-spacing:.12em;color:var(--dim)}
+.coach-card h4{margin:4px 0 6px;font-size:18px;font-weight:800;letter-spacing:-.04em}
+.coach-card p{margin:0 0 14px;font-size:13.5px;line-height:1.6;color:var(--muted)}
+.coach-card .row{justify-content:flex-end}
+
+/* 용어 카드 */
+.gloss{background:var(--surface);border-radius:6px;width:min(560px,100%);max-height:calc(100vh - 60px);overflow:auto;padding:26px 26px 22px;box-shadow:0 0 0 1px var(--line),0 24px 60px rgba(17,17,17,.14)}
+.gloss h3{margin:0 0 10px;font-size:22px;font-weight:900;letter-spacing:-.05em}
+.g-role{margin:0 0 16px;font-size:14px;line-height:1.6;color:var(--muted);background:var(--surface-2);padding:12px 14px;border-left:3px solid var(--ink)}
+.g-role b{color:var(--text)}
+.g-list{display:grid;grid-template-columns:auto 1fr;margin:0 0 18px;border-top:1.5px solid var(--ink)}
+.g-list dt,.g-list dd{margin:0;padding:9px 0;border-bottom:1px solid var(--line);font-size:13.5px}
+.g-list dt{font-weight:800;padding-right:18px;white-space:nowrap}
+.g-list dt small{display:block;font-weight:500;font-size:11.5px;color:var(--dim)}
+.g-list dd{color:var(--muted);line-height:1.5}
+.gloss .row{justify-content:flex-end}
+
+/* 4. 팀원 확인 (시사회) */
+.theater{width:min(540px,100%);max-height:calc(100vh - 40px);overflow:auto}
+.theater h3 small{font-size:13px;font-weight:600;color:var(--dim);letter-spacing:-.01em;margin-left:6px}
+.theater p#mDesc{margin-bottom:16px}
+.cardpv{text-align:left;border:1px solid var(--line-2);border-radius:6px;padding:14px 16px;margin:0 auto 20px;max-width:400px;background:var(--surface-2)}
+.cp-h{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:8px}
+.cp-h span{font-weight:800;font-size:13px}
+.cp-h small{font-size:11px;color:var(--dim)}
+.cp-t{margin:0 0 4px!important;font-size:13px!important;color:var(--text)!important;font-weight:700}
+.cp-l{margin:0 0 4px!important;font-size:13px!important;color:var(--text)!important;line-height:1.5}
+.cp-e{margin:0 0 10px!important;font-size:12px!important;color:var(--muted)!important}
+.cp-b{display:flex;gap:6px}
+.cp-b span{border:1.5px solid var(--ink);border-radius:999px;padding:3px 12px;font-size:12px;font-weight:700}
+.cp-b span:first-child{background:var(--ink);color:#fff}
+.sim{margin:14px 0 0!important;font-size:12px!important;color:var(--dim)!important}
+
+/* 5. 상영 · 결과 */
+.roll-top{position:absolute;left:0;right:0;top:calc(68px + env(safe-area-inset-top,0px));margin:0;text-align:center;font-size:12.5px;color:#6E6E69;z-index:2;letter-spacing:-.01em}
+.end-sum{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 22px;margin:0;color:#B8B8B3;font-size:14px}
+.end-sum b{color:#F2F2F0;font-weight:800;margin-left:4px}
+.end-sub{color:#8A8A85;margin:0;font-size:14px}
+
+/* ===== 이렇게 작동해요: 다이어그램 ===== */
+.flow{display:grid;grid-template-columns:1.15fr 22px 1fr 22px .9fr;align-items:stretch;gap:10px;padding-top:4px}
+.fl-col{display:flex;flex-direction:column;gap:8px;min-width:0}
+.fl-k{margin:0 0 2px;display:flex;align-items:baseline;gap:6px;font-family:var(--ui);font-weight:800;font-size:13px;letter-spacing:-.02em;color:var(--text)}
+.fl-k i{font-style:normal;font-family:var(--cond);font-weight:700;font-size:11px;letter-spacing:.06em;color:var(--dim)}
+.msrc{display:flex;align-items:center;gap:10px;padding:8px 10px;background:var(--ground);border:1px solid var(--line)}
+.msrc .lg{width:46px;height:46px;flex:none;display:grid;place-items:center}
+.msrc .lg svg{width:46px;height:46px}
+.msrc b{display:block;font-family:var(--ui);font-weight:700;font-size:13px;letter-spacing:-.02em;color:var(--text);white-space:nowrap}
+.msrc small,.agl small,.out small{display:block;font-family:var(--ui);font-size:11.5px;letter-spacing:-.01em;color:var(--muted);margin-top:1px}
+.fl-arrow{align-self:center;height:100%;position:relative}
+.fl-arrow::before{content:"";position:absolute;left:0;right:6px;top:calc(50% + 10px);height:1.5px;background:var(--ink)}
+.fl-arrow::after{content:"";position:absolute;right:1px;top:calc(50% + 6px);width:8px;height:8px;border-top:1.5px solid var(--ink);border-right:1.5px solid var(--ink);transform:rotate(45deg)}
+.agl{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:0;flex:1;justify-content:space-between}
+.agl li{position:relative;padding:6px 10px 6px 14px;border-left:3px solid var(--c);background:var(--ground)}
+.agl li+li{margin-top:6px}
+.agl li+li::before{content:"";position:absolute;left:-3px;top:-7px;width:3px;height:8px;background:var(--line-2)}
+.agl b{font-family:var(--ui);font-weight:700;font-size:12.5px;letter-spacing:-.02em;color:var(--text)}
+.out{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:6px;padding:12px 8px;background:var(--ink);color:#fff}
+.out b{font-family:var(--ui);font-weight:800;font-size:13px;letter-spacing:-.02em;color:#fff;margin-top:4px}
+.out small{color:rgba(255,255,255,.6)}
+.screen-ic{position:relative;width:100%;max-width:120px;aspect-ratio:16/10;background:#000;border:1.5px solid #fff;display:grid;place-items:center;overflow:hidden}
+.screen-ic::after{content:"";position:absolute;left:0;right:0;bottom:0;height:4px;background:linear-gradient(90deg,#F25022 0 25%,#7FBA00 25% 50%,#00A4EF 50% 75%,#FFB900 75%)}
+.screen-ic em{font-style:normal;font-family:var(--cond);font-weight:700;font-size:11px;letter-spacing:.1em;line-height:1.1;color:#fff;text-align:center;animation:credUp 4s linear infinite}
+.screen-ic .play{position:absolute;right:6px;top:6px;width:0;height:0;border-left:7px solid #fff;border-top:4.5px solid transparent;border-bottom:4.5px solid transparent;opacity:.8}
+@keyframes credUp{0%{transform:translateY(110%)}100%{transform:translateY(-110%)}}
+@media (prefers-reduced-motion:reduce){.screen-ic em{animation:none}}
+@media (max-width:620px){.flow{grid-template-columns:1fr}.fl-arrow{height:22px}.fl-arrow::before{left:50%;right:auto;top:0;bottom:4px;width:1.5px;height:auto}.fl-arrow::after{left:calc(50% - 4px);right:auto;top:auto;bottom:2px;transform:rotate(135deg)}}
+
+/* ===== Microsoft 톤: 로고 4색(#F25022 #7FBA00 #00A4EF #FFB900) + 검정·하양 ===== */
+:root{
+  --ground:#FFFFFF; --surface:#FFFFFF; --surface-2:#F7F7F7; --raise:#EFEFEF;
+  --line:#E6E6E6; --line-2:#CFCFCF;
+  --text:#000000; --muted:#5E5E5E; --dim:#9A9A9A;
+  --red:#F25022; --red-deep:#D8431A; --amber:#FFB900; --amber-soft:rgba(255,185,0,.14);
+  --board:#FFFFFF; --ink:#000000; --film:#141414; --film-dark:#000000; --hole:#FFFFFF;
+  --s-red:#F25022; --s-green:#7FBA00; --s-blue:#00A4EF; --s-yellow:#FFB900; --s-orange:#000000;
+  --ms-red:#F25022; --ms-green:#7FBA00; --ms-blue:#00A4EF; --ms-yellow:#FFB900;
+}
+body{background:#fff}
+#slateScreen{background:#fff}
+.msbadge{display:inline-flex;align-items:center;gap:10px;align-self:flex-start;padding:7px 14px 7px 10px;border:1px solid var(--line);border-radius:999px;font-family:var(--ui);font-size:13px;letter-spacing:-.01em;color:var(--muted);background:#fff}
+.msbadge b{color:#000;font-weight:700}
+.ms4{display:grid;grid-template-columns:8px 8px;gap:2px}
+.ms4 i{width:8px;height:8px;display:block}
+.ms4 i:nth-child(1){background:var(--ms-red)}.ms4 i:nth-child(2){background:var(--ms-green)}
+.ms4 i:nth-child(3){background:var(--ms-blue)}.ms4 i:nth-child(4){background:var(--ms-yellow)}
+.lede{font-weight:700!important;letter-spacing:-.035em!important;color:#000}
+.pnl{border-radius:16px;border:1px solid var(--line);background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.04),0 8px 24px rgba(0,0,0,.04);padding:22px 24px 20px}
+.pnl-no{border-radius:6px;background:#000;color:#fff}
+.pnl-h em{font-family:var(--ui);font-weight:500;font-size:12px;letter-spacing:-.01em}
+.msrc,.agl li{border-radius:10px;background:#F7F7F7;border:0}
+.agl li{border-left:0;padding-left:16px;overflow:hidden}
+.agl li::after{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--c)}
+.agl li+li::before{display:none}
+.agl li:nth-child(1){--c:var(--ms-red)!important}.agl li:nth-child(2){--c:var(--ms-green)!important}
+.agl li:nth-child(3){--c:var(--ms-blue)!important}.agl li:nth-child(4){--c:var(--ms-yellow)!important}
+.out{border-radius:12px;background:#000}
+.screen-ic{border-radius:6px}
+.drop{border-radius:12px;border:1.5px dashed #CFCFCF;background:#FAFAFA}
+.drop:hover,#slateScreen.drop .drop{border-color:var(--ms-blue);background:#fff}
+.drop-ic{border:0;background:var(--ms-blue);color:#fff}
+.tray-f{border-radius:6px;background:#F7F7F7;border-color:transparent}
+.tray-f button:hover{color:var(--ms-red)}
+.tray-h button{border-bottom-color:transparent;font-family:var(--ui);letter-spacing:-.01em;color:var(--muted)}
+.tray-h button:hover{color:var(--ms-blue);border-color:var(--ms-blue)}
+.btn{border-radius:6px;border-width:1.5px}
+.btn.red{background:#000;border-color:#000;color:#fff}
+.btn.red:hover{background:var(--ms-blue);border-color:var(--ms-blue)}
+.board{box-shadow:inset 0 0 0 1.5px #000}
+.slate{filter:drop-shadow(0 20px 30px rgba(0,0,0,.12)) drop-shadow(0 2px 4px rgba(0,0,0,.08))}
+.slate-hint .pnl-no{width:22px;height:22px}
+
+/* ===== 첫 화면 배경: Microsoft 4색 사각형을 화면 가득 ===== */
+#slateScreen{background:
+  linear-gradient(#fff,#fff) 50% 0/clamp(10px,1.4vw,22px) 100% no-repeat,
+  linear-gradient(#fff,#fff) 0 50%/100% clamp(10px,1.4vw,22px) no-repeat,
+  linear-gradient(var(--ms-red),var(--ms-red)) 0 0/50% 50% no-repeat,
+  linear-gradient(var(--ms-green),var(--ms-green)) 100% 0/50% 50% no-repeat,
+  linear-gradient(var(--ms-blue),var(--ms-blue)) 0 100%/50% 50% no-repeat,
+  linear-gradient(var(--ms-yellow),var(--ms-yellow)) 100% 100%/50% 50% no-repeat,#fff!important}
+#slateScreen .lede{color:#fff!important}
+#slateScreen .pnl{box-shadow:0 2px 6px rgba(0,0,0,.08),0 18px 40px rgba(0,0,0,.14);border-color:transparent}
+#slateScreen .slate{filter:drop-shadow(0 28px 40px rgba(0,0,0,.22)) drop-shadow(0 3px 6px rgba(0,0,0,.12))}
+#slateScreen .slate-hint{background:#fff;padding:12px 20px 12px;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.12)}
+@media (max-width:1000px){#slateScreen{background-attachment:local}}
+
+/* ===== 첫 화면 가독성 ===== */
+#slateScreen .intro-col{width:min(600px,92vw);gap:16px}
+#slateScreen .lede{font-size:clamp(28px,2.6vw,38px)!important;font-weight:800!important;line-height:1.25;text-shadow:0 1px 2px rgba(0,0,0,.12)}
+#slateScreen .msbadge{font-size:14px;padding:8px 16px 8px 12px;color:#000;box-shadow:0 4px 14px rgba(0,0,0,.12)}
+#slateScreen .pnl-h{font-size:16px}
+#slateScreen .pnl-h em{font-size:13px;color:#5E5E5E}
+#slateScreen .fl-k{font-size:14px}
+#slateScreen .fl-k i{font-size:12px;color:#5E5E5E}
+#slateScreen .msrc b,#slateScreen .agl b{font-size:14px}
+#slateScreen .out b{font-size:14px}
+#slateScreen .msrc small,#slateScreen .agl small,#slateScreen .out small{font-size:12.5px;color:#4A4A4A;line-height:1.4}
+#slateScreen .out small{color:rgba(255,255,255,.75)}
+#slateScreen .msrc{padding:10px 12px}
+#slateScreen .agl li{padding:8px 12px 8px 16px}
+#slateScreen .drop b{font-size:15px}
+#slateScreen .drop small{font-size:13px;color:#4A4A4A}
+#slateScreen .tray-h{font-size:13px;color:#4A4A4A}
+#slateScreen .tray-f{font-size:13px;height:30px;color:#000}
+#slateScreen .tray-src{font-size:13px;color:#4A4A4A}
+#slateScreen .slate{width:min(500px,86vw,max(320px,calc((100vh - 260px)*1.3)))}
+#slateScreen .slate-hint{font-size:17px;color:#000}
+#slateScreen .slate-hint small{font-size:14px;color:#4A4A4A}
+
+#slateScreen{overflow-y:auto;padding-top:28px;padding-bottom:28px}
+#slateScreen .lede{font-size:clamp(26px,2.3vw,34px)!important}
+#slateScreen .pnl{padding:16px 20px 16px;gap:10px}
+#slateScreen .drop{padding:12px 16px;display:grid;grid-template-columns:32px 1fr;column-gap:14px;row-gap:1px;text-align:left;justify-items:start}
+#slateScreen .drop-ic{grid-row:1/3;margin:0;width:32px;height:32px;align-self:center}
+#slateScreen .tray-list{max-height:72px}
+
+/* ===== 첫 화면 2×2: 배경 4색 칸마다 한 구획 ===== */
+#slateScreen{--gap:clamp(10px,1.2vw,18px);background:#fff!important;display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));
+  gap:var(--gap);padding:0!important;overflow:hidden}
+#slateScreen .intro-col{display:contents}
+#slateScreen .q-intro,#slateScreen .slate-col,#slateScreen .intro-col>.pnl{min-width:0;min-height:0;display:flex;flex-direction:column;justify-content:center;padding:clamp(20px,3.2vw,48px)}
+#slateScreen .q-intro{grid-area:1/1;background:var(--ms-red);align-items:flex-start;gap:18px}
+#slateScreen .slate-col{grid-area:1/2;background:var(--ms-green);align-items:center;gap:16px}
+#slateScreen .intro-col>.pnl:not(.tray){grid-area:2/1;background:var(--ms-blue)}
+#slateScreen .intro-col>.pnl.tray{grid-area:2/2;background:var(--ms-yellow)}
+/* 칸 안쪽 흰 카드 */
+#slateScreen .intro-col>.pnl{border:0;border-radius:0;box-shadow:none;gap:0;align-items:center}
+#slateScreen .qcard{width:100%;max-width:640px;background:#fff;border-radius:16px;padding:20px 24px 20px;display:flex;flex-direction:column;gap:12px;box-shadow:0 14px 34px rgba(0,0,0,.14)}
+#slateScreen .tray-list{max-height:72px}
+/* 빨강 칸: 소개 */
+#slateScreen .q-intro .lede{color:#fff!important;font-size:clamp(26px,2.7vw,42px)!important;line-height:1.2;margin:0;text-shadow:none}
+#slateScreen .q-sub{margin:0;max-width:520px;color:#fff;font-size:clamp(14px,1.15vw,17px);line-height:1.65;letter-spacing:-.02em;font-weight:500}
+/* 초록 칸: 슬레이트 */
+#slateScreen .slate{width:min(460px,100%,calc((50vh - 170px)*1.3));transform:none}
+#slateScreen .slate .stick{height:clamp(34px,4.5vh,52px)}
+#slateScreen .slate-hint{background:#fff;border-radius:12px;padding:10px 18px}
+/* 좁은 화면: 네 칸을 위에서 아래로 */
+@media (max-width:1000px),(max-height:700px){
+  #slateScreen{grid-template-columns:1fr;grid-template-rows:none;grid-auto-rows:auto;overflow-y:auto}
+  #slateScreen .q-intro{grid-area:auto;order:1}#slateScreen .slate-col{grid-area:auto;order:2}
+  #slateScreen .intro-col>.pnl:not(.tray){grid-area:auto;order:3}#slateScreen .intro-col>.pnl.tray{grid-area:auto;order:4}
+  #slateScreen .slate{width:min(480px,100%)}
+}
+
+/* 초록 칸 높이에 맞춰 슬레이트 크기 자동 조절 */
+#slateScreen .slate-col{container-type:size}
+#slateScreen .slate{container-type:inline-size;width:min(520px,100cqw,calc((100cqh - 110px)*1.32))!important}
+#slateScreen .slate .stick{height:12cqw!important}
+#slateScreen .slate .band{padding:4cqw 5.5cqw}
+#slateScreen .slate .band h1{font-size:9cqw}
+#slateScreen .slate .band span{font-size:3.2cqw}
+#slateScreen .slate .fields{padding:1.5cqw 5.5cqw 3.5cqw}
+#slateScreen .slate .field{padding:2cqw 0 1.2cqw;gap:2.8cqw}
+#slateScreen .slate .field label,#slateScreen .slate .cells label{font-size:3.1cqw}
+#slateScreen .slate .field b,#slateScreen .slate .cells b{font-size:4.4cqw;white-space:nowrap}
+#slateScreen .slate .cells div{padding:1.6cqw 1cqw 0}
+#slateScreen .slate-hint{padding:8px 16px;font-size:15px}
+#slateScreen .slate-hint small{font-size:13px;margin-top:2px}
+@media (max-width:1000px),(max-height:700px){#slateScreen .slate-col{container-type:normal}#slateScreen .slate{width:min(480px,100%)!important}}
+
+#slateScreen{align-content:stretch!important;justify-content:stretch!important;align-items:stretch!important;justify-items:stretch!important;height:100%}
+#slateScreen .slate-col{justify-content:center}
+
+@media (max-width:1000px),(max-height:700px){#slateScreen{align-content:start!important;grid-auto-rows:auto!important}
+  #slateScreen .q-intro,#slateScreen .slate-col,#slateScreen .intro-col>.pnl{min-height:auto}}
+
+#slateScreen .q-role{margin:0;max-width:520px;color:#fff;font-size:clamp(13px,1vw,15px);line-height:1.6;letter-spacing:-.02em;background:rgba(0,0,0,.14);padding:10px 14px;border-radius:10px}
+#slateScreen .q-role b{color:#fff}
+#slateScreen:not(.on){display:none!important}
+
+/* ===== 4분할 해제: 색은 배경에만, 슬레이트는 크게 ===== */
+#slateScreen{display:flex!important;flex-direction:row;flex-wrap:wrap;align-content:center!important;justify-content:center!important;align-items:center!important;
+  gap:clamp(28px,5vw,80px)!important;padding:32px clamp(20px,4vw,56px)!important;overflow-y:auto!important;
+  background:
+  linear-gradient(#fff,#fff) 50% 0/clamp(10px,1.2vw,18px) 100% no-repeat,
+  linear-gradient(#fff,#fff) 0 50%/100% clamp(10px,1.2vw,18px) no-repeat,
+  linear-gradient(var(--ms-red),var(--ms-red)) 0 0/50% 50% no-repeat,
+  linear-gradient(var(--ms-green),var(--ms-green)) 100% 0/50% 50% no-repeat,
+  linear-gradient(var(--ms-blue),var(--ms-blue)) 0 100%/50% 50% no-repeat,
+  linear-gradient(var(--ms-yellow),var(--ms-yellow)) 100% 100%/50% 50% no-repeat,#fff!important}
+#slateScreen:not(.on){display:none!important}
+#slateScreen .intro-col{display:flex!important;flex-direction:column;gap:14px;width:min(600px,92vw)}
+#slateScreen .q-intro,#slateScreen .intro-col>.pnl,#slateScreen .slate-col{background:none!important;padding:0!important;grid-area:auto!important;min-height:auto}
+#slateScreen .q-intro{gap:12px}
+#slateScreen .q-intro .lede{font-size:clamp(26px,2.4vw,36px)!important}
+#slateScreen .q-sub{font-size:14px}
+#slateScreen .intro-col>.pnl{display:block}
+#slateScreen .qcard{max-width:none;padding:16px 20px}
+#slateScreen .slate-col{container-type:normal!important;align-items:center;gap:18px}
+#slateScreen .slate{width:min(600px,42vw,calc((100vh - 190px)*1.35))!important}
+#slateScreen .slate-hint{padding:12px 22px;font-size:18px;box-shadow:0 10px 28px rgba(0,0,0,.16)}
+@media (max-width:1000px){#slateScreen{flex-direction:column;flex-wrap:nowrap;justify-content:flex-start!important;align-content:stretch!important}
+  #slateScreen .slate-col{order:-1}#slateScreen .slate{width:min(520px,92vw)!important}}
+
+#slateScreen{align-content:safe center!important;align-items:safe center!important}
+#slateScreen .intro-col{gap:12px}
+#slateScreen .q-intro{gap:10px}
+#slateScreen .q-intro .lede{font-size:clamp(24px,2.1vw,32px)!important;line-height:1.22}
+#slateScreen .q-sub{font-size:13.5px;line-height:1.55}
+#slateScreen .q-role{font-size:13px;padding:8px 12px}
+#slateScreen .qcard{padding:14px 18px;gap:10px}
+#slateScreen .msrc{padding:7px 10px}
+#slateScreen .msrc .lg,#slateScreen .msrc .lg svg{width:34px;height:34px}
+#slateScreen .agl li{padding:6px 12px 6px 14px}
+#slateScreen .tray-list{max-height:36px}
+#slateScreen .drop{padding:10px 14px}
+
+@media (max-width:1000px){#slateScreen{padding-top:72px!important;background:linear-gradient(180deg,var(--ms-green) 0 26%,var(--ms-red) 26% 50%,var(--ms-blue) 50% 76%,var(--ms-yellow) 76%) local!important}}
+
+/* ===== 첫 화면 배경: 4색을 흐리게 번진 빛으로 ===== */
+#slateScreen{background:#fff!important;position:relative;isolation:isolate}
+#slateScreen::before{content:"";position:fixed;inset:-15%;z-index:-1;pointer-events:none;display:block!important;
+  background:
+  radial-gradient(38% 42% at 22% 22%,var(--ms-red) 0,transparent 70%),
+  radial-gradient(38% 42% at 80% 20%,var(--ms-green) 0,transparent 70%),
+  radial-gradient(38% 42% at 20% 82%,var(--ms-blue) 0,transparent 70%),
+  radial-gradient(38% 42% at 82% 82%,var(--ms-yellow) 0,transparent 70%);
+  filter:blur(70px);opacity:.42}
+#slateScreen::after{display:none!important}
+#slateScreen .q-intro .lede{color:#000!important}
+#slateScreen .q-sub{color:#333}
+#slateScreen .q-role{color:#222;background:rgba(255,255,255,.7);border:1px solid rgba(0,0,0,.06)}
+#slateScreen .q-role b{color:#000}
+#slateScreen .qcard{box-shadow:0 1px 2px rgba(0,0,0,.04),0 10px 30px rgba(0,0,0,.07)}
+#slateScreen .slate-hint{box-shadow:0 6px 20px rgba(0,0,0,.08)}
+@media (max-width:1000px){#slateScreen{background:#fff!important}}
 </style>
 </head>
 <body>
 <div class="grain" aria-hidden="true"></div>
 <div class="vignette" aria-hidden="true"></div>
+
+<!-- 공통 머리글: 로고 + 진행 단계 + 도움말 (슬레이트를 친 뒤부터 보여요) -->
+<header class="apphdr" id="apphdr" hidden>
+  <div class="brand">
+    <svg viewBox="64 100 384 362" aria-hidden="true">
+      <defs>
+        <pattern id="lgBase" patternUnits="userSpaceOnUse" width="64" height="64" patternTransform="rotate(-28)"><rect width="64" height="64" fill="#000000"/><rect width="32" height="64" fill="#F25022"/></pattern>
+        <pattern id="lgTop" patternUnits="userSpaceOnUse" width="64" height="64" patternTransform="rotate(28)"><rect width="64" height="64" fill="#000000"/><rect width="32" height="64" fill="#F25022"/></pattern>
+        <clipPath id="lgBoard"><path d="M70 236 H442 a6 6 0 0 1 6 6 V428 a28 28 0 0 1 -28 28 H92 a28 28 0 0 1 -28 -28 V242 a6 6 0 0 1 6 -6 Z"/></clipPath>
+      </defs>
+      <g transform="translate(0 6)">
+        <g clip-path="url(#lgBoard)">
+          <rect x="64" y="236" width="384" height="220" fill="#FFFFFF"/>
+          <rect x="64" y="236" width="384" height="86" fill="#F25022"/>
+          <rect x="96" y="362" width="320" height="8" rx="2" fill="#000000"/>
+          <rect x="96" y="402" width="320" height="8" rx="2" fill="#000000"/>
+        </g>
+        <rect x="64" y="178" width="384" height="52" rx="5" fill="url(#lgBase)"/>
+        <g transform="rotate(-13 76 174)"><rect x="76" y="122" width="372" height="52" rx="7" fill="url(#lgTop)"/></g>
+        <rect x="64" y="108" width="60" height="122" rx="8" fill="#000000"/>
+        <circle cx="84" cy="132" r="7" fill="#9A9A9A"/><circle cx="84" cy="210" r="7" fill="#9A9A9A"/><circle cx="108" cy="210" r="7" fill="#9A9A9A"/>
+      </g>
+    </svg>
+    <b>엔딩 크레딧</b>
+  </div>
+  <ol class="steps" id="steps" aria-label="진행 단계">
+    <li data-s="1"><b>준비</b><small>슬레이트</small></li>
+    <li data-s="2"><b>분석</b><small>촬영</small></li>
+    <li data-s="3"><b>초안 확인·수정</b><small>편집</small></li>
+    <li data-s="4"><b>팀원 확인</b><small>시사회</small></li>
+    <li data-s="5"><b>크레딧 완성</b><small>상영</small></li>
+  </ol>
+  <button class="helpbtn" id="helpBtn" aria-label="용어와 사용법 보기">?</button>
+</header>
 
 <!-- 1. 슬레이트 -->
 <section class="screen on" id="slateScreen">
@@ -487,17 +896,47 @@ button{cursor:pointer}
   </div>
   <div class="intro-col">
     <p class="kicker">ENDING CREDITS AGENT</p>
-    <h2 class="lede">조별과제 기록을 읽고, 숨은 기여까지 담은<br>엔딩 크레딧을 만들어요</h2>
+    <div class="q-intro">
+    <div class="msbadge"><span class="ms4" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span><b>Microsoft Copilot Studio</b>로 만든 멀티 에이전트</span></div>
+    <h2 class="lede">조별과제 기록을 읽고,<br>숨은 기여까지 담은<br>엔딩 크레딧을 만들어요</h2>
+    <p class="q-sub">Teams·OneDrive·SharePoint에 쌓인 팀 기록을 Copilot Studio 에이전트 네 개가 읽고, 기록에 덜 남은 기여까지 찾아 한 편의 엔딩 크레딧으로 만들어요.</p>
+    <p class="role-line q-role"><b>여기서 감독은 나예요.</b> 스태프 에이전트 4명이 크레딧 초안을 만들면, 내가 보고 고칠 점을 말해 확정해요.</p>
+  </div>
     <section class="pnl">
+    <div class="qcard">
     <div class="pnl-h"><span class="pnl-no">1</span><b>이렇게 작동해요</b></div>
-    <ol class="how">
-      <li><b>01 연결</b><span>Microsoft Teams의 회의 전사본·채팅과 OneDrive·SharePoint의 문서·버전 기록을 읽어요.</span></li>
-      <li><b>02 분석</b><span>네 에이전트가 기록 수집 → 기여 연결 → 묻힌 기여 발굴 → 크레딧 작성 순서로 이어서 일해요.</span></li>
-      <li><b>03 상영</b><span>팀원이 장면마다 고치고 확인하면, 점수나 순위 없이 엔딩 크레딧으로 상영해요.</span></li>
-    </ol>
+    <div class="flow" role="img" aria-label="Microsoft Teams, OneDrive, SharePoint의 기록을 네 에이전트가 분석해 엔딩 크레딧 영상으로 상영합니다">
+      <div class="fl-col">
+        <p class="fl-k"><i>01</i>연결</p>
+        <div class="msrc"><span class="lg"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="14" y="9" width="28" height="30" rx="6" fill="#7B83EB"/><circle cx="35" cy="9" r="6" fill="#7B83EB"/><circle cx="24" cy="8" r="7" fill="#5059C9"/><rect x="4" y="15" width="24" height="24" rx="4" fill="#4B53BC"/><path d="M10 21h12v3h-4.5v10h-3V24H10z" fill="#fff"/></svg></span><span><b>Microsoft Teams</b><small>회의 전사본 · 채팅</small></span></div>
+        <div class="msrc"><span class="lg"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M20 15a11 11 0 0 1 19 5 8 8 0 0 1 1 16H14l6-21z" fill="#0364B8"/><path d="M14 36h26a8 8 0 0 0 1-16 11 11 0 0 0-21-3 9 9 0 0 0-6 19z" fill="#1490DF"/><path d="M14 36a9 9 0 0 1-1-18 9 9 0 0 1 7-1L33 36z" fill="#28A8EA"/></svg></span><span><b>OneDrive</b><small>문서 · 버전 기록</small></span></div>
+        <div class="msrc"><span class="lg"><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="22" cy="17" r="12" fill="#036C70"/><circle cx="32" cy="27" r="10" fill="#1A9BA1"/><circle cx="23" cy="35" r="8" fill="#37C6D0"/><rect x="4" y="13" width="22" height="22" rx="4" fill="#03787C"/><path d="M19.5 18.5c-1-.7-2.3-1-3.6-1-2.6 0-4.4 1.4-4.4 3.4 0 1.7 1.1 2.6 3.4 3.3 1.6.5 2 .8 2 1.4 0 .6-.6 1-1.6 1-1.3 0-2.6-.5-3.6-1.3v3c1 .6 2.3.9 3.7.9 2.8 0 4.6-1.4 4.6-3.6 0-1.7-1-2.7-3.4-3.4-1.5-.5-2-.8-2-1.3 0-.5.5-.9 1.4-.9 1.1 0 2.2.4 3.2 1z" fill="#fff"/></svg></span><span><b>SharePoint</b><small>팀 공유 폴더 · 댓글</small></span></div>
+      </div>
+      <div class="fl-arrow" aria-hidden="true"></div>
+      <div class="fl-col">
+        <p class="fl-k"><i>02</i>분석</p>
+        <ol class="agl">
+          <li style="--c:var(--s-blue)"><b>기록 수집</b><small>시간순 활동 기록</small></li>
+          <li style="--c:var(--s-green)"><b>기여 연결</b><small>질문 → 결과물</small></li>
+          <li style="--c:var(--s-orange)"><b>묻힌 기여 발굴</b><small>지워진 의견 · 수정</small></li>
+          <li style="--c:var(--s-red)"><b>크레딧 작가</b><small>서사형 역할명</small></li>
+        </ol>
+      </div>
+      <div class="fl-arrow" aria-hidden="true"></div>
+      <div class="fl-col">
+        <p class="fl-k"><i>03</i>상영</p>
+        <div class="out">
+          <div class="screen-ic"><span class="play"></span><em>ENDING<br>CREDITS</em></div>
+          <b>하나의 엔딩 크레딧 영상</b>
+          <small>팀원이 확인한 뒤 상영해요</small>
+        </div>
+      </div>
+    </div>
+    </div>
     </section>
   <section class="pnl tray" id="tray">
-      <div class="pnl-h"><span class="pnl-no">2</span><b>팀 기록 올리기</b><em>선택</em></div>
+      <div class="qcard">
+      <div class="pnl-h"><span class="pnl-no">2</span><b>팀 기록 올리기</b><em>시연용 · 선택</em></div>
       <label class="drop" id="dropZone" for="trayInput">
         <span class="drop-ic" aria-hidden="true">↑</span>
         <b>파일을 끌어다 놓거나 눌러서 올리세요</b>
@@ -506,6 +945,7 @@ button{cursor:pointer}
       <div class="tray-h"><span>올린 파일 <b id="trayCnt">0</b></span><span><button type="button" id="trayReset">5조 예시 넣기</button>　<button type="button" id="trayClear">모두 빼기</button></span></div>
       <div class="tray-list" id="trayList"></div>
       <p class="tray-src" id="traySrc"></p>
+      </div>
       <input type="file" id="trayInput" multiple accept=".txt,.md,.docx,.csv,.vtt" hidden>
     </section>
     <script type="application/json" id="demoFiles">[{"name": "01_명단동의.md", "text": "# 팀원 명단 · 역할 분담 · 기록 분석 동의\n모바일 UX 디자인 (2026-2학기) 기말 프로젝트  \n5조 — 「캠퍼스 야간 귀가 안전 앱」 UX 설계  \n팀 배정: 10월 13일(화) (랜덤 배정, 서로 처음 만난 팀) / 최종 발표: 11월 3일(화)  \n\n## 역할 분담 (1주 차 킥오프 회의에서 정함)\n\n| 이름 | 학번 | 처음 맡은 역할 | 비고 |\n|---|---|---|---|\n| 한도윤 | 20231102 | 기획서 정리, 화면 시안 | 디자인 툴 가장 익숙함 |\n| 윤서아 | 20231218 | 자료조사 보조 | 구체적인 업무는 '필요할 때 요청'으로 남겨 둠 |\n| 강민재 | 20231077 | 경쟁 앱 조사 | 킥오프 회의 불참(저녁 알바), 단톡에서 역할 수락 |\n| 오준호 | 20231245 | 사용자 인터뷰 | 인터뷰 5명 진행 |\n| 정하린 | 20231163 | 일정 관리, 회의록 | 회의록 작성 자원 |\n\n\n## 기록 분석 동의 (엔딩 크레딧 생성용)\n동의 범위: 10월 13일~10월 31일의 Teams 회의 전사본, 팀 단톡(Teams 채팅), 공유 폴더(OneDrive) 문서·버전·댓글 기록. 개인 메시지(DM)는 제외. 분석 결과는 점수나 순위가 아니라 팀 회고(엔딩 크레딧)에만 사용.  \n\n| 이름 | 동의 여부 | 동의 시각 |\n|---|---|---|\n| 한도윤 | 동의 | 10월 29일(목) 14:52 |\n| 윤서아 | 동의 | 10월 29일(목) 14:53 |\n| 강민재 | 동의 | 10월 29일(목) 15:20 |\n| 오준호 | 동의 | 10월 29일(목) 14:55 |\n| 정하린 | 동의 | 10월 29일(목) 14:51 |\n\n"}, {"name": "02_회의록1.md", "text": "# 회의록 — 1주 차 킥오프\n모바일 UX 디자인 (2026-2학기) 기말 프로젝트  \n5조 — 「캠퍼스 야간 귀가 안전 앱」 UX 설계  \n일시: 10월 15일(목) 20:00–20:52 (Microsoft Teams 온라인 회의)  \n참석: 한도윤, 윤서아, 오준호, 정하린 (4명) / 강민재 불참(저녁 알바)  \n회의록 작성: 정하린  \n\n## 회의 전사본 (Teams 자동 전사)\n[10월 15일(목) 20:01] 정하린: 다들 들어오셨죠? 제가 회의록 쓸게요. 민재님은 알바라 오늘 못 오신대요.  \n[10월 15일(목) 20:03] 한도윤: 주제는 수업에서 준 것 중에 '캠퍼스 야간 귀가 안전 앱'이 제일 공감 가는 것 같아요.  \n[10월 15일(목) 20:05] 오준호: 저도 좋아요. 저 기숙사 사는데 밤에 도서관에서 오는 길이 좀 어둡거든요.  \n[10월 15일(목) 20:08] 한도윤: 그럼 기본 아이디어는 친구한테 내 위치를 실시간으로 공유하는 앱으로 잡아볼게요.  \n[10월 15일(목) 20:12] 정하린: 역할 나눠볼까요? 도윤님이 디자인 툴 제일 잘 쓰시니까 기획서 정리랑 시안 맡아주실 수 있을까요?  \n[10월 15일(목) 20:13] 한도윤: 네 제가 할게요.  \n[10월 15일(목) 20:15] 오준호: 저는 인터뷰 해볼게요. 주변에 밤늦게 귀가하는 친구들 꽤 있어요.  \n[10월 15일(목) 20:17] 정하린: 민재님은 단톡으로 여쭤보고 경쟁 앱 조사 부탁드리려고요. 저는 일정이랑 회의록 할게요.  \n[10월 15일(목) 20:19] 윤서아: 저는… 어떤 걸 하면 좋을까요? 뭐든 괜찮아요!  \n[10월 15일(목) 20:20] 한도윤: 음 일단 자료조사 보조로 해두고, 필요할 때 말씀드릴게요!  \n[10월 15일(목) 20:21] 윤서아: 넵 알겠습니다!  \n[10월 15일(목) 20:35] 정하린: 다음 회의는 다음 주 화요일 20일 저녁으로 투표 올릴게요.  \n\n## 회의 요약 (Teams 자동 요약)\n- 주제: 캠퍼스 야간 귀가 안전 앱 — 친구에게 실시간 위치 공유\n- 역할: 한도윤(기획서·시안), 오준호(인터뷰), 강민재(경쟁 앱 조사, 단톡으로 요청), 정하린(일정·회의록), 윤서아(자료조사 보조)\n- 다음 회의: 10월 20일\n"}, {"name": "03_회의록2.md", "text": "# 회의록 — 2주 차 중간 회의 (방향 전환)\n모바일 UX 디자인 (2026-2학기) 기말 프로젝트  \n5조 — 「캠퍼스 야간 귀가 안전 앱」 UX 설계  \n일시: 10월 20일(화) 20:00–21:10 (Microsoft Teams 온라인 회의)  \n참석: 한도윤, 윤서아, 오준호, 정하린 / 강민재 20:40부터 참석(알바 마치고)  \n회의록 작성: 정하린  \n\n## 회의 전사본 (Teams 자동 전사)\n[10월 20일(화) 20:02] 한도윤: 기획서 v1 올려놨어요. 실시간 위치 공유 중심이에요.  \n[10월 20일(화) 20:06] 정하린: 민재님이 새벽에 올려주신 경쟁 앱 비교표 보니까, 6개 앱이 전부 실시간 위치 공유더라고요.  \n[10월 20일(화) 20:08] 한도윤: 그러네요… 그럼 우리 차별점이 뭐지?  \n[10월 20일(화) 20:10] 윤서아: 음…  \n[10월 20일(화) 20:11] (침묵): 약 50초간 발언 없음  \n[10월 20일(화) 20:12] 오준호: 근데… 위치를 계속 공유하는 게 오히려 무서울 수도 있지 않아요? 인터뷰한 친구 중에 두 명이 '감시당하는 느낌'이라고 했거든요.  \n[10월 20일(화) 20:14] 한도윤: 아 그럼 계속 보여주는 대신에, 도착했는지만 알려주는 건 어때요?  \n[10월 20일(화) 20:15] 정하린: 오 좋아요. 경쟁 앱이랑도 확실히 달라지고요.  \n[10월 20일(화) 20:18] 한도윤: 그럼 '실시간 추적'에서 '도착 확인'으로 바꿔서 제가 기획서 다시 정리할게요.  \n[10월 20일(화) 20:25] 윤서아: 혹시 제가 도울 일 있을까요?  \n[10월 20일(화) 20:26] 한도윤: 아직은 괜찮을 것 같아요! 시안 나오면 말씀드릴게요.  \n[10월 20일(화) 20:41] 강민재: 늦어서 죄송해요. 방금 들어왔어요. 혹시 비교표 도움 됐을까요?  \n[10월 20일(화) 20:42] 정하린: 네! 그거 보고 차별점 얘기가 나왔어요.  \n[10월 20일(화) 20:44] 강민재: 다행이에요. 기획서에도 댓글 몇 개 남겨뒀어요.  \n\n## 회의 요약 (Teams 자동 요약)\n- 결정: 핵심 기능을 '실시간 위치 추적'에서 '도착 확인 알림'으로 변경 (한도윤 정리)\n- 후속: 한도윤 기획서 v2·화면 시안 작업\n- 다음 회의: 10월 29일 발표 리허설\n"}, {"name": "04_회의록3.md", "text": "# 회의록 — 3주 차 발표 리허설\n모바일 UX 디자인 (2026-2학기) 기말 프로젝트  \n5조 — 「캠퍼스 야간 귀가 안전 앱」 UX 설계  \n일시: 10월 29일(목) 14:00–15:30 (Microsoft Teams 온라인 회의)  \n참석: 한도윤, 윤서아, 강민재, 오준호, 정하린 (5명)  \n회의록 작성: 정하린  \n\n## 회의 전사본 (Teams 자동 전사)\n[10월 29일(목) 14:02] 정하린: 시작 전에, 엔딩 크레딧 만들어 보려면 기록 분석 동의가 필요하대요. 단톡에 동의 링크 올렸어요.  \n[10월 29일(목) 14:10] 한도윤: 발표는 제가 앞부분, 서아님이 사용자 테스트 부분 맡아주시면 좋을 것 같아요.  \n[10월 29일(목) 14:11] 윤서아: 네! 제가 테스트한 거라 설명할 수 있어요.  \n[10월 29일(목) 14:20] 강민재: 경쟁 앱 비교 슬라이드는 제가 정리할게요. 오늘 알바 쉬는 날이에요.  \n[10월 29일(목) 14:35] 오준호: 인터뷰 인용은 '감시당하는 느낌' 그 한 문장만 넣으면 좋겠어요.  \n[10월 29일(목) 14:48] 정하린: 마지막 장에 우리 팀 엔딩 크레딧 넣으면 어때요? 각자 한 게 다 다르니까요.  \n[10월 29일(목) 14:50] 한도윤: 좋아요. 사실 저는 제가 너무 혼자 붙잡고 있었나 싶었는데, 한번 정리해 보면 좋겠네요.  \n[10월 29일(목) 15:20] 강민재: (알바 전 접속) 동의 체크했어요!  \n\n## 회의 요약 (Teams 자동 요약)\n- 발표 분담: 한도윤(문제·방향), 윤서아(사용자 테스트), 강민재(경쟁 앱 비교), 오준호(인터뷰 인용)\n- 팀원 전원 기록 분석 동의 완료\n- 발표자료 마지막 장에 팀 엔딩 크레딧 넣기로 함\n"}, {"name": "05_단톡.md", "text": "# Teams 팀 단톡 내보내기 — 모바일UX 5조 › 일반\n모바일 UX 디자인 (2026-2학기) 기말 프로젝트  \n5조 — 「캠퍼스 야간 귀가 안전 앱」 UX 설계  \n기간: 10월 13일(화) ~ 10월 31일(토)  \n10월 13일(화) 18:20 정하린: 안녕하세요! 5조 단톡 만들었어요 😊 다들 잘 부탁드려요  \n10월 13일(화) 18:24 오준호: 안녕하세요 잘 부탁드립니다  \n10월 13일(화) 18:30 윤서아: 안녕하세요!! 잘 부탁드려요 🙇‍♀️  \n10월 13일(화) 18:41 한도윤: 안녕하세요~  \n10월 14일(수) 21:03 정하린: 킥오프 회의 시간 투표 올렸어요! 🗳 내일 저녁까지만 체크 부탁드려요  \n10월 14일(수) 21:10 윤서아: 넵! 혹시 제가 미리 해 둘 일 있을까요?  \n10월 14일(수) 21:12 한도윤: 아 아직은 없어요! 회의 때 같이 정해요  \n10월 15일(목) 01:47 강민재: 늦게 봐서 죄송해요 알바 끝나고 이제 봤어요 ㅠ 내일 회의는 알바라 못 갈 것 같아요.. 정말 죄송합니다  \n10월 15일(목) 21:00 정하린: 회의록 올렸어요! 민재님은 경쟁 앱 조사 부탁드려도 될까요?  \n10월 16일(금) 00:52 강민재: 네 제가 할게요! 이번 주 안에 정리해볼게요  \n10월 17일(토) 03:20 강민재: (파일) 경쟁앱6개_비교표.docx  \n10월 17일(토) 03:21 강민재: 알바 끝나고 정리해봤어요. 다 실시간 위치 공유 방식이라 차별점이 고민될 것 같아요  \n10월 17일(토) 09:15 정하린: 와 새벽에 ㅠㅠ 감사해요 민재님!  \n10월 18일(일) 17:30 한도윤: 기획서 v1 올렸어요. 한번씩 봐주세요  \n10월 18일(일) 17:45 윤서아: 확인했어요! 혹시 제가 자료조사 할 거 있으면 말씀해주세요  \n10월 19일(월) 01:40 강민재: 기획서에 댓글 몇 개 남겼어요. 비교표 3번 보시면 차별점 아이디어 있을 것 같아요  \n10월 20일(화) 21:15 정하린: 오늘 회의록 올렸어요! '도착 확인'으로 방향 바뀐 거 정리해뒀어요  \n10월 20일(화) 21:20 오준호: 인터뷰 정리본도 폴더에 올려뒀어요  \n10월 21일(수) 22:30 윤서아: (파일) 기숙사친구7명_테스트메모.docx  \n10월 21일(수) 22:31 윤서아: 혹시 도움 될까 해서 친구들한테 기획서 그림 보여주고 반응 적어봤어요..! 안 쓰셔도 괜찮아요  \n10월 21일(수) 22:40 오준호: 오 이거 좋네요  \n10월 22일(목) 19:05 한도윤: 민재님 혹시 기획서 경쟁 앱 부분 한 줄 요약 가능하실까요?  \n10월 22일(목) 23:10 윤서아: 민재님 요즘 많이 바쁘신가 봐요 ㅠ 괜찮으세요?  \n10월 23일(금) 00:50 강민재: 앗 죄송해요 이번 주 알바가 매일 마감이라 ㅠ 요약은 기획서에 댓글로 달아뒀어요!  \n10월 23일(금) 16:00 한도윤: 시안 v2 올렸어요. 도착 버튼 크게 하고 알림 문구 바꿨어요  \n10월 23일(금) 16:05 정하린: 오 훨씬 보기 편해요!  \n10월 24일(토) 14:20 윤서아: 혹시 제가 발표자료 쪽에서 할 수 있는 게 있을까요?  \n10월 24일(토) 14:35 한도윤: 아 조금만 정리되면 말씀드릴게요!  \n10월 26일(월) 20:10 정하린: 📅 남은 일정 공유:29일 리허설, 30일 최종본, 11/3 발표예요!  \n10월 27일(화) 02:14 한도윤: 다들 고생 많으세요.. 요즘 저 혼자 정리하는 느낌이라 조금 지치네요 ㅠ  \n10월 27일(화) 09:02 정하린: 헉 도윤님 ㅠㅠ 제가 남은 거 나눠볼게요!  \n10월 27일(화) 09:05 정하린: 서아님은 사용자 테스트 장, 민재님은 경쟁 앱 비교 장, 준호님은 인터뷰 인용 맡아주실 수 있을까요? 도윤님은 전체 흐름만 봐주세요!  \n10월 27일(화) 09:10 윤서아: 네!! 드디어 할 일이 생겼다 ㅎㅎ 오늘 안에 할게요  \n10월 27일(화) 09:30 오준호: 넵 할게요  \n10월 27일(화) 13:12 강민재: 늦게 봤어요 ㅠ 오늘 밤에 비교 슬라이드 만들어둘게요  \n10월 27일(화) 13:20 한도윤: 감사해요 다들 🙏  \n10월 28일(수) 01:30 강민재: 비교 슬라이드 올렸어요!  \n10월 28일(수) 18:00 윤서아: 사용자 테스트 장 올렸어요. 7명 중 5명이 도착 체크가 더 편하다고 했어요  \n10월 29일(목) 13:55 정하린: 리허설 전에 기록 분석 동의 체크 부탁드려요 → 동의 링크  \n10월 30일(금) 23:40 한도윤: 기획서랑 발표자료 최종본 올렸어요!  \n10월 31일(토) 10:00 정하린: 다들 진짜 고생 많았어요 🥹 발표 때 봬요!  \n"}, {"name": "06_버전댓글.md", "text": "# 공유 폴더(OneDrive) 버전 · 댓글 기록\n모바일 UX 디자인 (2026-2학기) 기말 프로젝트  \n5조 — 「캠퍼스 야간 귀가 안전 앱」 UX 설계  \n폴더: 모바일UX_5조_공유폴더 / 내보낸 날짜: 10월 31일  \n\n## 파일 버전 기록\n\n| 날짜·시간 | 파일 | 버전 | 수정한 사람 | 변경 내용 |\n|---|---|---|---|---|\n| 10월 15일(목) 21:00 | 회의록_1주차.docx | 1.0 | 정하린 | 킥오프 회의록 업로드 |\n| 10월 17일(토) 03:20 | 경쟁앱6개_비교표.docx | 1.0 | 강민재 | 경쟁 앱 6개 기능 비교표 업로드 (모두 실시간 위치 공유 방식) |\n| 10월 18일(일) 17:30 | 기획서.docx | v1 | 한도윤 | 초안: 실시간 위치 공유 중심 |\n| 10월 20일(화) 21:15 | 회의록_2주차.docx | 1.0 | 정하린 | 방향 전환 회의록 업로드 |\n| 10월 20일(화) 21:20 | 인터뷰정리.docx | 1.0 | 오준호 | 인터뷰 5명 정리 ('감시당하는 느낌' 2명) |\n| 10월 21일(수) 22:30 | 기숙사친구7명_테스트메모.docx | 1.0 | 윤서아 | 친구 7명 반응 테스트 메모 업로드 |\n| 10월 22일(목) 18:00 | 기획서.docx | v2 | 한도윤 | 핵심 기능을 '도착 확인 알림'으로 변경 |\n| 10월 23일(금) 16:00 | 화면시안.pdf | v2 | 한도윤 | 도착 버튼 크기 확대, 알림 문구 수정 ('위험 알림' → '도착했나요?') |\n| 10월 28일(수) 01:30 | 발표자료.pptx | v2 | 강민재 | 경쟁 앱 비교 슬라이드 추가 |\n| 10월 28일(수) 18:00 | 발표자료.pptx | v3 | 윤서아 | 사용자 테스트 슬라이드 추가 |\n| 10월 28일(수) 20:30 | 발표자료.pptx | v4 | 오준호 | 인터뷰 인용 슬라이드 추가 |\n| 10월 30일(금) 23:30 | 기획서.docx | 최종 | 한도윤 | 최종 정리 |\n| 10월 30일(금) 23:40 | 발표자료.pptx | 최종 | 한도윤 | 전체 디자인 통일, 최종 정리 |\n\n\n## 문서 댓글 기록\n\n| 날짜·시간 | 문서 | 작성자 | 댓글 내용 | 처리 |\n|---|---|---|---|---|\n| 10월 19일(월) 01:40 | 기획서 v1 | 강민재 | 경쟁 앱 6개가 다 실시간 공유라 차별점이 약해 보여요. 비교표 3번(사용자 불만: '감시받는 느낌' 리뷰 다수) 참고해 주세요. | 해결됨 (v2 반영) |\n| 10월 19일(월) 01:52 | 기획서 v1 | 강민재 | '위험 지역 알림'은 오탐이 많다는 리뷰가 있었어요. 빼는 것도 고려해 보면 좋겠어요. | 해결됨 (v2에서 삭제) |\n| 10월 23일(금) 00:48 | 기획서 v2 | 강민재 | 경쟁 앱 부분 한 줄 요약: '기존 앱은 모두 추적형, 우리는 확인형'. | 해결됨 (최종본에 그대로 사용) |\n| 10월 22일(목) 09:10 | 기획서 v2 | 윤서아 | 테스트 메모 3번 참고해 주세요: 도착 버튼이 작아서 어두운 길에서 누르기 어렵대요. | 해결됨 (시안 v2 반영) |\n| 10월 22일(목) 09:12 | 기획서 v2 | 윤서아 | '위험 알림' 문구가 무섭다는 반응이 3명이었어요. | 해결됨 (시안 v2 문구 수정) |\n\n"}, {"name": "07_테스트메모.md", "text": "# 기숙사 친구 7명 반응 테스트 메모\n모바일 UX 디자인 (2026-2학기) 기말 프로젝트  \n5조 — 「캠퍼스 야간 귀가 안전 앱」 UX 설계  \n작성: 윤서아 / 10월 21일(수) / 아무도 요청하지 않았지만 도움이 될까 해서 진행  \n방법: 기획서 v1의 화면 그림을 휴대폰으로 보여주고 '밤에 혼자 귀가할 때 쓸 것 같은지' 물어봄. 1인당 5분.  \n\n| # | 친구 | 반응 요약 |\n|---|---|---|\n| 1 | A (1학년) | 실시간 위치 공유는 부모님이 쓰라고 하면 싫을 것 같다. 도착만 알려주면 좋겠다. |\n| 2 | B (2학년) | 도착 버튼이 작아서 어두운 데서 한 손으로 누르기 힘들 것 같다. |\n| 3 | C (3학년) | '위험 알림'이라는 말이 오히려 무섭다. |\n| 4 | D (1학년) | 친구한테 계속 위치 보이는 건 부담. 도착 체크면 쓸 것 같다. |\n| 5 | E (4학년) | '위험' 단어 빼면 좋겠다. |\n| 6 | F (2학년) | 도착 체크 방식이면 매일 쓸 듯. |\n| 7 | G (3학년) | 버튼 크게, 문구 부드럽게 하면 좋겠다. '위험'이라는 표현이 무섭다. |\n\n\n## 정리\n- 7명 중 5명이 '실시간 공유'보다 '도착 체크'가 편하다고 함\n- 도착 버튼을 크게 (2명)\n- '위험 알림' 같은 무서운 문구 순화 (3명)\n"}, {"name": "08_경쟁앱비교.md", "text": "# 경쟁 앱 6개 비교표\n모바일 UX 디자인 (2026-2학기) 기말 프로젝트  \n5조 — 「캠퍼스 야간 귀가 안전 앱」 UX 설계  \n작성: 강민재 / 10월 17일(토) 03:20 (알바 끝나고 작성)  \n\n| # | 앱 | 핵심 방식 | 사용자 리뷰에서 자주 나온 불만 |\n|---|---|---|---|\n| 1 | 앱 A | 실시간 위치 공유 | 배터리 소모가 큼 |\n| 2 | 앱 B | 실시간 위치 공유 + 위험 지역 알림 | 위험 지역 알림 오탐이 많음 |\n| 3 | 앱 C | 실시간 위치 공유 | '감시받는 느낌'이라는 리뷰 다수 ← 차별점 아이디어 |\n| 4 | 앱 D | 실시간 공유 + 긴급 전화 | 버튼이 작아 급할 때 누르기 어려움 |\n| 5 | 앱 E | 실시간 위치 공유 | 친구 초대가 번거로움 |\n| 6 | 앱 F | 실시간 공유 + 경로 기록 | 개인정보가 걱정됨 |\n\n\n## 한 줄 정리\n6개 앱 모두 '추적형'. 감시받는 느낌과 개인정보 걱정이 공통 불만 → '확인형'으로 가면 차별화 가능.  \n"}, {"name": "09_기획서.md", "text": "# 기획서 (최종) — 「도착했어」 야간 귀가 확인 앱\n모바일 UX 디자인 (2026-2학기) 기말 프로젝트  \n5조 — 「캠퍼스 야간 귀가 안전 앱」 UX 설계  \n최종 수정: 10월 30일(금) 23:30 한도윤  \n\n## 1. 문제\n밤늦게 혼자 귀가하는 학생은 불안하지만, 기존 안전 앱은 실시간 위치 추적 방식이라 '감시받는 느낌'이 들어 잘 쓰지 않는다.  \n\n## 2. 핵심 아이디어\n계속 위치를 보여주는 대신, 도착했는지만 친구에게 알려준다. — '기존 앱은 모두 추적형, 우리는 확인형'  \n\n## 3. 주요 기능\n- 출발할 때 '도착하면 알려줄게' 한 번 누르기\n- 도착하면 큰 '도착했어' 버튼 한 번\n- 예정 시간이 지나면 친구에게 부드러운 확인 메시지 ('도착했나요?')\n\n## 4. 근거\n사용자 인터뷰 5명, 반응 테스트 7명, 경쟁 앱 6개 비교  \n"}, {"name": "10_발표구성.md", "text": "# 발표자료 구성 (최종)\n모바일 UX 디자인 (2026-2학기) 기말 프로젝트  \n5조 — 「캠퍼스 야간 귀가 안전 앱」 UX 설계  \n최종 수정: 10월 30일(금) 23:40 한도윤  \n\n| 장 | 제목 | 담당 발표 | 내용 |\n|---|---|---|---|\n| 1 | 표지 | 한도윤 | 「도착했어」 |\n| 2 | 문제 | 한도윤 | 밤길 불안 + 추적형 앱의 감시 느낌 |\n| 3 | 인터뷰 | 오준호 | '감시당하는 느낌' 인용 |\n| 4 | 경쟁 앱 비교 | 강민재 | 6개 모두 추적형 → 우리는 확인형 |\n| 5 | 사용자 테스트 | 윤서아 | 7명 중 5명 '도착 체크가 편하다' |\n| 6 | 핵심 기능·화면 | 한도윤 | 큰 도착 버튼, 부드러운 문구 |\n| 7 | 기대 효과 | 한도윤 |  |\n| 8 | 우리 팀 엔딩 크레딧 | — | (비어 있음 — 엔딩 크레딧 에이전트로 만들 예정) |\n\n"}]</script>
@@ -546,34 +986,47 @@ button{cursor:pointer}
     </div>
     <div class="reelstrip" id="reelstrip"></div>
   </div>
-  <div class="counter" id="counter"><div class="feet">FEET <b id="feet">0000</b></div><h2>크레딧 초안을 찍고 있어요</h2><p id="rollMsg"></p></div>
+  <div class="counter" id="counter">
+    <div class="feet">진행 <span id="pct">0%</span> · FEET <b id="feet">0000</b></div>
+    <h2>스태프 에이전트 4명이 팀 기록을 분석하고 있어요</h2>
+    <p id="rollMsg"></p>
+    <p class="reading" id="reading"></p>
+    <p class="roll-note">동의한 기록만 읽고, 점수나 순위는 매기지 않아요.<br>분석이 끝나면 초안을 보고 감독으로서 직접 고칠 수 있어요.</p>
+    <button class="btn" id="skipWait" hidden>기다리지 않고 예시 기록으로 계속 보기</button>
+  </div>
 </section>
 
 <!-- 3. 편집실 -->
 <section class="screen" id="roomScreen">
-  <header class="topbar">
-    <div class="logo"><i></i>엔딩 크레딧 <small>EDIT ROOM</small></div>
-    <div class="meta" id="meta"></div>
+  <header class="topbar taskbar">
+    <div class="task">
+      <p class="task-t" id="taskT" aria-live="polite"></p>
+      <div class="prog" aria-hidden="true"><i id="progBar" style="width:0%"></i></div>
+      <div class="meta" id="meta"></div>
+    </div>
     <span class="sp"></span>
-    <button class="btn red" id="premiereBtn">시사회 열기</button>
+    <button class="btn" id="directBtn" hidden>바로 팀원 확인 요청</button>
+    <button class="btn red" id="premiereBtn">팀원에게 확인 요청</button>
   </header>
   <div class="room">
     <div class="stage">
       <div class="stage3d" id="stage3d"><div class="tilt"><div class="ring" id="ring"></div></div></div>
+      <div class="listview" id="listview" hidden></div>
       <div class="stage-ctl">
-        <button class="ctl" id="prevBtn" aria-label="이전 장면">이전 장면</button>
-        <button class="ctl" id="spinBtn" aria-pressed="true">필름 돌리기</button>
-        <button class="ctl" id="nextBtn" aria-label="다음 장면">다음 장면</button>
+        <button class="ctl" id="prevBtn" aria-label="이전 크레딧">이전 크레딧</button>
+        <button class="ctl" id="spinBtn" aria-pressed="true">자동 회전 켬</button>
+        <button class="ctl" id="nextBtn" aria-label="다음 크레딧">다음 크레딧</button>
+        <button class="ctl" id="listBtn" aria-pressed="false">목록으로 보기</button>
       </div>
     </div>
-    <aside class="lab" aria-label="장면 정보와 다시 찍기">
-      <div class="labtabs"><button class="on" data-tab="scene">CONTINUITY</button><button data-tab="log">TAKE LOG <span id="logCnt"></span></button></div>
+    <aside class="lab" aria-label="크레딧 정보와 수정 요청">
+      <div class="labtabs"><button class="on" data-tab="scene">크레딧 정보</button><button data-tab="log">수정 기록 <span id="logCnt"></span></button></div>
       <div class="labbody" id="labBody" aria-live="polite"></div>
       <div class="composer" id="composer">
-        <div class="lbl" id="compLbl">디렉터 노트</div>
+        <div class="lbl" id="compLbl">수정 요청</div>
         <div class="inrow">
-          <textarea id="input" rows="1" placeholder="이 장면에서 고칠 점을 말해 주세요" aria-label="디렉터 노트 입력"></textarea>
-          <button class="cutbtn" id="sendBtn">CUT</button>
+          <textarea id="input" rows="1" placeholder="예: OO 님 질문에서 시작됐어. 같이 연결해 줘" aria-label="수정 요청 입력"></textarea>
+          <button class="cutbtn" id="sendBtn">보내기</button>
         </div>
       </div>
     </aside>
@@ -585,28 +1038,63 @@ button{cursor:pointer}
 <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle">
   <div class="theater">
     <div class="screenline"></div>
-    <h3 id="mTitle">팀원 시사회</h3>
-    <p>Teams로 확인 카드를 보냈어요. 자기 장면을 확인하면 자리에 불이 켜져요.</p>
+    <h3 id="mTitle">팀원 확인 요청 <small>시사회</small></h3>
+    <p id="mDesc">팀원 각자에게 Teams로 확인 카드를 보냈어요. 자기 크레딧을 확인하면 좌석에 불이 켜져요.</p>
+    <div class="cardpv" id="cardpv"></div>
     <div class="seats" id="seats"></div>
-    <div class="acts2"><button class="btn" id="mClose">닫기</button><button class="btn red" id="mPlay" disabled>엔딩 크레딧 상영</button></div>
+    <p class="sim">시연에서는 팀원 확인이 자동으로 진행돼요.</p>
+    <div class="acts2"><button class="btn" id="mClose">닫기</button><button class="btn red" id="mPlay" disabled>완성된 크레딧 상영하기</button></div>
   </div>
 </div>
 
 <!-- 4. 상영 -->
 <div class="rollfs" id="rollfs" role="dialog" aria-label="엔딩 크레딧 상영">
+  <p class="roll-top" id="rollTop">확정된 엔딩 크레딧이에요 · 발표 마지막 장에 쓸 수 있어요</p>
   <div class="track" id="track"></div>
   <div class="endcard" id="endcard">
     <div class="leak" aria-hidden="true"></div>
     <div class="leak right" aria-hidden="true"></div>
     <h2>THE END</h2>
-    <p>팀원 5명이 함께 확인한 엔딩 크레딧이에요.</p>
+    <p class="end-sub">엔딩 크레딧이 완성됐어요. 발표 마지막 장에 넣어 보세요.</p>
+    <p class="end-sum" id="endSum"></p>
     <div class="row">
+      <button class="btn red" id="exportBtn">발표 슬라이드로 내보내기 (PowerPoint)</button>
       <button class="btn" id="replayBtn">다시 상영</button>
-      <button class="btn red" id="exportBtn">발표 슬라이드로 내보내기</button>
-      <button class="btn" id="backRoomBtn">편집실로 돌아가기</button>
+      <button class="btn" id="backRoomBtn">수정하러 돌아가기</button>
     </div>
   </div>
-  <button class="skip" id="skipBtn">건너뛰기</button>
+  <button class="skip" id="skipBtn">건너뛰고 결과 보기</button>
+</div>
+
+<!-- 편집실 첫 진입 안내 -->
+<div class="coach" id="coach" hidden>
+  <div class="coach-spot" id="coachSpot"></div>
+  <div class="coach-card" id="coachCard" role="dialog" aria-modal="true" aria-labelledby="coachT">
+    <small id="coachN"></small>
+    <h4 id="coachT"></h4>
+    <p id="coachP"></p>
+    <div class="row"><button class="btn" id="coachSkip">건너뛰기</button><button class="btn red" id="coachNext">다음</button></div>
+  </div>
+</div>
+
+<!-- 용어 카드 -->
+<div class="modal" id="glossModal" role="dialog" aria-modal="true" aria-labelledby="gT">
+  <div class="gloss">
+    <h3 id="gT">이 화면을 읽는 법</h3>
+    <p class="g-role"><b>감독은 나(사용자)예요.</b> 스태프 에이전트 4명(기록 담당 · 연결 담당 · 발굴 담당 · 크레딧 작가)이 팀 기록으로 크레딧 초안을 만들면, 감독인 내가 보고 고칠 점을 말하고 확정해요. 영화 용어는 분위기를 위한 이름이고, 실제 뜻은 아래와 같아요.</p>
+    <dl class="g-list">
+      <dt>슬레이트<small>준비</small></dt><dd>분석 시작 버튼이에요. 치면 에이전트가 기록을 읽기 시작해요.</dd>
+      <dt>촬영<small>분석</small></dt><dd>스태프 에이전트 4명이 기록 수집 → 기여 연결 → 숨은 기여 찾기 → 크레딧 쓰기 순서로 일하는 과정이에요.</dd>
+      <dt>필름 한 칸<small>크레딧 한 줄</small></dt><dd>"역할 — 이름 (근거)" 한 줄이 필름 한 칸이에요. 팀원마다 색이 달라요.</dd>
+      <dt>수정 요청<small>디렉터 노트</small></dt><dd>크레딧이 틀리거나 빠진 연결이 있을 때 에이전트에게 말로 고칠 점을 알려요.</dd>
+      <dt>TAKE<small>수정 버전</small></dt><dd>TAKE 1은 처음 초안, TAKE 2부터는 고친 버전이에요. 반영할지는 감독이 정해요.</dd>
+      <dt>숨은 기여 후보<small>삭제된 장면</small></dt><dd>결과물에는 직접 남지 않았지만 방향을 바꾼 의견이나 작업이에요. 크레딧에 넣을지 감독이 정해요.</dd>
+      <dt>근거 확인 필요</dt><dd>기록이 엇갈리거나 근거가 부족한 크레딧이에요. 팀원에게 확인을 요청하기 전에 먼저 정리해야 해요.</dd>
+      <dt>시사회<small>팀원 확인</small></dt><dd>팀원 각자에게 Teams 확인 카드를 보내 자기 크레딧을 확인받는 단계예요.</dd>
+      <dt>상영<small>크레딧 완성</small></dt><dd>모두 확인한 크레딧을 영화 엔딩처럼 보여 주고, 발표 슬라이드로 내보내요.</dd>
+    </dl>
+    <div class="row"><button class="btn" id="gTour">편집실 사용법 다시 보기</button><button class="btn red" id="gClose">닫기</button></div>
+  </div>
 </div>
 <div class="toast" id="toast"></div>
 
@@ -728,10 +1216,11 @@ async function runAgent(){
     await agConnect();
     const txt=await agAsk(creditRequest(),
       {timeout:900000,quiet:6000,done:t=>parseCredits(t).credits.length>=2,onMsg:agProgress});
+    if(AG.skip)return; // 사용자가 기다리지 않고 예시로 넘어갔으면 늦게 온 답은 쓰지 않는다
     const p=parseCredits(txt);
     if(p.credits.length<2)throw new Error('credit lines not found');
     applyAgentData(p,txt); AG.on=true;
-  }catch(e){console.warn('[엔딩 크레딧] 에이전트 연결 실패, 예시 기록으로 진행',e); AG.fail=true; setTeam('3조'); TEAM.full='UX디자인론 3조';}
+  }catch(e){if(AG.skip)return; console.warn('[엔딩 크레딧] 에이전트 연결 실패, 예시 기록으로 진행',e); AG.fail=true; setTeam('3조'); TEAM.full='UX디자인론 3조';}
   finally{AG.settled=true;}
 }
 // 에이전트가 단계를 넘어갈 때 보내는 중간 메시지로 필름 롤 진행을 맞춘다 (기록 수집 → 기여 추적 → 묻힌 기여 → 크레딧 작가)
@@ -752,7 +1241,7 @@ async function agentReply(c,t){
   if(nc){
     const ch={role:nc.role,names:nc.names,status:nc.status==='확인 필요'?'확인 필요':'정정됨'};
     if(nc.evidence)ch.evidence=nc.evidence;
-    propose(c,ch,paras.length?paras:['이렇게 다시 찍어 볼까요?']);
+    propose(c,ch,paras.length?paras:['이렇게 고쳐 볼까요?']);
   }else say(c,paras.length?paras:[esc(txt)]);
 }
 
@@ -814,65 +1303,142 @@ $('#slate').addEventListener('click',async()=>{
   $('#hud').classList.add('rec'); $('#hudSt').textContent='REC';
   sl.classList.add('clap'); await wait(110); clapSound(); $('#flash').classList.add('go');
   await wait(420); $('#blackout').classList.add('on'); await wait(260);
-  clearInterval(tcTimer); $('#slateScreen').classList.remove('on'); startRolls();
+  clearInterval(tcTimer); $('#slateScreen').classList.remove('on'); showHdr(); setStep(2); startRolls();
   await wait(60); $('#blackout').classList.remove('on');
 });
 
+/* ---------- 공통: 진행 단계 · 도움말 ---------- */
+function showHdr(){$('#apphdr').hidden=false;document.body.classList.add('hdr');}
+function setStep(n){document.querySelectorAll('#steps li').forEach(li=>{const s=+li.dataset.s;li.classList.toggle('done',s<n);li.classList.toggle('on',s===n);if(s===n)li.setAttribute('aria-current','step');else li.removeAttribute('aria-current');});}
+function openGloss(){$('#gTour').hidden=!$('#roomScreen').classList.contains('on')||$('#rollfs').classList.contains('on');$('#glossModal').classList.add('on');$('#gClose').focus();}
+$('#helpBtn').onclick=openGloss;
+$('#gClose').onclick=()=>$('#glossModal').classList.remove('on');
+$('#glossModal').addEventListener('click',e=>{if(e.target.id==='glossModal')$('#glossModal').classList.remove('on');});
+$('#gTour').onclick=()=>{$('#glossModal').classList.remove('on');coach(0);};
+
 /* ---------- 2. 필름이 풀려 나가는 진행 화면 ---------- */
 const steps=[
-  {c:'var(--s-blue)',k:'기록 수집',iso:'ISO 100',d:'회의 4 · 채팅 · 문서 12',msg:'회의 기록 4건과 채팅 312개를 읽는 중'},
-  {c:'var(--s-green)',k:'기여 연결',iso:'ISO 200',d:'질문에서 결과물까지',msg:'누구의 질문이 어느 결과물로 이어졌는지 잇는 중'},
-  {c:'var(--s-orange)',k:'숨은 기여',iso:'ISO 400',d:'삭제된 장면 찾기',msg:'채택되지 않았지만 방향을 바꾼 의견을 찾는 중'},
-  {c:'var(--s-red)',k:'크레딧 작가',iso:'ISO 800',d:'서사적 역할명 쓰기',msg:'크레딧 문장을 다듬는 중'}
+  {c:'var(--s-blue)',k:'기록 수집',who:'기록 담당',d:'회의록·채팅·문서를 모아요',msg:'팀 기록을 모으고 있어요'},
+  {c:'var(--s-green)',k:'기여 연결',who:'연결 담당',d:'누구의 질문이 어떤 결과로 이어졌는지 이어요',msg:'누구의 질문이 어느 결과물로 이어졌는지 잇고 있어요'},
+  {c:'var(--s-orange)',k:'숨은 기여 찾기',who:'발굴 담당',d:'채택되지 않았지만 방향을 바꾼 의견을 찾아요',msg:'채택되지 않았지만 방향을 바꾼 의견을 찾고 있어요'},
+  {c:'var(--s-red)',k:'크레딧 쓰기',who:'크레딧 작가',d:'"역할 — 이름 (근거)" 문장을 써요',msg:'크레딧 문장을 다듬고 있어요'}
 ];
+// 기다리지 않고 예시로 넘어가기
+let skipResolve=null; const skipP=new Promise(r=>skipResolve=r);
+$('#skipWait').onclick=()=>{AG.skip=true;AG.fail=true;AG.settled=true;AG.on=false;setTeam('3조');TEAM.full='UX디자인론 3조';$('#skipWait').hidden=true;skipResolve();};
+function stepResult(i){
+  const n=REC.files.length;
+  if(i===0)return n?`기록 ${n}개를 읽었어요`:'Teams·OneDrive 기록을 읽었어요';
+  if(i===1){const pairs=new Set();S.credits.forEach(c=>c.links.forEach(l=>pairs.add([c.id,l].sort().join('-'))));return pairs.size?`이어진 흐름 ${pairs.size}개를 찾았어요`:'기여 흐름을 정리했어요';}
+  if(i===2)return `숨은 기여 후보 ${S.hidden.length}개를 찾았어요`;
+  return `크레딧 ${S.credits.length}줄을 썼어요`;
+}
 async function startRolls(){
   $('#rollScreen').classList.add('on');
   const strip=$('#reelstrip');
-  strip.innerHTML=steps.map((s,i)=>`<div class="uf" style="--tint:${s.c}"><div class="uf-in"><span class="uf-no">ROLL 0${i+1} · ${s.iso}</span><b>${s.k}</b><small>${s.d}</small></div><em class="uf-st">대기</em></div>`).join('');
+  strip.innerHTML=steps.map((s,i)=>`<div class="uf" style="--tint:${s.c}"><div class="uf-in"><span class="uf-no">${i+1}/4 · ${s.who}</span><b>${s.k}</b><small>${s.d}</small></div><em class="uf-st">대기</em></div>`).join('');
   const fr=[...strip.children];
-  let feet=0; const tick=setInterval(()=>{feet+=7;$('#feet').textContent=String(feet).padStart(4,'0');},60);
+  let feet=0, pct=0, pctTo=0;
+  const tick=setInterval(()=>{feet+=7;$('#feet').textContent=String(feet).padStart(4,'0');if(pct<pctTo){pct=Math.min(pctTo,pct+.6);$('#pct').textContent=Math.round(pct)+'%';}},60);
+  // 읽는 파일 이름이 하나씩 지나가요
+  const names=REC.files.length?REC.files.map(f=>f.name):['Teams 회의 전사본','Teams 채팅','OneDrive 문서','버전·댓글 기록'];
+  let ri=0; const reader=setInterval(()=>{$('#reading').textContent=`읽는 중 · ${names[ri++%names.length]}`;},380);
+  const t00=Date.now(); const skipTimer=setInterval(()=>{if(AG.run&&!AG.settled&&Date.now()-t00>20000)$('#skipWait').hidden=false;},1000);
   await wait(250);
   for(let i=0;i<fr.length;i++){
-    strip.style.setProperty('--p',((i+1)/fr.length*100)+'%');
-    fr[i].classList.add('now'); fr[i].querySelector('.uf-st').textContent='현상 중'; $('#rollMsg').textContent=steps[i].msg;
+    strip.style.setProperty('--p',((i+1)/fr.length*100)+'%'); pctTo=i*25+20;
+    fr[i].classList.add('now'); fr[i].querySelector('.uf-st').textContent='진행 중'; $('#rollMsg').textContent=`${steps[i].who} 에이전트 · ${steps[i].msg}`;
     await wait(1350);
-    // 에이전트 연결 중이면 그 단계가 실제로 끝날 때까지 이 롤에서 기다린다
+    // 에이전트 연결 중이면 그 단계가 실제로 끝날 때까지 이 칸에서 기다린다
     const t0=Date.now();
-    while(AG.run&&!AG.settled&&(AG.stage||0)<=i){
-      $('#rollMsg').textContent=`${AG.note||steps[i].msg} · ${Math.round((Date.now()-t0)/1000)}초`; await sleepMs(500);}
-    fr[i].classList.remove('now'); fr[i].classList.add('done'); fr[i].querySelector('.uf-st').textContent='완료';
+    while(AG.run&&!AG.settled&&!AG.skip&&(AG.stage||0)<=i){
+      const nt=AG.note&&!/초안|\s[-–—]\s/.test(AG.note)?AG.note:steps[i].msg; $('#rollMsg').textContent=`${steps[i].who} 에이전트 · ${nt} · ${Math.round((Date.now()-t0)/1000)}초`; await sleepMs(500);}
+    if(i===0){clearInterval(reader);$('#reading').textContent=stepResult(0);}
+    fr[i].classList.remove('now'); fr[i].classList.add('done'); fr[i].querySelector('.uf-st').textContent='완료'; pctTo=(i+1)*25-(i===fr.length-1?3:0);
   }
-  if(AG.run){
-    const lf=fr[fr.length-1]; lf.classList.remove('done'); lf.classList.add('now'); lf.querySelector('.uf-st').textContent='현상 중';
-    const t0=Date.now(); const msg=setInterval(()=>{$('#rollMsg').textContent=`에이전트가 크레딧을 쓰고 있어요 · ${Math.round((Date.now()-t0)/1000)}초`;},500);
-    await AG.run; clearInterval(msg);
+  if(AG.run&&!AG.settled){
+    const lf=fr[fr.length-1]; lf.classList.remove('done'); lf.classList.add('now'); lf.querySelector('.uf-st').textContent='진행 중';
+    const t0=Date.now(); const msg=setInterval(()=>{$('#rollMsg').textContent=`크레딧 작가 에이전트가 문장을 쓰고 있어요 · ${Math.round((Date.now()-t0)/1000)}초`;},500);
+    await Promise.race([AG.run,skipP]); clearInterval(msg);
     lf.classList.remove('now'); lf.classList.add('done'); lf.querySelector('.uf-st').textContent='완료';
   }
-  clearInterval(tick); $('#rollMsg').textContent='현상이 끝났어요. 필름을 펼칠게요';
-  await wait(600); $('#unroll').classList.add('go'); $('#counter').classList.add('go'); await wait(950);
+  clearInterval(reader); clearInterval(skipTimer); $('#skipWait').hidden=true;
+  // 데이터가 정해졌으니 칸마다 결과 숫자를 보여 줘요
+  fr.forEach((f,i)=>{f.querySelector('small').textContent=stepResult(i);});
+  pctTo=100; pct=100; $('#pct').textContent='100%';
+  clearInterval(tick);
+  $('#rollMsg').textContent=`분석이 끝났어요 · 크레딧 ${S.credits.length}줄, 숨은 기여 후보 ${S.hidden.length}개`;
+  $('#reading').textContent='이제 초안을 확인하는 편집 화면으로 넘어가요';
+  await wait(1600); $('#unroll').classList.add('go'); $('#counter').classList.add('go'); await wait(950);
   $('#rollScreen').classList.remove('on'); openRoom();
 }
 
 /* ---------- 3. Edit room: reel ---------- */
 function openRoom(){
-  $('#roomScreen').classList.add('on');
+  $('#roomScreen').classList.add('on'); setStep(3);
   buildFrames(); renderMeta(); renderLab(); requestAnimationFrame(loop);
-  if(AG.fail)setTimeout(()=>toast('에이전트에 연결하지 못해서 예시 기록으로 보여 드려요'),600);
+  if(AG.fail)setTimeout(()=>toast(AG.skip?'예시 기록으로 계속 보여 드려요':'에이전트에 연결하지 못해서 예시 기록으로 보여 드려요'),600);
+  let seen=false; try{seen=sessionStorage.getItem('ec-coach')==='1';}catch(e){}
+  if(!seen)setTimeout(()=>coach(0),reduce?100:1700);
 }
 function frameHTML(f,i){
-  const edge=`<div class="edge">▸ 3JO ${String(i*12+4).padStart(4,'0')}</div>`;
-  if(f.k==='t') return `<div class="fin title"><div class="ftop"><span>ROLL ${TEAM.short}</span><span>TAKE 1</span></div><div class="stack"><b>CREDITS</b><b class="o">CREDITS</b><b class="o">CREDITS</b></div><p>${TEAM.full}가 함께 만든 장면들</p></div>`;
-  if(f.h){const h=f.h;return `<div class="fin cut"><div class="ftop"><span>삭제된 장면</span><span>미공개</span></div><div class="stack"><b>${esc(h.who)}</b><b class="o">${esc(h.who)}</b></div><div class="frole">${esc(h.what)}</div><div class="fev">${esc(h.evidence)}</div></div>`;}
+  if(f.k==='t') return `<div class="fin title"><div class="ftop"><span>${esc(TEAM.short)}</span><span>초안</span></div><div class="stack"><b>CREDITS</b><b class="o">CREDITS</b><b class="o">CREDITS</b></div><p>${esc(TEAM.full)}의 크레딧 초안이에요</p></div>`;
+  if(f.h){const h=f.h;return `<div class="fin cut"><div class="ftop"><span>숨은 기여 후보</span><span>${h.skip?'넣지 않음':'검토 대기'}</span></div><div class="stack"><b>${esc(h.who)}</b><b class="o">${esc(h.who)}</b></div><div class="frole">${esc(h.what)}</div><div class="fev">${esc(h.evidence)}</div></div>`;}
   const c=f.c, m=look(c.names[0]), nm=esc(c.names[0]);
-  return `<div class="fin${c.status==='확인 필요'?' need':''}" style="--tint:${m.tint}"><div class="ftop"><span>SCENE ${sceneNo(c.id)}</span><span>TAKE ${c.take}</span></div><div class="stack"><b>${nm}</b><b class="o">${nm}</b>${c.names[1]?`<b>${esc(c.names[1])}</b>`:`<b class="o">${nm}</b>`}</div><div class="frole">${esc(c.role)}</div><div class="fev">${esc(c.evidence)}</div>${edge}${c.status==='확인 필요'?'<span class="sticker">확인 필요</span>':''}</div>`;
+  return `<div class="fin${c.status==='확인 필요'?' need':''}" style="--tint:${m.tint}"><div class="ftop"><span>크레딧 ${sceneNo(c.id)}</span><span>${c.take>1?`수정됨 · TAKE ${c.take}`:''}</span></div><div class="stack"><b>${nm}</b><b class="o">${nm}</b>${c.names[1]?`<b>${esc(c.names[1])}</b>`:`<b class="o">${nm}</b>`}</div><div class="frole">${esc(c.role)}</div><div class="fev">${esc(c.evidence)}</div>${c.status==='확인 필요'?'<span class="sticker">근거 확인 필요</span>':''}</div>`;
 }
 function buildFrames(flashKey){
   S.frames=[{k:'t'},...S.credits.map(c=>({k:'c'+c.id,c})),...S.hidden.filter(h=>!h.added).map(h=>({k:h.id,h}))];
   const N=S.frames.length, W=200, R=Math.round((W+40)/(2*Math.tan(Math.PI/N)));
   S.step=360/N; const DY=Math.round(380/N);
-  $('#ring').innerHTML=S.frames.map((f,i)=>`<button class="frame${S.sel===f.k?' on':''}${flashKey===f.k?' flash':''}" data-i="${i}" style="transform:translateY(${(i-(N-1)/2)*DY}px) rotateY(${i*S.step}deg) translateZ(${R}px)" aria-label="${f.k==='t'?'타이틀 장면':f.h?'삭제된 장면, '+esc(f.h.who):'장면 '+sceneNo(f.c.id)+', '+esc(f.c.names.join(', '))}">${frameHTML(f,i)}</button>`).join('');
+  $('#ring').innerHTML=S.frames.map((f,i)=>`<button class="frame${S.sel===f.k?' on':''}${flashKey===f.k?' flash':''}" data-i="${i}" style="transform:translateY(${(i-(N-1)/2)*DY}px) rotateY(${i*S.step}deg) translateZ(${R}px)" aria-label="${f.k==='t'?'크레딧 초안 표지':f.h?'숨은 기여 후보, '+esc(f.h.who):'크레딧 '+sceneNo(f.c.id)+', '+esc(f.c.names.join(', '))}">${frameHTML(f,i)}</button>`).join('');
   S.els=[...document.querySelectorAll('.frame')];
+  renderList();
 }
+/* 목록으로 보기: 3D 필름이 어려운 사람을 위한 같은 내용의 목록 */
+function renderList(){
+  const lv=$('#listview'); if(!lv)return;
+  const row=(f,i)=>{const on=S.sel===f.k?' on':'';
+    if(f.h)return `<button class="lv-row cand${on}" data-i="${i}"><span class="lv-no">후보</span><span class="lv-nm">${esc(f.h.who)}</span><span class="lv-rl">${esc(f.h.what)}</span><span class="tag draft">${f.h.skip?'넣지 않음':'검토 대기'}</span></button>`;
+    return `<button class="lv-row${on}" data-i="${i}"><span class="lv-no">${sceneNo(f.c.id)}</span><span class="lv-nm"><i class="lv-sw" style="background:${look(f.c.names[0]).tint}"></i>${esc(f.c.names.join(', '))}</span><span class="lv-rl">${esc(f.c.role)}</span>${tagOf(f.c.status)}</button>`;};
+  const cs=S.frames.map((f,i)=>f.c?row(f,i):'').join(''), hs=S.frames.map((f,i)=>f.h?row(f,i):'').join('');
+  lv.innerHTML=`<h4 class="lv-h">크레딧 ${S.credits.length}줄<small>눌러서 근거를 보고 고칠 수 있어요</small></h4>${cs}${hs?`<h4 class="lv-h">숨은 기여 후보<small>결과물엔 없지만 방향을 바꾼 기여예요</small></h4>${hs}`:''}`;
+}
+$('#listview').addEventListener('click',e=>{const b=e.target.closest('[data-i]');if(b)selectFrame(+b.dataset.i);});
+$('#listBtn').onclick=()=>{
+  S.list=!S.list; $('#listBtn').setAttribute('aria-pressed',S.list); $('#listBtn').textContent=S.list?'필름으로 보기':'목록으로 보기';
+  $('#stage3d').hidden=S.list; $('#listview').hidden=!S.list;
+  ['#prevBtn','#nextBtn','#spinBtn'].forEach(s=>$(s).hidden=S.list);
+  cap.classList.remove('on'); renderList();
+};
+
+/* 편집실 첫 진입 안내 (3단계, 건너뛰기 가능) */
+const COACH=[
+  {sel:'.stage',t:'필름 한 칸이 크레딧 한 줄이에요',p:'스태프 에이전트가 만든 초안이에요. 칸에 마우스를 올리면 내용이, 누르면 근거가 오른쪽에 보여요. 돌아가는 필름이 불편하면 아래 ‘목록으로 보기’를 누르세요.'},
+  {sel:'.lab',t:'틀린 곳은 말로 고쳐요',p:'크레딧을 누르면 여기에 역할·이름·근거가 나와요. 아래 ‘수정 요청’에 고칠 점을 쓰면 크레딧 작가 에이전트가 고친 안을 보여 주고, 반영할지는 감독인 내가 정해요.'},
+  {sel:'.taskbar',t:'지금 할 일은 위쪽에 있어요',p:'근거 확인이 필요한 크레딧과 숨은 기여 후보를 차례로 정리하면, 오른쪽 버튼이 ‘팀원에게 확인 요청’으로 바뀌어요.'}
+];
+let coachI=-1;
+function coach(i){
+  coachI=i; const box=$('#coach');
+  if(i<0||i>=COACH.length){box.hidden=true;coachI=-1;try{sessionStorage.setItem('ec-coach','1');}catch(e){}return;}
+  const st=COACH[i], el=document.querySelector(st.sel); if(!el){coach(i+1);return;}
+  box.hidden=false;
+  $('#coachN').textContent=`편집실 사용법 ${i+1} / ${COACH.length}`; $('#coachT').textContent=st.t; $('#coachP').textContent=st.p;
+  $('#coachNext').textContent=i===COACH.length-1?'시작하기':'다음';
+  const r=el.getBoundingClientRect(), sp=$('#coachSpot'), cd=$('#coachCard');
+  Object.assign(sp.style,{left:(r.left+4)+'px',top:(r.top+4)+'px',width:(r.width-8)+'px',height:(r.height-8)+'px'});
+  const W=Math.min(340,innerWidth-32), H=cd.offsetHeight||210; let L,T;
+  if(innerWidth<700){L=16;T=innerHeight-H-16;}
+  else if(r.right+W+24<innerWidth){L=r.right+16;T=r.top+16;}
+  else if(r.left-W-24>0){L=r.left-W-16;T=r.top+16;}
+  else{L=Math.max(16,Math.min(r.left+16,innerWidth-W-16));T=r.bottom+12;if(T+H>innerHeight-16)T=Math.max(16,r.top+16);}
+  Object.assign(cd.style,{left:L+'px',top:Math.min(T,innerHeight-H-16)+'px'});
+  $('#coachNext').focus();
+}
+$('#coachNext').onclick=()=>coach(coachI+1);
+$('#coachSkip').onclick=()=>coach(-1);
+addEventListener('resize',()=>{if(coachI>=0)coach(coachI);});
 let last=0;
 function loop(t){
   const dt=Math.min(.05,(t-last)/1000||0); last=t;
@@ -900,7 +1466,7 @@ $('#ring').addEventListener('click',e=>{const b=e.target.closest('.frame');if(!b
 
 function hoverFrame(i,e){
   const f=S.frames[i]; S.hover=f.k;
-  if(e){cap.innerHTML=f.k==='t'?'<b>TITLE</b>엔딩 크레딧 표지':f.h?`<b>삭제된 장면 · ${esc(f.h.who)}</b>${esc(f.h.what)}`:`<b>SCENE ${sceneNo(f.c.id)} · ${esc(f.c.names.join(', '))}</b>${esc(f.c.role)}`;cap.classList.add('on');}
+  if(e){cap.innerHTML=f.k==='t'?'<b>크레딧 초안 표지</b>필름을 돌려 크레딧을 하나씩 보세요':f.h?`<b>숨은 기여 후보 · ${esc(f.h.who)}</b>${esc(f.h.what)}<i>눌러서 크레딧에 넣을지 정하기</i>`:`<b>크레딧 ${sceneNo(f.c.id)} · ${esc(f.c.names.join(', '))}</b>${esc(f.c.role)}<i>눌러서 근거 보기 · 고치기</i>`;cap.classList.add('on');}
   if(S.sel==null){S.tab='scene';renderLab(f);}
 }
 function selectFrame(i){
@@ -908,77 +1474,121 @@ function selectFrame(i){
   if(S.sel!==f.k){S.thread=[];S.props=[];}
   S.sel=f.k; S.tab='scene'; focusFrame(i); cap.classList.remove('on');
   S.els.forEach((el,j)=>el.classList.toggle('on',j===i));
-  renderLab(); if(matchMedia('(max-width:900px)').matches) $('.lab').scrollIntoView({behavior:'smooth'});
+  renderLab(); renderList(); if(matchMedia('(max-width:900px)').matches) $('.lab').scrollIntoView({behavior:'smooth'});
 }
-function deselect(){S.sel=null;S.thread=[];S.els.forEach(el=>el.classList.remove('on'));renderLab();}
+function deselect(){S.sel=null;S.thread=[];S.els.forEach(el=>el.classList.remove('on'));renderLab();renderList();}
 
 $('#prevBtn').onclick=()=>{const i=(frontIndex()-1+S.frames.length)%S.frames.length;focusFrame(i);if(S.sel!=null)selectFrame(i);else hoverFrame(i);};
 $('#nextBtn').onclick=()=>{const i=(frontIndex()+1)%S.frames.length;focusFrame(i);if(S.sel!=null)selectFrame(i);else hoverFrame(i);};
-$('#spinBtn').onclick=()=>{S.auto=!S.auto;$('#spinBtn').setAttribute('aria-pressed',S.auto);$('#spinBtn').textContent=S.auto?'필름 돌리기':'필름 멈춤';};
-if(!S.auto){$('#spinBtn').setAttribute('aria-pressed','false');$('#spinBtn').textContent='필름 멈춤';}
+$('#spinBtn').onclick=()=>{S.auto=!S.auto;$('#spinBtn').setAttribute('aria-pressed',S.auto);$('#spinBtn').textContent=S.auto?'자동 회전 켬':'자동 회전 끔';};
+if(!S.auto){$('#spinBtn').setAttribute('aria-pressed','false');$('#spinBtn').textContent='자동 회전 끔';}
 
-function renderMeta(){
-  const need=S.credits.filter(c=>c.status==='확인 필요').length;
-  const cut=S.hidden.filter(h=>!h.added).length;
-  $('#meta').innerHTML=`<span>SCENES<b>${S.credits.length}</b></span><span>삭제된 장면<b>${cut}</b></span><span class="${need?'warn':''}">확인 필요<b>${need}</b></span><span>TAKES<b>${S.log.length}</b></span>`;
-  $('#logCnt').textContent=S.log.length||'';
-  $('#premiereBtn').textContent=S.confirmed?'다시 상영':'시사회 열기';
+/* 할 일 안내: 지금 감독이 해야 할 다음 행동을 한 문장과 버튼 하나로 */
+function pendHidden(){return S.hidden.filter(h=>!h.added&&!h.skip);}
+function nextAction(){
+  if(S.confirmed)return {k:'replay'};
+  const need=S.credits.find(c=>c.status==='확인 필요'); if(need)return {k:'need',c:need};
+  const ph=pendHidden(); if(ph.length)return {k:'hidden',h:ph[0]};
+  return {k:'ready'};
 }
+function renderMeta(){
+  const need=S.credits.filter(c=>c.status==='확인 필요').length, ph=pendHidden().length, a=nextAction();
+  $('#meta').innerHTML=`<span>크레딧<b>${S.credits.length}줄</b></span><span class="${need?'warn':''}">근거 확인 필요<b>${need}</b></span><span>숨은 기여 후보<b>${ph}</b></span><span>수정<b>${S.log.length}번</b></span>`;
+  const T={need:`초안 ${S.credits.length}줄이 나왔어요. 근거 확인이 필요한 크레딧 ${need}줄부터 봐 주세요.`,
+    hidden:`크레딧 근거가 모두 확인됐어요. 숨은 기여 후보 ${ph}개를 크레딧에 넣을지 정해 주세요.`,
+    ready:'검토가 끝났어요. 이제 팀원들에게 확인을 요청하세요.',
+    replay:`팀원 ${members.length}명이 모두 확인했어요. 크레딧이 완성됐어요.`}[a.k];
+  $('#taskT').textContent=T;
+  const total=S.credits.length+S.hidden.length+1, left=need+ph+(a.k==='ready'?1:0);
+  $('#progBar').style.width=(a.k==='replay'?100:Math.round((total-left)/total*100))+'%';
+  $('#premiereBtn').textContent={need:`근거 확인 필요 ${need}개 먼저 보기`,hidden:`숨은 기여 후보 ${ph}개 보기`,ready:'팀원에게 확인 요청',replay:'완성된 크레딧 다시 상영'}[a.k];
+  $('#directBtn').hidden=a.k!=='hidden';
+  $('#logCnt').textContent=S.log.length||'';
+}
+$('#directBtn').onclick=()=>openTheater();
 
-/* ---------- 콘티뉴이티 시트 ---------- */
+/* ---------- 크레딧 정보 패널 ---------- */
 document.querySelectorAll('.labtabs button').forEach(b=>b.onclick=()=>{S.tab=b.dataset.tab;renderLab();});
 function cur(){return S.sel==null?null:S.frames.find(f=>f.k===S.sel);}
-function tagOf(s){return `<span class="tag ${{'확인 필요':'need','정정됨':'fixed','추가됨':'added','팀 확인':'team'}[s]||'draft'}">${s}</span>`;}
+const TAGL={'확인 필요':'근거 확인 필요','정정됨':'수정됨','추가됨':'숨은 기여에서 추가','팀 확인':'팀원 확인 완료','초안':'초안'};
+function tagOf(s){return `<span class="tag ${{'확인 필요':'need','정정됨':'fixed','추가됨':'added','팀 확인':'team'}[s]||'draft'}">${TAGL[s]||s}</span>`;}
+// 근거 원문: 올린 기록에서 이 크레딧의 이름과 근거(날짜·문서)가 함께 나오는 줄을 찾아요
+function excerpts(c){
+  if(!REC.files.length)return [];
+  const dm=String(c.evidence).match(/(\d{1,2})월\s*(\d{1,2})일/), date=dm?`${dm[1]}월 ${dm[2]}일`:null;
+  const kws=(String(c.evidence).match(/[가-힣A-Za-z0-9]{2,}/g)||[]).filter(w=>!/^(\d+월|\d+일|회의|기록|확인|중)$/.test(w));
+  const out=[];
+  REC.files.forEach(f=>f.text.split(/\r?\n/).forEach(l=>{
+    const t=l.trim(); if(t.length<8||t.startsWith('|---')||!c.names.some(n=>t.includes(n)))return;
+    let s=0; if(date&&t.includes(date))s+=3; kws.forEach(w=>{if(t.includes(w))s+=1;});
+    if(s>0)out.push({f:f.name,t:t.replace(/^#+\s*/,'').replace(/^\|\s*|\s*\|$/g,'').replace(/\s*\|\s*/g,' · ').slice(0,170),s});
+  }));
+  return out.sort((a,b)=>b.s-a.s).slice(0,3);
+}
 
 function renderLab(hoverF){
   document.querySelectorAll('.labtabs button').forEach(b=>b.classList.toggle('on',b.dataset.tab===S.tab));
   const body=$('#labBody'); const comp=$('#composer');
   if(S.tab==='log'){
     comp.classList.remove('on');
-    body.innerHTML=`<div class="sheet-h"><span>TAKE LOG</span><span>${TEAM.full}</span></div>`+(S.log.length?`<ul class="log">${S.log.slice().reverse().map(l=>`<li><b>${esc(l.head)}</b> ${esc(l.time)}<span>${esc(l.text)}</span></li>`).join('')}</ul>`:'<p class="empty">아직 다시 찍은 장면이 없어요. 장면을 눌러 디렉터 노트를 남기면 여기에 테이크가 쌓여요.</p>');
+    body.innerHTML=`<div class="sheet-h"><span>수정 기록</span><span>${esc(TEAM.full)}</span></div>`+(S.log.length?`<ul class="log">${S.log.slice().reverse().map(l=>`<li><b>${esc(l.head)}</b> ${esc(l.time)}<span>${esc(l.text)}</span></li>`).join('')}</ul>`:'<p class="empty">아직 고친 크레딧이 없어요. 크레딧을 눌러 수정 요청을 보내고 반영하면 여기에 기록이 쌓여요.</p>');
     return;
   }
   const f=hoverF||cur();
   if(!f||f.k==='t'){
     comp.classList.remove('on');
     const need=S.credits.find(c=>c.status==='확인 필요');
-    body.innerHTML=`<div class="sheet-h"><span>CONTINUITY REPORT</span><span>ROLL ${TEAM.short}</span></div>
-    <div class="intro"><h3>초안 필름이 나왔어요</h3><p>필름 위에 마우스를 올리면 장면이 보여요. 장면을 누르면 디렉터 노트로 그 장면을 다시 찍을 수 있어요.</p><p>틀리거나 보태고 싶은 연결이 있다면 편하게 고쳐 주세요.${need?` SCENE ${sceneNo(need.id)}은 작성자 기록이 엇갈려서 확인 필요로 표시했어요.`:''}</p></div>
-    <div class="legend"><span><i style="background:linear-gradient(160deg,color-mix(in srgb,var(--s-green) 60%,#120D0A),#100B08)"></i>팀원마다 다른 필름 톤으로 구분한 장면</span><span><i style="background:repeating-linear-gradient(135deg,var(--amber) 0 6px,var(--ink) 6px 12px)"></i>근거 확인이 필요한 장면</span><span><i style="background:#1E1B19;border:1.5px dashed #777"></i>삭제된 장면, 기록에 덜 남은 숨은 기여</span></div>`;
+    body.innerHTML=`<div class="sheet-h"><span>크레딧 정보</span><span>${esc(TEAM.full)}</span></div>
+    <div class="intro"><h3>초안이 나왔어요. 이제 감독님 차례예요</h3><p>스태프 에이전트가 팀 기록으로 크레딧 ${S.credits.length}줄을 만들었어요.${AG.fail?' 지금은 에이전트 대신 예시 기록으로 보여 드리고 있어요.':''}</p></div>
+    <ol class="how-list">
+      <li><span><b>필름 한 칸이 크레딧 한 줄이에요.</b> 눌러서 역할·이름·근거를 확인하세요.</span></li>
+      <li><span><b>틀리거나 빠진 연결은 말로 고쳐요.</b> 아래 ‘수정 요청’에 쓰면 크레딧 작가 에이전트가 고친 안을 보여 줘요.</span></li>
+      <li><span><b>다 봤으면 팀원에게 확인을 요청해요.</b> 위쪽 버튼이 지금 할 일을 알려 줘요.</span></li>
+    </ol>
+    ${need?`<p class="why">크레딧 ${sceneNo(need.id)}은 기록이 엇갈려서 ‘근거 확인 필요’로 표시했어요.</p>`:''}
+    <div class="legend"><span><i style="background:var(--s-green)"></i>팀원마다 다른 색의 크레딧</span><span><i style="background:repeating-linear-gradient(135deg,var(--s-yellow) 0 6px,var(--ink) 6px 12px)"></i>근거 확인이 필요한 크레딧</span><span><i style="background:#E4E4E0;border:1.5px dashed #9A9A95"></i>숨은 기여 후보 (결과물엔 없지만 방향을 바꾼 기여)</span></div>`;
     return;
   }
   const locked=!hoverF && S.sel!=null;
   if(f.h){
     const h=f.h;
-    body.innerHTML=`<div class="scene-no"><span>삭제된 장면</span><span>미공개</span></div><p class="scene-role">${esc(h.what)}</p><p class="scene-name">${esc(h.who)}</p><dl class="facts"><dt>근거</dt><dd>${esc(h.evidence)}</dd><dt>영향</dt><dd>${esc(h.impact)}</dd></dl>
-    ${locked?`<p class="empty" style="margin:0">본편 크레딧에는 이렇게 올라가요. “${esc(h.role)} - ${esc(h.who)}”</p><div class="row"><button class="btn red" id="addCut">본편에 넣기</button><button class="btn" id="desel">닫기</button></div>`:'<p class="empty" style="margin:0">눌러서 본편에 넣을 수 있어요.</p>'}`;
+    body.innerHTML=`<div class="scene-no"><span>숨은 기여 후보</span><span>${h.skip?'넣지 않음':'검토 대기'}</span></div>
+    <p class="fmt">결과물에는 직접 남지 않았지만 팀의 방향을 바꾼 기여예요. 크레딧에 넣을지 감독인 내가 정해요.</p>
+    <div><span class="fl">무엇을 했나요</span><p class="scene-role">${esc(h.what)}</p></div><div><span class="fl">누가</span><p class="scene-name">${esc(h.who)}</p></div>
+    <dl class="facts"><dt>근거</dt><dd>${esc(h.evidence)}</dd><dt>영향</dt><dd>${esc(h.impact)}</dd></dl>
+    ${locked?`<p class="empty" style="margin:0">크레딧에 넣으면 이렇게 올라가요. “${esc(h.role)} — ${esc(h.who)}”</p><div class="row"><button class="btn red" id="addCut">크레딧에 추가</button><button class="btn" id="skipCut">${h.skip?'다시 검토 대기로':'넣지 않기'}</button><button class="btn" id="desel">닫기</button></div>`:'<p class="empty" style="margin:0">눌러서 크레딧에 넣을지 정할 수 있어요.</p>'}`;
     comp.classList.remove('on');
-    if(locked){$('#addCut').onclick=()=>addHidden(h.id);$('#desel').onclick=deselect;}
+    if(locked){$('#addCut').onclick=()=>addHidden(h.id);$('#desel').onclick=deselect;
+      $('#skipCut').onclick=()=>{h.skip=!h.skip;toast(h.skip?'이 후보는 크레딧에 넣지 않을게요':'다시 검토 대기로 돌렸어요');const k=S.sel;buildFrames();S.sel=k;renderMeta();renderLab();};}
     return;
   }
   const c=f.c;
-  const links=c.links.filter(byId).map(l=>`SCENE ${sceneNo(l)} ${esc(byId(l).names[0])}`).join(', ')||'없음';
-  body.innerHTML=`<div class="scene-no"><span>SCENE ${sceneNo(c.id)}</span><span>TAKE ${c.take}</span></div>
-    <p class="scene-role">${esc(c.role)}</p><p class="scene-name">${esc(c.names.join(', '))}</p>
-    <dl class="facts"><dt>근거</dt><dd>${esc(c.evidence)}</dd><dt>이어진 장면</dt><dd>${links}</dd><dt>상태</dt><dd>${tagOf(c.status)}</dd></dl>
-    ${locked?`<div class="row"><button class="btn" id="spliceBtn">다른 장면과 잇기</button><button class="btn" id="desel">닫기</button></div><div class="splice" id="spliceList" hidden></div>
-    <div class="notes-h">디렉터 노트</div><div class="thread" id="thread"></div><div class="chips" id="chips"></div>`:'<p class="empty" style="margin:0">눌러서 이 장면을 다시 찍을 수 있어요.</p>'}`;
+  const links=c.links.filter(byId).map(l=>`크레딧 ${sceneNo(l)} ${esc(byId(l).names[0])}`).join(', ')||'없음';
+  const ex=excerpts(c);
+  body.innerHTML=`<div class="scene-no"><span>크레딧 ${sceneNo(c.id)}</span><span>${c.take>1?`${c.take-1}번 수정한 버전`:'처음 초안'}</span></div>
+    <p class="fmt">크레딧은 “역할 — 이름 (근거)” 한 줄로 올라가요.</p>
+    <div><span class="fl">역할</span><p class="scene-role">${esc(c.role)}</p></div><div><span class="fl">이름</span><p class="scene-name">${esc(c.names.join(', '))}</p></div>
+    <dl class="facts"><dt>근거</dt><dd>${esc(c.evidence)}${ex.length&&locked?' <button class="srcbtn" id="srcBtn" aria-expanded="false">원문 보기</button>':''}</dd><dt>이어진 크레딧</dt><dd>${links}</dd><dt>상태</dt><dd>${tagOf(c.status)}${c.status==='확인 필요'?'<p class="why">기록이 엇갈리거나 근거가 부족해요. 근거가 되는 날짜나 문서를 알려 주면 에이전트가 다시 확인해요.</p>':''}</dd></dl>
+    ${ex.length&&locked?`<div class="src" id="srcBox" hidden>${ex.map(e=>`<p><i>${esc(e.f)}</i>${esc(e.t)}</p>`).join('')}</div>`:''}
+    ${locked?`<div class="row"><button class="btn" id="spliceBtn">다른 크레딧과 연결</button><button class="btn" id="desel">닫기</button></div><div class="splice" id="spliceList" hidden></div>
+    <div class="notes-h">수정 요청<small>크레딧 작가 에이전트와 대화해요</small></div><div class="thread" id="thread"></div><div class="chips" id="chips"></div>`:'<p class="empty" style="margin:0">눌러서 근거를 보고 고칠 수 있어요.</p>'}`;
   comp.classList.toggle('on',locked);
   if(!locked)return;
-  $('#compLbl').textContent=`SCENE ${sceneNo(c.id)} · TAKE ${c.take+1} 디렉터 노트`;
+  $('#compLbl').textContent=`크레딧 ${sceneNo(c.id)} 수정 요청 · 고칠 점을 자유롭게 말해 주세요`;
   $('#desel').onclick=deselect;
-  $('#spliceBtn').onclick=()=>{const l=$('#spliceList');l.hidden=!l.hidden;l.innerHTML=S.credits.filter(o=>o.id!==c.id&&!c.links.includes(o.id)).map(o=>`<button data-sp="${o.id}">SCENE ${sceneNo(o.id)} ${esc(o.names[0])}</button>`).join('')||'<span class="empty">이미 모든 장면과 이어져 있어요.</span>';};
+  if($('#srcBtn'))$('#srcBtn').onclick=()=>{const b=$('#srcBox');b.hidden=!b.hidden;$('#srcBtn').textContent=b.hidden?'원문 보기':'원문 닫기';$('#srcBtn').setAttribute('aria-expanded',!b.hidden);};
+  $('#spliceBtn').onclick=()=>{const l=$('#spliceList');l.hidden=!l.hidden;l.innerHTML=S.credits.filter(o=>o.id!==c.id&&!c.links.includes(o.id)).map(o=>`<button data-sp="${o.id}">크레딧 ${sceneNo(o.id)} ${esc(o.names[0])}</button>`).join('')||'<span class="empty">이미 모든 크레딧과 연결돼 있어요.</span>';};
   renderThread(c);
 }
 $('#labBody').addEventListener('click',e=>spliceClick(e));
 function spliceClick(e){const b=e.target.closest('[data-sp]');if(!b)return;const c=cur().c;const o=byId(+b.dataset.sp);
   c.links.push(o.id); if(!o.links.includes(c.id))o.links.push(c.id);
-  logTake(`SCENE ${sceneNo(c.id)}과 ${sceneNo(o.id)} 잇기`,`${c.names[0]} 님과 ${o.names[0]} 님의 장면을 테이프로 이었어요.`);
-  renderLab(); toast(`SCENE ${sceneNo(c.id)}과 SCENE ${sceneNo(o.id)}을 이었어요`);}
+  logTake(`크레딧 ${sceneNo(c.id)}·${sceneNo(o.id)} 연결`,`${c.names[0]} 님과 ${o.names[0]} 님의 크레딧을 이어진 흐름으로 표시했어요.`);
+  renderLab(); toast(`크레딧 ${sceneNo(c.id)}과 크레딧 ${sceneNo(o.id)}을 연결했어요`);}
 
 function chipsFor(c){
   const l=[];
-  if(AG.on){if(c.status==='확인 필요')l.push('이 장면 기록이 엇갈리는 이유를 알려 줘');l.push('이 장면 근거가 된 기록을 더 찾아 줘');l.push('다른 팀원과 이어진 흐름이 있는지 봐 줘');return l.slice(0,2);}
+  if(AG.on){if(c.status==='확인 필요')l.push('이 크레딧 기록이 엇갈리는 이유를 알려 줘');l.push('이 크레딧의 근거가 된 기록을 더 찾아 줘');l.push('다른 팀원과 이어진 흐름이 있는지 봐 줘');return l.slice(0,2);}
   if(c.id===2&&!c.names.includes('최하린'))l.push('이건 최하린 님 질문에서 시작됐어. 같이 연결해 줘');
   if(c.status==='확인 필요')l.push('최하린 님이 11월 9일 채팅에 시안을 올렸어');
   if(l.length===0){l.push('근거에 11월 10일 회의도 보태 줘');l.push('역할명을 ‘팀의 첫 질문을 맡은’으로 바꿔 줘');}
@@ -991,14 +1601,14 @@ function renderThread(c){
     if(m.from==='me')return `<div class="m me">${esc(m.text)}</div>`;
     let h=`<div class="m ag">${m.paras.map(p=>`<p>${p}</p>`).join('')}`;
     if(m.prop!=null){const p=S.props[m.prop];
-      h+=`<div class="takes"><div class="take old"><div><b>TAKE ${p.fromTake}</b><span>${esc(p.before)}</span></div></div><div class="take"><div><b>TAKE ${p.fromTake+1}</b><span>${esc(p.after)}</span></div></div></div>`;
-      h+=p.done?`<div class="acts"><span class="done">${esc(p.done)}</span></div>`:`<div class="acts"><button class="ok" data-ok="${m.prop}">OK 컷</button><button data-keep="${m.prop}">TAKE ${p.fromTake} 유지</button></div>`;}
+      h+=`<div class="takes"><div class="take old"><div><b>지금 크레딧 · TAKE ${p.fromTake}</b><span>${esc(p.before)}</span></div></div><div class="take"><div><b>고친 크레딧 · TAKE ${p.fromTake+1}</b><span>${esc(p.after)}</span></div></div></div>`;
+      h+=p.done?`<div class="acts"><span class="done">${esc(p.done)}</span></div>`:`<div class="acts"><button class="ok" data-ok="${m.prop}">이대로 반영</button><button data-keep="${m.prop}">원래대로 두기</button></div>`;}
     return h+'</div>';
   }).join('');
-  const chips=$('#chips'); chips.innerHTML=S.thread.some(m=>m.from==='me')?'':chipsFor(c).map(t=>`<button>${esc(t)}</button>`).join('');
+  const chips=$('#chips'); chips.innerHTML=S.thread.some(m=>m.from==='me')?'':'<p class="chips-h">이렇게 말해 보세요</p>'+chipsFor(c).map(t=>`<button>${esc(t)}</button>`).join('');
   chips.onclick=e=>{const b=e.target.closest('button');if(b)send(b.textContent);};
   th.onclick=e=>{const ok=e.target.closest('[data-ok]'),kp=e.target.closest('[data-keep]');
-    if(ok)applyProp(+ok.dataset.ok); if(kp){S.props[+kp.dataset.keep].done=`TAKE ${S.props[+kp.dataset.keep].fromTake}을 그대로 두었어요`;renderThread(c);}};
+    if(ok)applyProp(+ok.dataset.ok); if(kp){S.props[+kp.dataset.keep].done='원래 크레딧을 그대로 두었어요';renderThread(c);}};
   const lb=$('#labBody'); lb.scrollTop=lb.scrollHeight;
 }
 
@@ -1028,7 +1638,7 @@ function reply(c,t){
   const other=members.find(m=>m.n!==c.names[0]&&t.includes(m.n));
   if(c.id===2&&/최하린/.test(t)&&!c.names.includes('최하린')){
     propose(c,{role:'최하린 님의 날카로운 문제 제기에서 시작해, 구체적인 기획 구조로 발전시킨',names:['이도윤','최하린'],evidence:'11월 4일 회의록, 기획서 v3',links:[...new Set([...c.links,4])]},
-      ['맞아요. 11월 4일 회의록에서 최하린 님이 ‘과정 기여가 사라지는 문제’를 먼저 짚은 기록이 확인돼요.','이렇게 다시 찍어 볼까요?']);return;}
+      ['맞아요. 11월 4일 회의록에서 최하린 님이 ‘과정 기여가 사라지는 문제’를 먼저 짚은 기록이 확인돼요.','이렇게 고쳐 볼까요?']);return;}
   if(c.status==='확인 필요'){
     if(ds){propose(c,{evidence:`디자인 시안 v2, ${ds} ‘3조 작업방’ 채팅`,status:'정정됨'},[`${ds} ‘3조 작업방’ 채팅에서 최하린 님이 시안 v2를 올리며 박서아 님의 레퍼런스 폴더를 언급한 기록이 확인돼요.`,'근거를 바꾸고 확인 필요 표시를 풀까요?']);}
     else say(c,'시안 파일의 작성자와 마지막 수정자가 달라서 기록이 엇갈려요. 최하린 님이 시안을 올린 날짜나 문서 이름을 알려 주시면 그 기록에서 먼저 확인할게요.');
@@ -1036,23 +1646,23 @@ function reply(c,t){
   if(quoted&&/(역할|문구|표현|바꿔|고쳐)/.test(t)){propose(c,{role:quoted[1]},['역할명을 이렇게 바꿔 볼게요. 근거는 그대로 둘게요.']);return;}
   if(ds){propose(c,{evidence:`${c.evidence}, ${ds} 기록`},[`${ds} 기록에서 이 장면과 관련된 내용을 찾았어요.`,'근거에 이렇게 보탤까요?']);return;}
   if(other&&/(이어|연결|덕분|시작|쓰였|바탕)/.test(t)){const oc=S.credits.find(x=>x.names[0]===other.n);
-    if(oc){propose(c,{links:[...new Set([...c.links,oc.id])],role:`${other.n} 님의 작업을 이어받아 ${c.role.replace(/^.*?님의 [^ ]+ /,'')}`},[`${other.n} 님의 장면(SCENE ${sceneNo(oc.id)})과 이어지는 흐름이 회의록과 문서 기록에서 보여요.`,'두 장면을 이어서 이렇게 다시 찍을까요?']);return;}}
-  say(c,'어떤 기록에서 확인할 수 있을까요? 날짜나 문서 이름, 또는 바꿀 문구를 따옴표로 알려 주시면 먼저 확인하고 다시 찍을게요.');
+    if(oc){propose(c,{links:[...new Set([...c.links,oc.id])],role:`${other.n} 님의 작업을 이어받아 ${c.role.replace(/^.*?님의 [^ ]+ /,'')}`},[`${other.n} 님의 크레딧(크레딧 ${sceneNo(oc.id)})과 이어지는 흐름이 회의록과 문서 기록에서 보여요.`,'두 크레딧을 이어서 이렇게 고쳐 볼까요?']);return;}}
+  say(c,'어떤 기록에서 확인할 수 있을까요? 날짜나 문서 이름, 또는 바꿀 문구를 따옴표로 알려 주시면 먼저 확인하고 고칠게요.');
 }
 function applyProp(i){
   const p=S.props[i]; if(p.done)return; const c=p.c;
   Object.assign(c,p.change); if(!p.change.status)c.status='정정됨'; c.take++;
-  p.done=`OK 컷. SCENE ${sceneNo(c.id)} TAKE ${c.take}로 바꿨어요`;
-  logTake(`SCENE ${sceneNo(c.id)} TAKE ${c.take}`,p.after);
-  miniClap(`TAKE ${c.take}`);
+  p.done=`반영했어요. 크레딧 ${sceneNo(c.id)}이 고친 버전(TAKE ${c.take})으로 바뀌었어요`;
+  logTake(`크레딧 ${sceneNo(c.id)} 수정 · TAKE ${c.take}`,p.after);
+  miniClap('수정 반영');
   const idx=S.frames.findIndex(f=>f.k==='c'+c.id); buildFrames('c'+c.id); S.els[idx]&&S.els[idx].classList.add('on');
   renderMeta(); renderLab();
 }
 function addHidden(hid){
   const h=S.hidden.find(x=>x.id===hid); if(!h||h.added)return; h.added=true;
   const c={id:S.nextId++,role:h.role,names:[h.who],evidence:h.evidence,links:[],status:'추가됨',take:1,hidden:true};
-  S.credits.push(c); logTake(`SCENE ${sceneNo(c.id)} 본편 편입`,`${h.role} - ${h.who}`);
-  miniClap('본편 편입'); S.sel='c'+c.id; S.thread=[]; buildFrames('c'+c.id);
+  S.credits.push(c); logTake(`크레딧 ${sceneNo(c.id)} 추가 · 숨은 기여`,`${h.role} — ${h.who}`);
+  miniClap('크레딧 추가'); toast('숨은 기여를 크레딧에 추가했어요'); S.sel='c'+c.id; S.thread=[]; buildFrames('c'+c.id);
   const i=S.frames.findIndex(f=>f.k===S.sel); focusFrame(i); renderMeta(); renderLab();
 }
 function logTake(head,text){const d=new Date();S.log.push({head,text,time:`${d.getHours()}:${String(d.getMinutes()).padStart(2,'0')}`});renderMeta();}
@@ -1061,20 +1671,29 @@ function toast(t){const e=$('#toast');e.textContent=t;e.classList.add('on');clea
 
 /* ---------- Premiere ---------- */
 $('#premiereBtn').onclick=()=>{
-  if(S.confirmed){playCredits();return;}
-  const need=S.credits.find(c=>c.status==='확인 필요');
-  if(need){const i=S.frames.findIndex(f=>f.k==='c'+need.id);selectFrame(i);
-    say(need,`SCENE ${sceneNo(need.id)}이 아직 확인 필요예요. 이 장면부터 정리하고 시사회를 열면 팀원들이 덜 헷갈릴 거예요. ${AG.on?'근거가 되는 날짜나 문서 이름을 알려 주시겠어요?':'시안을 올린 날짜를 알려 주시겠어요?'}`);return;}
+  const a=nextAction();
+  if(a.k==='replay'){playCredits();return;}
+  if(a.k==='need'){const need=a.c;const i=S.frames.findIndex(f=>f.k==='c'+need.id);selectFrame(i);
+    say(need,`크레딧 ${sceneNo(need.id)}의 근거 확인이 아직 남았어요. 이 크레딧부터 정리해야 팀원에게 확인을 요청할 수 있어요. ${AG.on?'근거가 되는 날짜나 문서 이름을 알려 주시겠어요?':'시안을 올린 날짜를 알려 주시겠어요?'}`);return;}
+  if(a.k==='hidden'){const i=S.frames.findIndex(f=>f.k===a.h.id);if(i>-1)selectFrame(i);return;}
   openTheater();
 };
+let theaterRun=false;
 async function openTheater(){
-  $('#seats').innerHTML=members.map(m=>`<div class="seat" data-m="${m.n}"><i></i><span>${m.n}${m.n===ME?' (나)':''}</span><small>확인 중</small></div>`).join('');
+  if(theaterRun)return; theaterRun=true;
+  setStep(4); coach(-1);
+  const c0=S.credits[0];
+  $('#cardpv').innerHTML=c0?`<div class="cp-h"><span>엔딩 크레딧 · 확인 요청</span><small>팀원이 받는 Teams 카드 미리보기</small></div><p class="cp-t">${esc(c0.names[0])} 님, 이 크레딧이 맞나요?</p><p class="cp-l">${esc(c0.role)} — ${esc(c0.names.join(', '))}</p><p class="cp-e">근거 · ${esc(c0.evidence)}</p><div class="cp-b"><span>맞아요</span><span>고쳐 주세요</span></div>`:'';
+  $('#mDesc').textContent='팀원 각자에게 Teams로 확인 카드를 보냈어요. 자기 크레딧을 확인하면 좌석에 불이 켜져요.';
+  $('#seats').innerHTML=members.map(m=>`<div class="seat" data-m="${esc(m.n)}"><i></i><span>${esc(m.n)}${m.n===ME?' (나)':''}</span><small>확인 중</small></div>`).join('');
   $('#mPlay').disabled=true; $('#modal').classList.add('on'); $('#mClose').focus();
-  for(const m of members){await wait(700);const s=document.querySelector(`.seat[data-m="${m.n}"]`);s.classList.add('ok');s.querySelector('small').textContent='확인했어요';}
+  for(const m of members){await wait(700);const s=[...document.querySelectorAll('.seat')].find(x=>x.dataset.m===m.n);if(s){s.classList.add('ok');s.querySelector('small').textContent='확인했어요';}}
   S.confirmed=true; S.credits.forEach(c=>c.status='팀 확인'); buildFrames(); renderMeta(); renderLab();
+  $('#mDesc').textContent=`팀원 ${members.length}명이 모두 확인했어요. 크레딧이 확정됐어요.`;
+  setStep(5); theaterRun=false;
   $('#mPlay').disabled=false; $('#mPlay').focus();
 }
-$('#mClose').onclick=()=>$('#modal').classList.remove('on');
+$('#mClose').onclick=()=>{$('#modal').classList.remove('on');setStep(S.confirmed?5:3);};
 $('#mPlay').onclick=()=>{$('#modal').classList.remove('on');playCredits();};
 
 /* ---------- 4. Credit roll: 역할은 오른쪽, 이름은 왼쪽 ---------- */
@@ -1132,8 +1751,9 @@ async function playCredits(){
   const main=S.credits.filter(c=>!c.hidden), hid=S.credits.filter(c=>c.hidden);
   const er=$('#er'); if(er)er.style.display='none';
   if(anim){anim.cancel();anim=null;}
-  $('#endcard').classList.remove('on'); $('#rollfs').classList.add('on'); $('#skipBtn').style.display='';
-  const p=$('#endcard p'); if(p)p.textContent=`팀원 ${members.length}명이 함께 확인한 엔딩 크레딧이에요.`;
+  $('#endcard').classList.remove('on'); $('#rollfs').classList.add('on'); $('#skipBtn').style.display=''; $('#rollTop').style.display='';
+  setStep(5); document.body.classList.add('dark-hdr'); coach(-1);
+  $('#endSum').innerHTML=`<span>크레딧<b>${main.length}줄</b></span><span>숨은 기여<b>${hid.length}개</b></span><span>수정<b>${S.log.length}번</b></span><span>팀원 확인<b>${members.length}명</b></span>`;
   const item=c=>`<div class="it"><div class="rr">${esc(c.role)}</div><div class="nn">${esc(c.names.join(', '))}</div>${c.evidence?`<div class="ee">${esc(c.evidence)}</div>`:''}</div>`;
   const tr=$('#track'); tr.style.display=''; tr.style.transform='';
   tr.innerHTML=`<div class="t1"><small>${esc(TEAM.full)}</small>ENDING CREDITS</div>`
@@ -1146,12 +1766,17 @@ async function playCredits(){
   anim=tr.animate([{transform:'translateY(0)'},{transform:`translateY(${-dist}px)`}],{duration:dist/speed*1000,easing:'linear'});
   anim.onfinish=()=>{anim=null;showEnd();};
 }
-function showEnd(){cancelAnimationFrame(erRaf);if(anim){anim.cancel();anim=null;}const er=$('#er');if(er)er.style.display='none';$('#track').style.display='none';$('#skipBtn').style.display='none';$('#endcard').classList.add('on');}
+function showEnd(){cancelAnimationFrame(erRaf);if(anim){anim.cancel();anim=null;}const er=$('#er');if(er)er.style.display='none';$('#track').style.display='none';$('#skipBtn').style.display='none';$('#rollTop').style.display='none';$('#endcard').classList.add('on');$('#exportBtn').focus();}
 $('#skipBtn').onclick=showEnd;
 $('#replayBtn').onclick=playCredits;
-$('#backRoomBtn').onclick=()=>$('#rollfs').classList.remove('on');
+$('#backRoomBtn').onclick=()=>{$('#rollfs').classList.remove('on');document.body.classList.remove('dark-hdr');setStep(S.confirmed?5:3);};
 $('#exportBtn').onclick=()=>toast('에이전트를 연결하면 PowerPoint 슬라이드로 내보내요');
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){if($('#rollfs').classList.contains('on'))showEnd();$('#modal').classList.remove('on');}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){
+  if(coachI>=0){coach(-1);return;}
+  if($('#glossModal').classList.contains('on')){$('#glossModal').classList.remove('on');return;}
+  if($('#rollfs').classList.contains('on'))showEnd();
+  if($('#modal').classList.contains('on')){$('#modal').classList.remove('on');setStep(S.confirmed?5:3);}
+}});
 })();
 </script>
 </body>
