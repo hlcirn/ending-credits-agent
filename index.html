@@ -1,75 +1,1030 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AI Creative Agent</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>엔딩 크레딧</title>
+<meta name="theme-color" content="#F0F0EE">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" rel="stylesheet">
+<style>
+/* =========================================================
+   엔딩 크레딧 - design update
+   구조와 동작은 그대로, 디자인만 교체.
+   무채색 오프화이트 바탕 + 인쇄물 원색(VHS·필름 캐니스터) + 고딕 두 가지.
+   ========================================================= */
+:root{
+  --ground:#F0F0EE; --surface:#FAFAF9; --surface-2:#F4F4F2; --raise:#E8E8E5;
+  --line:#DEDEDA; --line-2:#C8C8C3;
+  --text:#111111; --muted:#6E6E69; --dim:#A2A29D;
+  --red:#D2382B; --red-deep:#B02C21; --amber:#F2B705; --amber-soft:rgba(242,183,5,.12);
+  --board:#FAFAF9; --ink:#111111; --film:#2B1D16; --film-dark:#160E0A; --hole:#F0F0EE;
+  --s-blue:#1F6BB0; --s-green:#2F9958; --s-orange:#EC7A1C; --s-red:#D2382B; --s-yellow:#F2B705;
+  --cond:"Archivo Narrow","Pretendard Variable","Pretendard",sans-serif;
+  --ui:"Pretendard Variable","Pretendard",-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  --pen:var(--ui);
+  --ease:cubic-bezier(.2,.8,.2,1);
+  color-scheme:light;
+}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{height:100%}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;height:100%;background:var(--ground);color:var(--text);font-family:var(--ui);font-size:14px;line-height:1.55;letter-spacing:-.005em;-webkit-font-smoothing:antialiased;overflow:hidden;word-break:keep-all;overflow-wrap:anywhere}
+button,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+.screen{display:none;height:100%;position:relative}
+.screen.on{display:flex}
+
+/* 종이 질감만 아주 옅게. 비네팅·빛샘은 쓰지 않음 */
+.grain{position:fixed;inset:-50%;z-index:90;pointer-events:none;background-image:var(--noise);background-size:220px 220px;opacity:.045;mix-blend-mode:multiply}
+.vignette{display:none}
+.leak{display:none}
+
+/* ================= 1. SLATE ================= */
+#slateScreen{flex-direction:column;align-items:center;justify-content:center;gap:30px;padding:24px;overflow:hidden;background:var(--ground)}
+#slateScreen::after{content:"";position:absolute;left:50%;bottom:8%;width:min(560px,86vw);height:1px;translate:-50% 0;background:var(--line)}
+.hud{position:absolute;inset:clamp(14px,3vw,28px);pointer-events:none;font-family:var(--cond);font-weight:600;letter-spacing:.14em;font-size:12px;color:var(--dim);z-index:3}
+.hud i{position:absolute;width:22px;height:22px;border-color:var(--ink);border-style:solid;border-width:0}
+.hud i:nth-child(1){left:0;top:0;border-left-width:1.5px;border-top-width:1.5px}
+.hud i:nth-child(2){right:0;top:0;border-right-width:1.5px;border-top-width:1.5px}
+.hud i:nth-child(3){left:0;bottom:0;border-left-width:1.5px;border-bottom-width:1.5px}
+.hud i:nth-child(4){right:0;bottom:0;border-right-width:1.5px;border-bottom-width:1.5px}
+.hud span{position:absolute}
+.hud .st{left:36px;top:3px;display:flex;align-items:center;gap:8px}
+.hud .st::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--line-2)}
+.hud.rec .st{color:var(--text)}
+.hud.rec .st::before{background:var(--red)}
+.hud .tc{right:36px;top:3px;font-variant-numeric:tabular-nums}
+.hud .lb{left:36px;bottom:3px}
+.hud .rb{right:36px;bottom:3px}
+
+.slate{width:min(540px,86vw);border:0;background:none;padding:0;position:relative;z-index:2;display:block;text-align:left;
+  filter:drop-shadow(0 18px 24px rgba(17,17,17,.14)) drop-shadow(0 2px 3px rgba(17,17,17,.12));transition:transform .35s var(--ease)}
+.slate:hover,.slate:focus-visible{transform:translateY(-3px)}
+.slate:active{transform:translateY(1px)}
+.stick{height:clamp(44px,9vw,62px);position:relative}
+.bar{position:absolute;left:0;right:0;height:100%;border-radius:3px;background:repeating-linear-gradient(118deg,var(--ink) 0 34px,var(--surface) 34px 68px)}
+.bar.top{bottom:calc(100% + 4px);transform-origin:7% 100%;transform:rotate(-13deg);transition:transform .35s cubic-bezier(.3,1.4,.6,1);border-radius:3px 6px 6px 3px}
+.bar.base{bottom:0;background:repeating-linear-gradient(62deg,var(--ink) 0 34px,var(--surface) 34px 68px)}
+.hinge{position:absolute;left:0;bottom:0;width:15%;height:calc(200% + 4px);background:var(--ink);border-radius:5px 3px 3px 3px;z-index:2}
+.hinge i{position:absolute;width:9px;height:9px;border-radius:50%;background:#9A9A95}
+.slate:hover .bar.top,.slate:focus-visible .bar.top{transform:rotate(-19deg)}
+.slate.clap .bar.top{transform:rotate(0deg);transition:transform .11s cubic-bezier(.7,0,1,.6)}
+.slate.clap{animation:jolt .25s .1s}
+@keyframes jolt{30%{transform:translateY(3px) rotate(.4deg)}60%{transform:translateY(-1px)}}
+.board{margin-top:4px;border-radius:3px 3px 14px 14px;overflow:hidden;background:var(--board);color:var(--ink);position:relative;box-shadow:inset 0 0 0 1.5px var(--ink)}
+.board::after{display:none}
+.board .band{background:var(--ink);color:#fff;padding:clamp(14px,3vw,22px) clamp(18px,4vw,30px);display:flex;justify-content:space-between;align-items:flex-end;gap:12px;position:relative}
+.board .band::after{content:"";position:absolute;left:0;right:0;bottom:0;height:6px;background:linear-gradient(90deg,var(--s-red) 0 20%,var(--s-orange) 20% 40%,var(--s-yellow) 40% 60%,var(--s-green) 60% 80%,var(--s-blue) 80%)}
+.band h1{margin:0;font-weight:800;font-size:clamp(28px,6.4vw,46px);letter-spacing:-.045em;line-height:1.1}
+.band span{font-family:var(--cond);font-weight:700;font-size:clamp(13px,2.4vw,16px);letter-spacing:.08em;opacity:.75;text-align:right;line-height:1.2}
+.fields{padding:8px clamp(18px,4vw,30px) 18px}
+.field{display:flex;align-items:baseline;gap:14px;border-bottom:1.5px solid var(--ink);padding:10px 0 6px}
+.field label,.cells label{font-family:var(--cond);font-weight:700;font-size:clamp(13px,2.4vw,16px);letter-spacing:.08em;flex:none;color:var(--muted)}
+.field b,.cells b{font-family:var(--ui);font-weight:700;font-size:clamp(17px,3.4vw,22px);line-height:1.2;letter-spacing:-.03em;color:var(--ink)}
+.cells{display:grid;grid-template-columns:repeat(3,1fr);padding-top:6px}
+.cells div{display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 4px 2px}
+.cells div+div{border-left:1.5px solid var(--ink)}
+.slate-hint{position:relative;z-index:2;font-family:var(--ui);font-weight:700;font-size:17px;letter-spacing:-.02em;color:var(--text);text-align:center}
+.slate-hint small{display:block;font-family:var(--ui);font-weight:400;font-size:13px;letter-spacing:-.01em;margin-top:6px;color:var(--muted)}
+.flash{position:fixed;inset:0;background:#FFFFFF;opacity:0;pointer-events:none;z-index:60}
+.flash.go{animation:fw .45s ease-out}
+@keyframes fw{0%{opacity:0}12%{opacity:.95}100%{opacity:0}}
+.blackout{position:fixed;inset:0;background:var(--ink);opacity:0;pointer-events:none;z-index:59;transition:opacity .45s}
+.blackout.on{opacity:1;transition:opacity .12s}
+
+/* ================= 2. 필름이 풀려 나가는 진행 화면 ================= */
+#rollScreen{flex-direction:column;align-items:center;justify-content:center;padding:24px;gap:44px;overflow:hidden;background:var(--ground)}
+.unroll{display:flex;align-items:center;transition:transform 1s cubic-bezier(.6,0,.3,1),opacity 1s,filter 1s;transform-origin:60% 50%}
+.unroll.go{transform:scale(3.4);opacity:0;filter:blur(6px)}
+.canister{width:clamp(74px,11vw,104px);flex:none;position:relative;z-index:2;filter:drop-shadow(0 10px 14px rgba(17,17,17,.16))}
+.canister .cap{height:10px;background:var(--ink);border-radius:3px;margin:0 7%}
+.canister .body{background:linear-gradient(90deg,#C9C9C4,#F4F4F2 42%,#D6D6D1);color:var(--ink);padding:10px 8px;border-radius:1px;line-height:1.15;position:relative}
+.canister .body b{display:block;font-family:var(--cond);font-weight:700;font-size:clamp(15px,2.2vw,19px);letter-spacing:.02em}
+.canister .body span{display:block;background:var(--s-yellow);color:var(--ink);font-family:var(--cond);font-weight:700;font-size:12px;letter-spacing:.04em;padding:2px 5px;margin:6px -8px;}
+.canister .body small{font-family:var(--cond);font-weight:600;font-size:12px;letter-spacing:.06em;color:var(--muted)}
+.canister .knob{position:absolute;right:-10px;top:24px;width:10px;height:18px;background:var(--ink);border-radius:0 3px 3px 0}
+.reelstrip{--p:0%;position:relative;width:min(780px,68vw);margin-left:-4px;padding:22px 10px;background:var(--film);display:grid;grid-template-columns:repeat(4,1fr);gap:10px;
+  clip-path:inset(0 calc(100% - var(--p)) 0 0);transition:clip-path 1.1s cubic-bezier(.3,.7,.3,1);box-shadow:0 14px 28px rgba(17,17,17,.18)}
+.reelstrip::before,.reelstrip::after{content:"";position:absolute;left:0;right:0;height:22px;background:repeating-linear-gradient(90deg,transparent 0 7px,var(--hole) 7px 15px,transparent 15px 22px) center/100% 8px no-repeat}
+.reelstrip::before{top:0}.reelstrip::after{bottom:0}
+.uf{aspect-ratio:4/3;background:var(--film-dark);position:relative;overflow:hidden;border-radius:1px}
+.uf-in{position:absolute;inset:0;padding:clamp(8px,1.4vw,14px);display:flex;flex-direction:column;gap:2px;opacity:.22;filter:grayscale(1) contrast(.6) brightness(1.4);transition:opacity .4s;color:#fff}
+.uf.now .uf-in{animation:develop 1.3s ease-out forwards}
+.uf.done .uf-in{opacity:1;filter:none;background:var(--tint)}
+.uf.now .uf-in{background:var(--tint)}
+@keyframes develop{0%{opacity:.25;filter:grayscale(1) contrast(.5) brightness(1.7)}55%{opacity:.85;filter:grayscale(.3) brightness(1.1)}100%{opacity:1;filter:none}}
+.uf-in::after{display:none}
+.uf-no{font-family:var(--cond);font-weight:700;font-size:clamp(10px,1.2vw,12px);letter-spacing:.08em;color:rgba(255,255,255,.8)}
+.uf b{font-size:clamp(15px,2vw,22px);font-weight:800;letter-spacing:-.04em;margin-top:auto;line-height:1.15}
+.uf small{font-size:clamp(10px,1.15vw,12px);color:rgba(255,255,255,.82);line-height:1.35}
+.uf-st{position:absolute;right:clamp(8px,1.4vw,14px);top:clamp(8px,1.4vw,14px);font-style:normal;font-family:var(--cond);font-weight:700;font-size:11px;letter-spacing:.08em;color:#fff}
+.uf.done .uf-st{color:rgba(255,255,255,.75)}
+.counter{text-align:center;transition:opacity .6s}
+.counter.go{opacity:0}
+.feet{font-family:var(--cond);font-weight:700;font-size:15px;letter-spacing:.14em;color:var(--muted);font-variant-numeric:tabular-nums}
+.feet b{color:var(--ink);font-weight:700}
+.counter h2{margin:8px 0 0;font-size:24px;font-weight:800;letter-spacing:-.04em}
+.counter p{margin:4px 0 0;color:var(--muted);min-height:1.55em}
+
+/* ================= 3. 편집실 ================= */
+#roomScreen{flex-direction:column;background:var(--ground)}
+.topbar{display:flex;align-items:center;gap:18px;padding:12px 20px;border-bottom:1px solid var(--line);flex:none;flex-wrap:wrap;background:var(--surface)}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:15px;letter-spacing:-.03em}
+.logo i{width:30px;height:14px;border-radius:1px;background:linear-gradient(90deg,var(--s-red) 0 20%,var(--s-orange) 20% 40%,var(--s-yellow) 40% 60%,var(--s-green) 60% 80%,var(--s-blue) 80%);display:block}
+.logo small{font-family:var(--cond);font-weight:700;letter-spacing:.12em;color:var(--dim);font-size:12px}
+.meta{font-family:var(--cond);font-weight:700;letter-spacing:.08em;color:var(--muted);font-size:13px;display:flex;gap:18px;flex-wrap:wrap}
+.meta b{color:var(--text);font-weight:700;margin-left:4px}
+.meta .warn,.meta .warn b{color:var(--red)}
+.topbar .sp{flex:1}
+.btn{border:1.5px solid var(--ink);background:transparent;border-radius:999px;padding:7px 16px;font-weight:700;font-size:13px;letter-spacing:-.01em;transition:transform .2s var(--ease),background .2s,color .2s}
+.btn:hover{background:var(--ink);color:#fff;transform:translateY(-1px)}
+.btn:active{transform:translateY(1px)}
+.btn.red{background:var(--ink);border-color:var(--ink);color:#fff}
+.btn.red:hover{background:var(--red);border-color:var(--red)}
+.btn:disabled{opacity:.35;cursor:default;transform:none}
+.room{flex:1;display:grid;grid-template-columns:minmax(0,1fr) 410px;min-height:0}
+.stage{position:relative;overflow:hidden;display:flex;flex-direction:column;min-height:0;touch-action:pan-y;background:var(--ground)}
+.stage::before{content:"EDIT ROOM · LIGHT TABLE";position:absolute;left:22px;top:16px;font-family:var(--cond);font-weight:700;letter-spacing:.14em;font-size:11px;color:var(--dim);z-index:2}
+.stage3d{flex:1;perspective:1300px;display:grid;place-items:center;min-height:0;cursor:grab}
+.stage3d.dragging{cursor:grabbing}
+.tilt{transform-style:preserve-3d;transform:rotateX(-14deg) rotateZ(-14deg);animation:enter 1.4s cubic-bezier(.2,.8,.2,1) both}
+@keyframes enter{from{transform:rotateX(-14deg) rotateZ(-14deg) scale(1.9) rotateY(-150deg);opacity:0}}
+.ring{width:1px;height:1px;position:relative;transform-style:preserve-3d}
+.frame{--w:200px;position:absolute;left:calc(var(--w) / -2);top:-150px;width:var(--w);height:300px;border:0;padding:24px 0;background:var(--film);backface-visibility:visible;
+  filter:brightness(calc(.82 + .18 * max(0, var(--f, 1)))) saturate(calc(.15 + .85 * max(0, var(--f, 1)))) opacity(calc(.55 + .45 * max(0, var(--f, 1))));display:block;text-align:left}
+.frame::before,.frame::after{content:"";position:absolute;left:0;right:0;height:24px;background:repeating-linear-gradient(90deg,transparent 0 6px,var(--hole) 6px 14px,transparent 14px 20px) center/100% 9px no-repeat}
+.frame::before{top:0}.frame::after{bottom:0}
+.frame.back{pointer-events:none}
+.frame:focus-visible{outline:3px solid var(--ink);outline-offset:-3px}
+.frame.on .fin{box-shadow:inset 0 0 0 3px #fff}
+.frame.flash .fin{animation:dev 1.6s ease-out}
+@keyframes dev{0%{filter:grayscale(1) contrast(.5) brightness(1.9)}60%{filter:grayscale(.3) brightness(1.1)}100%{filter:none}}
+.fin{position:relative;height:100%;margin:0 7px;overflow:hidden;color:#fff;padding:12px 12px 10px;display:flex;flex-direction:column;background:var(--tint,#555);transition:filter .3s}
+.fin::before{display:none}
+.frame:hover .fin{filter:brightness(1.06)}
+.fin .ftop{display:flex;justify-content:space-between;font-family:var(--cond);font-weight:700;font-size:11px;letter-spacing:.08em;color:rgba(255,255,255,.85)}
+.fin .stack{margin:10px 0 6px;line-height:.92}
+.fin .stack b{display:block;font-weight:900;font-size:38px;letter-spacing:-.06em;white-space:nowrap}
+.fin .stack b.o{color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.85)}
+.fin .frole{font-size:12.5px;font-weight:600;line-height:1.5;letter-spacing:-.02em;margin-top:auto;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.fin .fev{font-size:10.5px;color:rgba(255,255,255,.75);margin-top:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fin .edge{font-family:var(--cond);font-weight:700;font-size:10px;letter-spacing:.12em;color:rgba(255,255,255,.7);margin-top:4px}
+.fin .sticker{position:absolute;right:-30px;top:54px;transform:rotate(35deg);background:var(--s-yellow);color:var(--ink);font-weight:800;font-size:11px;padding:3px 34px;border-top:2px dashed var(--ink);border-bottom:2px dashed var(--ink)}
+.fin.need{background-image:repeating-linear-gradient(135deg,var(--s-yellow) 0 10px,var(--ink) 10px 20px);background-size:100% 7px;background-repeat:no-repeat;background-position:bottom}
+.fin.title{background:var(--ink);justify-content:center}
+.fin.title .stack b{font-family:var(--cond);font-weight:700;font-size:46px;letter-spacing:-.01em}
+.fin.title .stack b.o{-webkit-text-stroke:1px rgba(255,255,255,.7)}
+.fin.title p{font-size:12.5px;font-weight:500;margin:10px 0 0;color:rgba(255,255,255,.6)}
+.fin.cut{background:#E4E4E0;color:#6E6E69;filter:none}
+.fin.cut .ftop,.fin.cut .fev{color:#8A8A85}
+.fin.cut .stack b{font-size:30px}
+.fin.cut .stack b.o{-webkit-text-stroke:1px #9A9A95}
+.fin.cut::after{content:"";position:absolute;inset:0;border:1.5px dashed #9A9A95;margin:6px;pointer-events:none}
+.stage-ctl{display:flex;justify-content:center;align-items:center;gap:10px;padding:10px 16px 16px;flex:none;flex-wrap:wrap;position:relative;z-index:2}
+.ctl{border:1.5px solid var(--line-2);background:var(--surface);border-radius:999px;padding:5px 15px;font-size:13px;font-weight:600;color:var(--muted);transition:color .2s,border-color .2s,transform .2s var(--ease)}
+.ctl:hover{color:var(--text);border-color:var(--ink);transform:translateY(-1px)}
+.ctl[aria-pressed="true"]{border-color:var(--ink);color:var(--text)}
+.caption{position:fixed;z-index:30;pointer-events:none;background:var(--ink);color:#fff;font-size:12.5px;padding:7px 11px;border-radius:2px;max-width:260px;opacity:0;transition:opacity .15s}
+.caption.on{opacity:1}
+.caption b{display:block;font-family:var(--cond);font-weight:700;letter-spacing:.06em;font-size:12px;color:rgba(255,255,255,.7)}
+
+/* 콘티뉴이티 시트 (장면 기록지) */
+.lab{border-left:1px solid var(--line);background:var(--surface);display:flex;flex-direction:column;min-height:0}
+.labtabs{display:flex;border-bottom:1px solid var(--line);flex:none}
+.labtabs button{flex:1;border:0;background:none;padding:13px 0;font-family:var(--cond);font-weight:700;font-size:13px;letter-spacing:.12em;color:var(--dim);transition:color .2s}
+.labtabs button:hover{color:var(--muted)}
+.labtabs button.on{color:var(--text);box-shadow:inset 0 -2px 0 var(--ink)}
+.labbody{flex:1;overflow-y:auto;padding:22px 24px;display:flex;flex-direction:column;gap:14px;scrollbar-color:var(--line-2) transparent}
+.sheet-h{font-family:var(--cond);font-weight:700;letter-spacing:.12em;font-size:11px;color:var(--dim);display:flex;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:8px}
+.intro h3{margin:0 0 8px;font-size:20px;font-weight:800;letter-spacing:-.04em}
+.intro p{margin:0 0 10px;color:var(--muted)}
+.legend{display:flex;flex-direction:column;gap:9px;margin-top:4px;font-size:13px;color:var(--muted)}
+.legend span{display:flex;align-items:center;gap:10px}
+.legend i{width:30px;height:20px;display:block;border-radius:1px;flex:none}
+.scene-no{font-family:var(--cond);font-weight:700;letter-spacing:.1em;color:var(--text);font-size:13px;display:flex;justify-content:space-between}
+.scene-no span+span{color:var(--dim)}
+.scene-role{font-size:19px;font-weight:500;line-height:1.55;letter-spacing:-.03em;margin:0}
+.scene-name{font-size:34px;font-weight:900;letter-spacing:-.05em;line-height:1.1;margin:0}
+.facts{display:grid;grid-template-columns:92px 1fr;font-size:13px;margin:0;border-top:1.5px solid var(--ink)}
+.facts dt,.facts dd{padding:9px 0;border-bottom:1px solid var(--line);margin:0}
+.facts dt{font-family:var(--cond);font-weight:700;letter-spacing:.1em;color:var(--dim);font-size:12px}
+.tag{display:inline-block;font-size:12px;padding:1px 8px;border-radius:2px;font-weight:700}
+.tag.need{background:var(--s-yellow);color:var(--ink)}
+.tag.fixed{background:var(--raise);color:var(--text)}
+.tag.added{background:var(--s-green);color:#fff}
+.tag.team{background:var(--ink);color:#fff}
+.tag.draft{background:var(--raise);color:var(--muted)}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+.splice{display:flex;flex-wrap:wrap;gap:6px}
+.splice button{border:1.5px dashed var(--line-2);background:none;border-radius:999px;padding:4px 12px;font-size:13px;color:var(--muted);transition:color .2s,border-color .2s}
+.splice button:hover{color:var(--text);border-color:var(--ink)}
+.notes-h{font-family:var(--cond);font-weight:700;letter-spacing:.12em;font-size:12px;margin:6px 0 0;border-top:1px solid var(--line);padding-top:14px;color:var(--dim)}
+.thread{display:flex;flex-direction:column;gap:14px}
+.m{font-size:13.5px;max-width:96%;position:relative}
+.m::before{display:block;font-family:var(--cond);font-weight:700;letter-spacing:.12em;font-size:10px;color:var(--dim);margin-bottom:3px}
+.m.me{align-self:flex-end;text-align:right;font-family:var(--ui);font-weight:700;font-size:14px;line-height:1.45;letter-spacing:-.02em;color:var(--text)}
+.m.me::before{content:"DIRECTOR"}
+.m.ag{align-self:flex-start;border-left:2px solid var(--ink);padding:2px 0 2px 12px}
+.m.ag::before{content:"AGENT"}
+.m.ag p{margin:0 0 6px}.m.ag p:last-child{margin:0}
+.dots{display:flex;gap:4px;padding:4px 0}
+.dots i{width:6px;height:6px;border-radius:50%;background:var(--ink);opacity:.5;animation:bob 1s infinite}
+.dots i:nth-child(2){animation-delay:.15s}.dots i:nth-child(3){animation-delay:.3s}
+@keyframes bob{30%{transform:translateY(-4px)}}
+.takes{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0 8px}
+.take{background:var(--film);padding:14px 5px;position:relative}
+.take::before,.take::after{content:"";position:absolute;left:0;right:0;height:14px;background:repeating-linear-gradient(90deg,transparent 0 4px,var(--hole) 4px 9px,transparent 9px 13px) center/100% 5px no-repeat}
+.take::before{top:0}.take::after{bottom:0}
+.take div{background:var(--surface);color:var(--text);padding:9px;font-size:12px;min-height:100%}
+.take div b{display:block;font-family:var(--cond);font-weight:700;letter-spacing:.08em;font-size:11px;margin-bottom:4px;color:var(--text)}
+.take div span{font-weight:500;line-height:1.5;display:block}
+.take.old div b{color:var(--dim)}
+.take.old div span{text-decoration:line-through;text-decoration-color:var(--red);text-decoration-thickness:1.5px;color:var(--muted)}
+.acts{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.acts button{border:1.5px solid var(--ink);background:none;border-radius:999px;padding:4px 13px;font-size:13px;font-weight:700;transition:transform .2s var(--ease),background .2s,color .2s}
+.acts button:hover{background:var(--ink);color:#fff;transform:translateY(-1px)}
+.acts button.ok{background:var(--ink);border-color:var(--ink);color:#fff}
+.acts button.ok:hover{background:var(--red);border-color:var(--red)}
+.acts .done{font-size:12.5px;color:var(--muted)}
+.chips{display:flex;flex-direction:column;gap:6px}
+.chips button{text-align:left;border:1px solid var(--line);background:var(--surface-2);border-radius:999px;padding:6px 14px;font-size:12.5px;color:var(--muted);transition:color .2s,border-color .2s}
+.chips button:hover{border-color:var(--ink);color:var(--text)}
+.composer{border-top:1px solid var(--line);padding:12px 16px;flex:none;display:none;background:var(--surface)}
+.composer.on{display:block}
+.composer .lbl{font-family:var(--cond);font-weight:700;letter-spacing:.1em;font-size:12px;color:var(--dim);margin-bottom:6px}
+.inrow{display:flex;gap:8px;align-items:flex-end}
+.inrow textarea{flex:1;resize:none;border:0;border-bottom:1.5px solid var(--ink);border-radius:0;padding:8px 2px;min-height:42px;max-height:120px;background:transparent;font-size:14px}
+.inrow textarea:focus{outline:none;border-color:var(--red)}
+.cutbtn{background:var(--ink);color:#fff;border:0;border-radius:999px;padding:0 18px;height:42px;font-family:var(--cond);font-weight:700;letter-spacing:.1em;font-size:14px;transition:background .2s,transform .2s var(--ease)}
+.cutbtn:hover{background:var(--red)}
+.cutbtn:active{transform:translateY(1px)}
+.log{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:14px}
+.log li{border-left:2px solid var(--ink);padding:2px 0 2px 12px;font-size:13px;color:var(--dim)}
+.log li b{font-family:var(--cond);font-weight:700;letter-spacing:.08em;font-size:13px;color:var(--text)}
+.log li span{display:block;color:var(--muted);font-weight:500}
+.empty{color:var(--muted)}
+
+/* 작은 슬레이트 */
+.miniclap{position:fixed;z-index:45;width:120px;pointer-events:none;opacity:0;filter:drop-shadow(0 8px 14px rgba(17,17,17,.18))}
+.miniclap.go{animation:mc 1s ease forwards}
+.miniclap .t,.miniclap .b{height:16px;border-radius:2px;background:repeating-linear-gradient(118deg,var(--ink) 0 10px,var(--surface) 10px 20px)}
+.miniclap .t{transform-origin:0 100%;transform:rotate(-25deg)}
+.miniclap.go .t{animation:mct .3s .2s forwards}
+.miniclap .bd{background:var(--ink);color:#fff;font-family:var(--cond);font-weight:700;text-align:center;padding:6px;font-size:15px;letter-spacing:.06em;margin-top:2px}
+@keyframes mc{0%{opacity:0;transform:scale(.8)}15%,70%{opacity:1;transform:none}100%{opacity:0}}
+@keyframes mct{to{transform:rotate(0)}}
+
+/* 시사회 */
+.modal{position:fixed;inset:0;background:rgba(240,240,238,.82);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;z-index:40;padding:20px}
+.modal.on{display:flex;animation:fadein .4s}
+.theater{background:var(--surface);color:var(--text);border-radius:4px;width:min(500px,100%);padding:30px 26px 24px;text-align:center;box-shadow:0 0 0 1px var(--line),0 24px 60px rgba(17,17,17,.12);position:relative;overflow:hidden}
+.theater::before{display:none}
+.theater .screenline{height:4px;border-radius:0;background:linear-gradient(90deg,var(--s-red) 0 20%,var(--s-orange) 20% 40%,var(--s-yellow) 40% 60%,var(--s-green) 60% 80%,var(--s-blue) 80%);margin:0 18% 26px}
+.theater h3{margin:0 0 4px;font-size:22px;font-weight:900;letter-spacing:-.05em}
+.theater p{margin:0 0 24px;color:var(--muted);font-size:13px}
+.seats{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+.seat{display:flex;flex-direction:column;align-items:center;gap:6px;font-size:12.5px;font-weight:600;width:64px}
+.seat i{width:44px;height:36px;border-radius:9px 9px 3px 3px;background:var(--raise);transition:background .4s;position:relative}
+.seat i::after{content:"";position:absolute;left:-4px;right:-4px;bottom:-4px;height:10px;border-radius:3px;background:inherit;filter:brightness(.88)}
+.seat.ok i{background:var(--s-yellow);box-shadow:0 6px 18px rgba(242,183,5,.45)}
+.seat small{color:var(--dim);font-weight:500}
+.seat.ok small{color:var(--text)}
+.theater .acts2{display:flex;justify-content:center;gap:8px;margin-top:26px}
+
+/* ================= 4. 엔딩 크레딧 상영 ================= */
+.rollfs{position:fixed;inset:0;background:#0B0B0B;color:#F2F2F0;z-index:50;display:none;overflow:hidden}
+.rollfs.on{display:block;animation:fadein .8s}
+.track{position:absolute;left:0;right:0;top:100%;padding:0 24px}
+.track .t1{text-align:center;font-family:var(--cond);font-weight:700;font-size:clamp(42px,7vw,88px);letter-spacing:.02em;line-height:1;margin-bottom:16vh}
+.track .t1 small{display:block;font-family:var(--ui);font-weight:500;font-size:clamp(13px,1.5vw,16px);letter-spacing:.2em;color:#8A8A85;margin-bottom:18px}
+.track .it{display:grid;grid-template-columns:1fr 1fr;column-gap:clamp(20px,3vw,40px);align-items:baseline;max-width:980px;margin:0 auto 7vh}
+.track .rr{text-align:right;color:#9A9A95;font-weight:500;font-size:clamp(13px,1.45vw,17px);line-height:1.6;letter-spacing:-.02em}
+.track .nn{text-align:left;font-weight:900;font-size:clamp(24px,2.9vw,38px);letter-spacing:-.02em;line-height:1.2}
+.track .ee{grid-column:2;text-align:left;color:#6E6E69;font-size:12px;letter-spacing:0;margin-top:2px}
+.track .sec{text-align:center;font-family:var(--cond);font-weight:700;letter-spacing:.3em;color:#F2F2F0;font-size:14px;margin:16vh 0 9vh}
+.endcard{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;gap:20px;padding:24px;text-align:center;overflow:hidden}
+.endcard.on{display:flex;animation:fadein 1.4s}
+@keyframes fadein{from{opacity:0}}
+.endcard h2{position:relative;font-family:var(--cond);font-weight:700;font-size:clamp(56px,11vw,140px);margin:0;letter-spacing:-.01em;line-height:.9}
+.endcard p{position:relative;color:#8A8A85;margin:0}
+.endcard .row{position:relative;justify-content:center;margin-top:10px}
+.endcard .btn{border-color:#F2F2F0;color:#F2F2F0}
+.endcard .btn:hover{background:#F2F2F0;color:#0B0B0B}
+.endcard .btn.red{background:#F2F2F0;color:#0B0B0B}
+.endcard .btn.red:hover{background:var(--red);border-color:var(--red);color:#fff}
+.skip{position:absolute;right:18px;bottom:calc(16px + env(safe-area-inset-bottom,0px));background:none;border:1px solid #3A3A38;color:#8A8A85;border-radius:999px;padding:4px 13px;font-size:12px;z-index:2}
+.skip:hover{color:#F2F2F0;border-color:#8A8A85}
+.toast{position:fixed;left:50%;bottom:calc(28px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:#fff;padding:9px 16px;border-radius:999px;font-size:13px;font-weight:600;z-index:70;opacity:0;transition:opacity .25s;pointer-events:none}
+.toast.on{opacity:1}
+
+@media (max-width:900px){
+  body{overflow:auto}
+  .room{grid-template-columns:1fr;grid-template-rows:minmax(400px,58vh) auto}
+  .lab{border-left:0;border-top:1px solid var(--line)}
+  .tilt{scale:.72}
+  .stage::before{display:none}
+}
+@media (max-width:640px){
+  .unroll{flex-direction:column}
+  .canister{width:120px}
+  .reelstrip{width:min(300px,78vw);margin:-4px 0 0;padding:10px 22px;grid-template-columns:1fr;clip-path:inset(0 0 calc(100% - var(--p)) 0)}
+  .reelstrip::before,.reelstrip::after{top:0;bottom:0;left:auto;right:auto;width:22px;height:auto;background:repeating-linear-gradient(180deg,transparent 0 7px,var(--hole) 7px 15px,transparent 15px 22px) center/8px 100% no-repeat}
+  .reelstrip::before{left:0}.reelstrip::after{right:0}
+  .uf{aspect-ratio:auto;height:84px}
+  .uf b{margin-top:2px}
+  .unroll.go{transform:scale(2.2)}
+  .track .it{grid-template-columns:1fr;text-align:center}
+  .track .rr,.track .nn,.track .ee{text-align:center;grid-column:1}
+  .hud .lb,.hud .rb{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+
+/* ===== 엔딩 롤: 고리처럼 이어진 필름 띠가 계속 돈다 ===== */
+.rollfs{background:var(--ground);color:var(--text)}
+.rollfs .skip{border-color:var(--line-2);color:var(--muted);background:var(--surface)}
+.rollfs .skip:hover{color:var(--text);border-color:var(--ink)}
+.endcard{background:#0B0B0B;color:#F2F2F0}
+.er{position:absolute;inset:0;overflow:hidden}
+.er-meta{position:absolute;left:clamp(16px,3vw,32px);top:clamp(14px,3vw,28px);display:flex;align-items:center;gap:12px;font-family:var(--cond);font-weight:700;font-size:12px;letter-spacing:.12em;color:var(--muted);z-index:2}
+.er-meta i{display:block;width:26px;height:12px;background:linear-gradient(90deg,var(--s-red) 0 20%,var(--s-orange) 20% 40%,var(--s-yellow) 40% 60%,var(--s-green) 60% 80%,var(--s-blue) 80%)}
+.er-meta b{color:var(--text)}
+.er-now{position:absolute;right:clamp(16px,3vw,32px);bottom:clamp(64px,8vw,84px);text-align:right;z-index:2;max-width:min(380px,40vw);transition:opacity .5s}
+.er-now small{display:block;font-family:var(--cond);font-weight:700;font-size:11px;letter-spacing:.14em;color:var(--dim)}
+.er-now b{display:block;font-weight:900;font-size:clamp(34px,4.4vw,56px);letter-spacing:-.06em;line-height:1.05;margin:4px 0 6px}
+.er-now span{display:block;font-weight:500;font-size:14px;line-height:1.5;letter-spacing:-.02em;color:var(--muted)}
+.er-stage{position:absolute;left:46%;top:50%;width:0;height:0;perspective:1500px}
+.er-loop{position:absolute;left:0;top:0;transform-style:preserve-3d}
+.er-sl{position:absolute;left:calc(var(--bw) / -2);width:var(--bw);backface-visibility:visible;will-change:transform;background-repeat:repeat-y}
+.er-sl::after{content:"";position:absolute;inset:0;background:#000;opacity:var(--sh,0);pointer-events:none}
+.er-card{position:absolute;left:0;width:var(--bw);height:var(--ch)}
+.er-title{background:var(--ink);color:#fff;display:flex;flex-direction:column;justify-content:center;padding:0 26px}
+.er-title b{font-family:var(--cond);font-weight:700;font-size:64px;letter-spacing:-.02em;line-height:.85}
+.er-title small{font-family:var(--cond);font-weight:700;font-size:12px;letter-spacing:.16em;color:rgba(255,255,255,.55);margin-top:12px}
+.er-name{background:var(--ink);color:#fff;display:flex;flex-direction:column;justify-content:center;padding:0 22px;gap:0}
+.er-name b{font-weight:900;font-size:52px;line-height:.92;white-space:nowrap;letter-spacing:-.07em}
+.er-name b.o{color:transparent;-webkit-text-stroke:1.2px rgba(255,255,255,.9)}
+.er-role{background:var(--tint);color:#fff;padding:20px 24px;display:flex;flex-direction:column;justify-content:space-between}
+.er-role p{margin:0;font-weight:800;font-size:22px;line-height:1.28;letter-spacing:-.05em}
+.er-role span{font-family:var(--cond);font-weight:700;font-size:12px;letter-spacing:.1em;opacity:.8}
+.er-film{background:var(--film);display:flex;align-items:center;padding:0 30px;position:relative}
+.er-film::before,.er-film::after{content:"";position:absolute;top:0;bottom:0;width:14px;background:repeating-linear-gradient(180deg,transparent 0 7px,var(--hole) 7px 15px,transparent 15px 22px) center/6px 100% no-repeat}
+.er-film::before{left:6px}.er-film::after{right:6px}
+.er-film div{flex:1;align-self:stretch;margin:14px 0;background:var(--film-dark);display:flex;flex-direction:column;justify-content:space-between;padding:12px 14px;color:#D8CDBA;font-family:var(--cond);font-weight:700;font-size:11px;letter-spacing:.14em}
+.er-film div b{font-family:var(--cond);font-weight:700;font-size:72px;letter-spacing:-.02em;line-height:.8;color:var(--tint)}
+.er-heat{background:repeating-linear-gradient(90deg,transparent 0 22px,rgba(0,0,0,.08) 22px 23px),linear-gradient(180deg,#111 0%,var(--s-red) 30%,var(--s-orange) 46%,var(--s-yellow) 60%,#F4F1E8 74%,var(--s-blue) 100%);display:flex;align-items:flex-end;padding:18px 24px;color:#fff}
+.er-heat b{font-family:var(--cond);font-weight:700;font-size:13px;letter-spacing:.14em;mix-blend-mode:difference}
+.er-paper{background:var(--surface);color:var(--ink);display:flex;flex-direction:column;justify-content:center;padding:0 24px;gap:6px}
+.er-paper b{font-family:var(--cond);font-weight:700;font-size:44px;line-height:.9;letter-spacing:-.01em;text-transform:uppercase}
+.er-paper span{font-size:13px;font-weight:600;color:var(--muted);letter-spacing:-.02em}
+.er-paper i{display:block;height:10px;margin-top:6px;background:linear-gradient(90deg,var(--s-red) 0 20%,var(--s-orange) 20% 40%,var(--s-yellow) 40% 60%,var(--s-green) 60% 80%,var(--s-blue) 80%)}
+@media (max-width:900px){.er-stage{left:50%;top:44%}.er-now{max-width:80vw}}
+@media (max-width:640px){.er-loop{scale:.62}}
+
+.er-stage{left:50%!important;top:50%!important;perspective:1700px}
+.er{cursor:grab;touch-action:none}
+.er.drag{cursor:grabbing}
+.er-now{display:none}
+</style>
 </head>
 <body>
-  <p id="status" role="status" aria-live="polite">채팅에 연결하는 중입니다...</p>
-  <div id="webchat" style="height: 600px"></div>
-  <script src="https://cdn.botframework.com/botframework-webchat/4.18.0/webchat.js"></script>
-  <script>
-    const BROKER_URL = "https://dl-broker-juwon-4jt3z.azurewebsites.net/api/directlineToken";
-    const SEALED = "FJxgYZ7RQNMyYTTi1er3FbgFXOBh6lj4TFZ3KoIgGULCMva4UFSwk3oa-6RsTmqcUF6ejs7FcivRY9ikfQa0uTPDqXoIj3XYQinMw-zuoVuLXdQSpJn2GA4ENHobvOUP4VWZngHewZ5AGM17RVDQI3PRrE5Pa3EqXxZVv1bigWfPLGAkCJP-rpAjvaakJutUw2Erqqw4BEeIFyDN3nhzX7x58CkymMa2aTpPxtmBkoo_-MJEZfPqFB5epPezU58V32i29jzcTFfOIZY8RJSnYkyxSZmoosdv93P7eOU2s1ncv7MEDbeNoHhdpti9b0T5_Evdm8FIumNXcqOL4B-R_9ORk1c1y6N7bU78GZ-1gnLcyH1az1bm6QziH2nMap3ul9uqLkUvJx-lveIPEzIJUcgv3ANgysZMJCo6crelhzo2gu1vtuzXd9AM6tRoUaKEWvaviREhkroBmv7JEcW0onsuvsufyoodNWbqwxeHfwRZfGvfOd5TjqxegJKVdUmJHOjJBmMqmZKTSuT66U-4rTLdTKvfmtT7aI148DXBs7rVgK11SwGIFi7SGYvEEV80PYoBMHFsoPbDZCgSTntZLvZWLwemCH7ycQhfoMobP0UuknfT3dWujPJHOrzmLgHa0wLz1nh8__aEvqH6";
-    const status = document.getElementById("status");
+<div class="grain" aria-hidden="true"></div>
+<div class="vignette" aria-hidden="true"></div>
 
-    function showError(message) {
-      status.hidden = false;
-      status.textContent = message;
-    }
+<!-- 1. 슬레이트 -->
+<section class="screen on" id="slateScreen">
+  <div class="leak" aria-hidden="true"></div>
+  <div class="hud" id="hud" aria-hidden="true">
+    <i></i><i></i><i></i><i></i>
+    <span class="st" id="hudSt">STBY</span>
+    <span class="tc" id="tc">TC 00:00:00:00</span>
+    <span class="lb" data-team="lb">UX디자인론 3조 · 35MM</span>
+    <span class="rb">ISO 800 · 24 FPS</span>
+  </div>
+  <button class="slate" id="slate" aria-label="슬레이트를 닫고 크레딧 초안 만들기 시작">
+    <div class="stick">
+      <div class="bar top"></div>
+      <div class="bar base"></div>
+      <div class="hinge"><i style="left:22%;top:14%"></i><i style="left:22%;bottom:16%"></i><i style="right:14%;bottom:16%"></i></div>
+    </div>
+    <div class="board">
+      <div class="band"><h1>엔딩 크레딧</h1><span>ENDING<br>CREDITS</span></div>
+      <div class="fields">
+        <div class="field"><label>PRODUCTION</label><b data-team="full">UX디자인론 3조</b></div>
+        <div class="field"><label>SCENE</label><b>최종 발표 전, 우리의 과정</b></div>
+        <div class="cells">
+          <div><label>SCENE</label><b>01</b></div>
+          <div><label>TAKE</label><b>1</b></div>
+          <div><label>ROLL</label><b>기록 17</b></div>
+        </div>
+      </div>
+    </div>
+  </button>
+  <div class="slate-hint">슬레이트를 치면 촬영이 시작돼요<small>회의 기록 4건, 채팅 1개, 공유 문서 12개를 읽어요. 팀원 5명 모두 기록 분석에 동의했어요.</small></div>
+</section>
+<div class="flash" id="flash"></div>
+<div class="blackout" id="blackout"></div>
 
-    async function connect() {
-      if (!window.WebChat ||
-          typeof WebChat.createDirectLine !== "function" ||
-          typeof WebChat.renderWebChat !== "function") {
-        showError("채팅 구성 요소를 불러오지 못했습니다. 네트워크를 확인한 뒤 새로고침해 주세요.");
-        return;
-      }
+<!-- 2. 필름이 풀려 나가는 진행 화면 -->
+<section class="screen" id="rollScreen" aria-live="polite">
+  <div class="unroll" id="unroll">
+    <div class="canister" aria-hidden="true">
+      <div class="cap"></div>
+      <div class="body"><b data-team="short">3조</b><span>35mm 기록 필름</span><small>ROLL 01-04</small></div>
+      <div class="cap"></div><span class="knob"></span>
+    </div>
+    <div class="reelstrip" id="reelstrip"></div>
+  </div>
+  <div class="counter" id="counter"><div class="feet">FEET <b id="feet">0000</b></div><h2>크레딧 초안을 찍고 있어요</h2><p id="rollMsg"></p></div>
+</section>
 
-      let response;
-      try {
-        // Keep this a simple CORS request; the broker may not support preflight.
-        response = await fetch(BROKER_URL, {
-          method: "POST",
-          body: JSON.stringify({ sealed: SEALED })
-        });
-      } catch {
-        showError("서버에 연결하지 못했습니다. 네트워크와 배포 주소를 확인해 주세요.");
-        return;
-      }
-      if (!response.ok) {
-        showError("서버가 연결 요청을 처리하지 못했습니다 (HTTP " + response.status + ").");
-        return;
-      }
+<!-- 3. 편집실 -->
+<section class="screen" id="roomScreen">
+  <header class="topbar">
+    <div class="logo"><i></i>엔딩 크레딧 <small>EDIT ROOM</small></div>
+    <div class="meta" id="meta"></div>
+    <span class="sp"></span>
+    <button class="btn red" id="premiereBtn">시사회 열기</button>
+  </header>
+  <div class="room">
+    <div class="stage">
+      <div class="stage3d" id="stage3d"><div class="tilt"><div class="ring" id="ring"></div></div></div>
+      <div class="stage-ctl">
+        <button class="ctl" id="prevBtn" aria-label="이전 장면">이전 장면</button>
+        <button class="ctl" id="spinBtn" aria-pressed="true">필름 돌리기</button>
+        <button class="ctl" id="nextBtn" aria-label="다음 장면">다음 장면</button>
+      </div>
+    </div>
+    <aside class="lab" aria-label="장면 정보와 다시 찍기">
+      <div class="labtabs"><button class="on" data-tab="scene">CONTINUITY</button><button data-tab="log">TAKE LOG <span id="logCnt"></span></button></div>
+      <div class="labbody" id="labBody" aria-live="polite"></div>
+      <div class="composer" id="composer">
+        <div class="lbl" id="compLbl">디렉터 노트</div>
+        <div class="inrow">
+          <textarea id="input" rows="1" placeholder="이 장면에서 고칠 점을 말해 주세요" aria-label="디렉터 노트 입력"></textarea>
+          <button class="cutbtn" id="sendBtn">CUT</button>
+        </div>
+      </div>
+    </aside>
+  </div>
+</section>
+<div class="caption" id="caption"></div>
+<div class="miniclap" id="miniclap" aria-hidden="true"><div class="t"></div><div class="b"></div><div class="bd" id="mcText">TAKE 2</div></div>
 
-      let data;
-      try {
-        data = await response.json();
-      } catch {
-        showError("서버 응답을 읽을 수 없습니다. 잠시 후 다시 시도해 주세요.");
-        return;
-      }
-      if (!data || typeof data.token !== "string" || !data.token.trim()) {
-        showError("서버에서 연결 토큰을 받지 못했습니다. 암호와 배포 주소를 확인해 주세요.");
-        return;
-      }
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+  <div class="theater">
+    <div class="screenline"></div>
+    <h3 id="mTitle">팀원 시사회</h3>
+    <p>Teams로 확인 카드를 보냈어요. 자기 장면을 확인하면 자리에 불이 켜져요.</p>
+    <div class="seats" id="seats"></div>
+    <div class="acts2"><button class="btn" id="mClose">닫기</button><button class="btn red" id="mPlay" disabled>엔딩 크레딧 상영</button></div>
+  </div>
+</div>
 
-      try {
-        const directLine = WebChat.createDirectLine({ token: data.token });
-        status.hidden = true;
-        directLine.postActivity({
-          type: "event", name: "startConversation", from: { id: "user" }
-        }).subscribe({
-          error: () => showError("첫 인사를 요청하지 못했습니다. 채팅창에 메시지를 입력해 주세요.")
-        });
-        WebChat.renderWebChat({ directLine, locale: "ko-KR" }, document.getElementById("webchat"));
-      } catch {
-        showError("채팅을 시작하지 못했습니다. 새로고침 후 다시 시도해 주세요.");
-      }
-    }
+<!-- 4. 상영 -->
+<div class="rollfs" id="rollfs" role="dialog" aria-label="엔딩 크레딧 상영">
+  <div class="track" id="track"></div>
+  <div class="endcard" id="endcard">
+    <div class="leak" aria-hidden="true"></div>
+    <div class="leak right" aria-hidden="true"></div>
+    <h2>THE END</h2>
+    <p>팀원 5명이 함께 확인한 엔딩 크레딧이에요.</p>
+    <div class="row">
+      <button class="btn" id="replayBtn">다시 상영</button>
+      <button class="btn red" id="exportBtn">발표 슬라이드로 내보내기</button>
+      <button class="btn" id="backRoomBtn">편집실로 돌아가기</button>
+    </div>
+  </div>
+  <button class="skip" id="skipBtn">건너뛰기</button>
+</div>
+<div class="toast" id="toast"></div>
 
-    connect();
-  </script>
+<script>
+(function(){
+const $=q=>document.querySelector(q);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const wait=ms=>new Promise(r=>setTimeout(r,reduce?Math.min(ms,80):ms));
+
+/* ---------- 필름 그레인 텍스처 (한 번만 만들어 모든 화면에서 재사용) ---------- */
+(function makeNoise(){
+  try{
+    const c=document.createElement('canvas');c.width=c.height=160;const x=c.getContext('2d');const img=x.createImageData(160,160);
+    for(let i=0;i<img.data.length;i+=4){const v=Math.random()*255|0;img.data[i]=img.data[i+1]=img.data[i+2]=v;img.data[i+3]=255;}
+    x.putImageData(img,0,0);document.documentElement.style.setProperty('--noise',`url(${c.toDataURL()})`);
+  }catch(e){}
+})();
+
+let members=[
+  {n:'김지우',tint:'var(--s-blue)'},{n:'이도윤',tint:'var(--s-green)'},
+  {n:'박서아',tint:'var(--s-orange)'},{n:'최하린',tint:'var(--s-red)'},
+  {n:'정민준',tint:'var(--s-yellow)'}
+];
+const look=n=>members.find(m=>m.n===n)||members[0];
+let ME='이도윤';
+
+const S={
+  credits:[
+    {id:1,role:'막막했던 초기 회의에서 핵심 질문을 던져 방향 전환의 물꼬를 튼',names:['김지우'],evidence:'11월 6일 회의',links:[2],status:'초안',take:1},
+    {id:2,role:'김지우 님의 질문을 바탕으로 문제 정의 초안을 구조화해 낸',names:['이도윤'],evidence:'기획서 v3',links:[1],status:'초안',take:1},
+    {id:3,role:'흩어진 레퍼런스를 정리해 팀 전체의 작업 속도를 높여 준',names:['박서아'],evidence:'공유 폴더 ‘레퍼런스’ 정리',links:[4],status:'초안',take:1},
+    {id:4,role:'박서아 님이 모은 레퍼런스를 화면 시안으로 옮겨 낸',names:['최하린'],evidence:'디자인 시안 v2 (작성자 기록 엇갈림)',links:[3],status:'확인 필요',take:1},
+    {id:5,role:'흩어진 장표를 하나의 발표 흐름으로 꿰어 낸',names:['정민준'],evidence:'발표자료 최종본, 11월 12일',links:[2,4],status:'초안',take:1}
+  ],
+  hidden:[
+    {id:'h1',who:'정민준',what:'‘동료평가처럼 비교해 보자’는 의견',evidence:'11월 4일 회의 (채택되지 않음)',impact:'팀이 ‘비교 대신 감사 기록’이라는 핵심 관점을 잡는 계기가 됐어요.',role:'채택되지 않은 ‘동료평가 비교’ 의견으로 팀이 ‘비교 대신 감사’라는 관점을 찾게 한',added:false},
+    {id:'h2',who:'박서아',what:'기획서 v2에서 지워진 ‘회고 질문 목록’ 문단',evidence:'기획서 v2에서 삭제, v4에 다시 반영',impact:'정정 대화에서 쓰는 질문 문구의 바탕이 됐어요.',role:'지워진 문단 속 질문들로 정정 대화의 말투를 만들어 준',added:false}
+  ],
+  log:[],nextId:6,frames:[],angle:0,target:null,auto:!reduce,hover:null,sel:null,tab:'scene',
+  thread:[],props:[],confirmed:false
+};
+const byId=id=>S.credits.find(c=>c.id===id);
+const sceneNo=id=>String(S.credits.findIndex(c=>c.id===id)+1).padStart(2,'0');
+const line=c=>`${c.role} - ${c.names.join(', ')}`;
+
+/* ---------- Copilot Studio 에이전트 연결 (토큰 브로커 → Direct Line) ----------
+   hlcirn.github.io 에서 열었을 때만 토큰이 나와요. 연결이 안 되면 아래 예시 기록으로 그대로 시연돼요. */
+const AG={on:false,fail:false,run:null,token:null,conv:null,wm:'',
+  BROKER:'https://dl-broker-juwon-4jt3z.azurewebsites.net/api/directlineToken',
+  SEALED:'FJxgYZ7RQNMyYTTi1er3FbgFXOBh6lj4TFZ3KoIgGULCMva4UFSwk3oa-6RsTmqcUF6ejs7FcivRY9ikfQa0uTPDqXoIj3XYQinMw-zuoVuLXdQSpJn2GA4ENHobvOUP4VWZngHewZ5AGM17RVDQI3PRrE5Pa3EqXxZVv1bigWfPLGAkCJP-rpAjvaakJutUw2Erqqw4BEeIFyDN3nhzX7x58CkymMa2aTpPxtmBkoo_-MJEZfPqFB5epPezU58V32i29jzcTFfOIZY8RJSnYkyxSZmoosdv93P7eOU2s1ncv7MEDbeNoHhdpti9b0T5_Evdm8FIumNXcqOL4B-R_9ORk1c1y6N7bU78GZ-1gnLcyH1az1bm6QziH2nMap3ul9uqLkUvJx-lveIPEzIJUcgv3ANgysZMJCo6crelhzo2gu1vtuzXd9AM6tRoUaKEWvaviREhkroBmv7JEcW0onsuvsufyoodNWbqwxeHfwRZfGvfOd5TjqxegJKVdUmJHOjJBmMqmZKTSuT66U-4rTLdTKvfmtT7aI148DXBs7rVgK11SwGIFi7SGYvEEV80PYoBMHFsoPbDZCgSTntZLvZWLwemCH7ycQhfoMobP0UuknfT3dWujPJHOrzmLgHa0wLz1nh8__aEvqH6',
+  DL:'https://directline.botframework.com/v3/directline'};
+const sleepMs=ms=>new Promise(r=>setTimeout(r,ms));
+const TEAM={full:'UX디자인론 3조',short:'3조'};
+function setTeam(short){
+  TEAM.short=short; TEAM.full=short;
+  document.querySelectorAll('[data-team]').forEach(el=>{el.textContent=el.dataset.team==='lb'?short+' · 35MM':short;});
+}
+async function agConnect(){
+  // 브로커가 preflight를 받지 않으므로 헤더 없는 단순 요청으로 보낸다
+  const r=await fetch(AG.BROKER,{method:'POST',body:JSON.stringify({sealed:AG.SEALED})});
+  if(!r.ok)throw new Error('broker '+r.status);
+  const d=await r.json(); if(!d||typeof d.token!=='string'||!d.token.trim())throw new Error('no token');
+  AG.token=d.token;
+  const c=await fetch(AG.DL+'/conversations',{method:'POST',headers:{Authorization:'Bearer '+AG.token}});
+  if(!c.ok)throw new Error('conversation '+c.status);
+  AG.conv=(await c.json()).conversationId;
+}
+async function agAsk(text,{timeout=90000,quiet=5000,done=null}={}){
+  const H={Authorization:'Bearer '+AG.token};
+  const r=await fetch(`${AG.DL}/conversations/${AG.conv}/activities`,{method:'POST',headers:{...H,'Content-Type':'application/json'},
+    body:JSON.stringify({type:'message',from:{id:'user'},locale:'ko-KR',text})});
+  if(!r.ok)throw new Error('send '+r.status);
+  const got=[]; let last=0; const t0=Date.now();
+  while(Date.now()-t0<timeout){
+    await sleepMs(1500);
+    const g=await fetch(`${AG.DL}/conversations/${AG.conv}/activities${AG.wm?'?watermark='+AG.wm:''}`,{headers:H});
+    if(!g.ok)continue;
+    const a=await g.json(); if(a.watermark)AG.wm=a.watermark;
+    for(const x of a.activities||[]) if(x.type==='message'&&x.from&&x.from.id!=='user'&&x.text){got.push(x.text);last=Date.now();}
+    const all=got.join('\n\n');
+    if(got.length&&(!done||done(all))&&Date.now()-last>quiet)break;
+  }
+  return got.join('\n\n');
+}
+// 에이전트 답변에서 "서사적 역할명 - 이름 (근거)" 줄을 뽑아낸다. 묻힌/숨은 기여 제목 아래 줄은 삭제된 장면으로 본다
+function parseCredits(txt){
+  const credits=[],hidden=[]; let hid=false;
+  for(const raw of String(txt).split(/\r?\n/)){
+    const l=raw.replace(/\*\*|__|`/g,'').replace(/^[\s>#*\-•·▪◦]+/,'').replace(/^\d+[.)]\s*/,'').trim();
+    if(!l)continue;
+    const hasDash=/\s[-–—]\s/.test(l);
+    if(!hasDash&&/(묻힌|숨은|삭제된|채택되지\s?않은|덜 남은)/.test(l)){hid=true;continue;}
+    if(!hasDash&&/(정정 기록|본편|최종 크레딧|크레딧 초안)/.test(l)){hid=false;continue;}
+    const m=l.match(/^(.{6,}?)\s+[-–—]\s+([가-힣]{2,4}(?:\s*(?:,|·|&|및)\s*[가-힣]{2,4})*)\s*(?:님)?\s*(?:[(（]([^)）]+)[)）])?/);
+    if(!m)continue;
+    const names=m[2].split(/\s*(?:,|·|&|및)\s*/).filter(Boolean);
+    (hid?hidden:credits).push({role:m[1].replace(/[“”"]/g,'').trim(),names,evidence:(m[3]||'').trim(),status:/확인\s*필요/.test(l)?'확인 필요':'초안'});
+  }
+  return {credits,hidden};
+}
+function applyAgentData(p,txt){
+  const names=[...new Set([...p.credits.flatMap(c=>c.names),...p.hidden.map(h=>h.names[0])])];
+  const tints=['var(--s-blue)','var(--s-green)','var(--s-orange)','var(--s-red)','var(--s-yellow)'];
+  members=names.map((n,i)=>({n,tint:tints[i%tints.length]})); ME=null;
+  S.credits=p.credits.map((c,i)=>({id:i+1,role:c.role,names:c.names,evidence:c.evidence||'기록 확인 중',links:[],status:c.status,take:1}));
+  S.credits.forEach(c=>{c.links=S.credits.filter(o=>o!==c&&o.names.some(n=>c.role.includes(n))).map(o=>o.id);});
+  S.nextId=S.credits.length+1;
+  S.hidden=p.hidden.map((h,i)=>({id:'h'+(i+1),who:h.names[0],what:h.role,evidence:h.evidence||'기록에 덜 남은 기여',
+    impact:'기록에는 남았지만 크레딧에서 빠져 있던 기여예요.',role:h.role,added:false}));
+  const t=String(txt).match(/(\d+)\s*조/); if(t)setTeam(t[1]+'조');
+}
+async function runAgent(){
+  try{
+    await agConnect();
+    const txt=await agAsk('우리 팀 크레딧 만들어 줘. 기록에 덜 남은 숨은 기여도 함께 찾아 줘.',
+      {timeout:150000,quiet:5000,done:t=>parseCredits(t).credits.length>=2});
+    const p=parseCredits(txt);
+    if(p.credits.length<2)throw new Error('credit lines not found');
+    applyAgentData(p,txt); AG.on=true;
+  }catch(e){console.warn('[엔딩 크레딧] 에이전트 연결 실패, 예시 기록으로 진행',e); AG.fail=true;}
+}
+async function agentReply(c,t){
+  S.thread.push({typing:true}); renderThread(c);
+  let txt='';
+  try{txt=await agAsk(`[SCENE ${sceneNo(c.id)} 정정·연결 보완 요청]\n현재 크레딧: ${line(c)} (${c.evidence})\n요청: ${t}`);}catch(e){console.warn(e);}
+  S.thread=S.thread.filter(m=>!m.typing);
+  if(!txt){say(c,'에이전트 응답이 늦어지고 있어요. 잠시 뒤 다시 말씀해 주세요.');return;}
+  const p=parseCredits(txt);
+  const nc=p.credits.find(x=>x.names.some(n=>c.names.includes(n)))||(p.credits.length===1?p.credits[0]:null);
+  const paras=txt.split(/\n+/).map(x=>x.replace(/\*\*/g,'').trim()).filter(x=>x&&!(nc&&x.includes(nc.role))).map(esc);
+  if(nc){
+    const ch={role:nc.role,names:nc.names,status:nc.status==='확인 필요'?'확인 필요':'정정됨'};
+    if(nc.evidence)ch.evidence=nc.evidence;
+    propose(c,ch,paras.length?paras:['이렇게 다시 찍어 볼까요?']);
+  }else say(c,paras.length?paras:[esc(txt)]);
+}
+
+/* ---------- 1. Slate ---------- */
+function clapSound(){
+  try{const a=new (window.AudioContext||window.webkitAudioContext)();const len=a.sampleRate*.09;const b=a.createBuffer(1,len,a.sampleRate);const d=b.getChannelData(0);
+  for(let i=0;i<len;i++)d[i]=(Math.random()*2-1)*Math.pow(1-i/len,6);const s=a.createBufferSource();s.buffer=b;const g=a.createGain();g.gain.value=.5;s.connect(g).connect(a.destination);s.start();}catch(e){}
+}
+// 뷰파인더 타임코드 (24fps)
+let tcFrames=0;const tcTimer=setInterval(()=>{tcFrames++;const f=tcFrames%24,s=Math.floor(tcFrames/24)%60,m=Math.floor(tcFrames/1440)%60;
+  $('#tc').textContent=`TC 00:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}:${String(f).padStart(2,'0')}`;},1000/24);
+$('#slate').addEventListener('click',async()=>{
+  const sl=$('#slate'); if(sl.classList.contains('clap'))return;
+  AG.run=runAgent();
+  $('#hud').classList.add('rec'); $('#hudSt').textContent='REC';
+  sl.classList.add('clap'); await wait(110); clapSound(); $('#flash').classList.add('go');
+  await wait(420); $('#blackout').classList.add('on'); await wait(260);
+  clearInterval(tcTimer); $('#slateScreen').classList.remove('on'); startRolls();
+  await wait(60); $('#blackout').classList.remove('on');
+});
+
+/* ---------- 2. 필름이 풀려 나가는 진행 화면 ---------- */
+const steps=[
+  {c:'var(--s-blue)',k:'기록 수집',iso:'ISO 100',d:'회의 4 · 채팅 · 문서 12',msg:'회의 기록 4건과 채팅 312개를 읽는 중'},
+  {c:'var(--s-green)',k:'기여 연결',iso:'ISO 200',d:'질문에서 결과물까지',msg:'누구의 질문이 어느 결과물로 이어졌는지 잇는 중'},
+  {c:'var(--s-orange)',k:'숨은 기여',iso:'ISO 400',d:'삭제된 장면 찾기',msg:'채택되지 않았지만 방향을 바꾼 의견을 찾는 중'},
+  {c:'var(--s-red)',k:'크레딧 작가',iso:'ISO 800',d:'서사적 역할명 쓰기',msg:'크레딧 문장을 다듬는 중'}
+];
+async function startRolls(){
+  $('#rollScreen').classList.add('on');
+  const strip=$('#reelstrip');
+  strip.innerHTML=steps.map((s,i)=>`<div class="uf" style="--tint:${s.c}"><div class="uf-in"><span class="uf-no">ROLL 0${i+1} · ${s.iso}</span><b>${s.k}</b><small>${s.d}</small></div><em class="uf-st">대기</em></div>`).join('');
+  const fr=[...strip.children];
+  let feet=0; const tick=setInterval(()=>{feet+=7;$('#feet').textContent=String(feet).padStart(4,'0');},60);
+  await wait(250);
+  for(let i=0;i<fr.length;i++){
+    strip.style.setProperty('--p',((i+1)/fr.length*100)+'%');
+    fr[i].classList.add('now'); fr[i].querySelector('.uf-st').textContent='현상 중'; $('#rollMsg').textContent=steps[i].msg;
+    await wait(1350);
+    fr[i].classList.remove('now'); fr[i].classList.add('done'); fr[i].querySelector('.uf-st').textContent='완료';
+  }
+  if(AG.run){
+    const lf=fr[fr.length-1]; lf.classList.remove('done'); lf.classList.add('now'); lf.querySelector('.uf-st').textContent='현상 중';
+    const t0=Date.now(); const msg=setInterval(()=>{$('#rollMsg').textContent=`에이전트가 크레딧을 쓰고 있어요 · ${Math.round((Date.now()-t0)/1000)}초`;},500);
+    await AG.run; clearInterval(msg);
+    lf.classList.remove('now'); lf.classList.add('done'); lf.querySelector('.uf-st').textContent='완료';
+  }
+  clearInterval(tick); $('#rollMsg').textContent='현상이 끝났어요. 필름을 펼칠게요';
+  await wait(600); $('#unroll').classList.add('go'); $('#counter').classList.add('go'); await wait(950);
+  $('#rollScreen').classList.remove('on'); openRoom();
+}
+
+/* ---------- 3. Edit room: reel ---------- */
+function openRoom(){
+  $('#roomScreen').classList.add('on');
+  buildFrames(); renderMeta(); renderLab(); requestAnimationFrame(loop);
+  if(AG.fail)setTimeout(()=>toast('에이전트에 연결하지 못해서 예시 기록으로 보여 드려요'),600);
+}
+function frameHTML(f,i){
+  const edge=`<div class="edge">▸ 3JO ${String(i*12+4).padStart(4,'0')}</div>`;
+  if(f.k==='t') return `<div class="fin title"><div class="ftop"><span>ROLL ${TEAM.short}</span><span>TAKE 1</span></div><div class="stack"><b>CREDITS</b><b class="o">CREDITS</b><b class="o">CREDITS</b></div><p>${TEAM.full}가 함께 만든 장면들</p></div>`;
+  if(f.h){const h=f.h;return `<div class="fin cut"><div class="ftop"><span>삭제된 장면</span><span>미공개</span></div><div class="stack"><b>${esc(h.who)}</b><b class="o">${esc(h.who)}</b></div><div class="frole">${esc(h.what)}</div><div class="fev">${esc(h.evidence)}</div></div>`;}
+  const c=f.c, m=look(c.names[0]), nm=esc(c.names[0]);
+  return `<div class="fin${c.status==='확인 필요'?' need':''}" style="--tint:${m.tint}"><div class="ftop"><span>SCENE ${sceneNo(c.id)}</span><span>TAKE ${c.take}</span></div><div class="stack"><b>${nm}</b><b class="o">${nm}</b>${c.names[1]?`<b>${esc(c.names[1])}</b>`:`<b class="o">${nm}</b>`}</div><div class="frole">${esc(c.role)}</div><div class="fev">${esc(c.evidence)}</div>${edge}${c.status==='확인 필요'?'<span class="sticker">확인 필요</span>':''}</div>`;
+}
+function buildFrames(flashKey){
+  S.frames=[{k:'t'},...S.credits.map(c=>({k:'c'+c.id,c})),...S.hidden.filter(h=>!h.added).map(h=>({k:h.id,h}))];
+  const N=S.frames.length, W=200, R=Math.round((W+40)/(2*Math.tan(Math.PI/N)));
+  S.step=360/N; const DY=Math.round(380/N);
+  $('#ring').innerHTML=S.frames.map((f,i)=>`<button class="frame${S.sel===f.k?' on':''}${flashKey===f.k?' flash':''}" data-i="${i}" style="transform:translateY(${(i-(N-1)/2)*DY}px) rotateY(${i*S.step}deg) translateZ(${R}px)" aria-label="${f.k==='t'?'타이틀 장면':f.h?'삭제된 장면, '+esc(f.h.who):'장면 '+sceneNo(f.c.id)+', '+esc(f.c.names.join(', '))}">${frameHTML(f,i)}</button>`).join('');
+  S.els=[...document.querySelectorAll('.frame')];
+}
+let last=0;
+function loop(t){
+  const dt=Math.min(.05,(t-last)/1000||0); last=t;
+  if(S.target!=null){const d=S.target-S.angle;S.angle+=d*.12;if(Math.abs(d)<.05){S.angle=S.target;S.target=null;}}
+  else if(S.auto && !S.hover && S.sel==null && !drag.on) S.angle+=7*dt;
+  $('#ring').style.transform=`rotateY(${-S.angle}deg)`;
+  S.els.forEach((el,i)=>{const f=Math.cos((i*S.step-S.angle)*Math.PI/180);el.style.setProperty('--f',f.toFixed(3));el.classList.toggle('back',f<.2);});
+  requestAnimationFrame(loop);
+}
+function focusFrame(i){const base=i*S.step;const k=Math.round((S.angle-base)/360);S.target=base+360*k;}
+function frontIndex(){let best=0,bv=-2;S.els.forEach((el,i)=>{const f=Math.cos((i*S.step-S.angle)*Math.PI/180);if(f>bv){bv=f;best=i;}});return best;}
+
+const drag={on:false,x:0,moved:0};
+const st=$('#stage3d');
+st.addEventListener('pointerdown',e=>{drag.on=true;drag.x=e.clientX;drag.moved=0;S.target=null;});
+addEventListener('pointermove',e=>{if(!drag.on)return;const dx=e.clientX-drag.x;drag.x=e.clientX;drag.moved+=Math.abs(dx);if(drag.moved>4){st.classList.add('dragging');S.angle-=dx*.35;}});
+addEventListener('pointerup',()=>{drag.on=false;st.classList.remove('dragging');});
+
+const cap=$('#caption');
+$('#ring').addEventListener('pointerover',e=>{const b=e.target.closest('.frame');if(!b)return;hoverFrame(+b.dataset.i,e);});
+$('#ring').addEventListener('pointermove',e=>{cap.style.left=Math.min(innerWidth-270,e.clientX+16)+'px';cap.style.top=(e.clientY+16)+'px';});
+$('#ring').addEventListener('pointerout',e=>{const b=e.target.closest('.frame');if(b && !b.contains(e.relatedTarget)){S.hover=null;cap.classList.remove('on');if(S.sel==null)renderLab();}});
+$('#ring').addEventListener('focusin',e=>{const b=e.target.closest('.frame');if(b){focusFrame(+b.dataset.i);hoverFrame(+b.dataset.i);}});
+$('#ring').addEventListener('click',e=>{const b=e.target.closest('.frame');if(!b||drag.moved>6)return;selectFrame(+b.dataset.i);});
+
+function hoverFrame(i,e){
+  const f=S.frames[i]; S.hover=f.k;
+  if(e){cap.innerHTML=f.k==='t'?'<b>TITLE</b>엔딩 크레딧 표지':f.h?`<b>삭제된 장면 · ${esc(f.h.who)}</b>${esc(f.h.what)}`:`<b>SCENE ${sceneNo(f.c.id)} · ${esc(f.c.names.join(', '))}</b>${esc(f.c.role)}`;cap.classList.add('on');}
+  if(S.sel==null){S.tab='scene';renderLab(f);}
+}
+function selectFrame(i){
+  const f=S.frames[i]; if(f.k==='t')return;
+  if(S.sel!==f.k){S.thread=[];S.props=[];}
+  S.sel=f.k; S.tab='scene'; focusFrame(i); cap.classList.remove('on');
+  S.els.forEach((el,j)=>el.classList.toggle('on',j===i));
+  renderLab(); if(matchMedia('(max-width:900px)').matches) $('.lab').scrollIntoView({behavior:'smooth'});
+}
+function deselect(){S.sel=null;S.thread=[];S.els.forEach(el=>el.classList.remove('on'));renderLab();}
+
+$('#prevBtn').onclick=()=>{const i=(frontIndex()-1+S.frames.length)%S.frames.length;focusFrame(i);if(S.sel!=null)selectFrame(i);else hoverFrame(i);};
+$('#nextBtn').onclick=()=>{const i=(frontIndex()+1)%S.frames.length;focusFrame(i);if(S.sel!=null)selectFrame(i);else hoverFrame(i);};
+$('#spinBtn').onclick=()=>{S.auto=!S.auto;$('#spinBtn').setAttribute('aria-pressed',S.auto);$('#spinBtn').textContent=S.auto?'필름 돌리기':'필름 멈춤';};
+if(!S.auto){$('#spinBtn').setAttribute('aria-pressed','false');$('#spinBtn').textContent='필름 멈춤';}
+
+function renderMeta(){
+  const need=S.credits.filter(c=>c.status==='확인 필요').length;
+  const cut=S.hidden.filter(h=>!h.added).length;
+  $('#meta').innerHTML=`<span>SCENES<b>${S.credits.length}</b></span><span>삭제된 장면<b>${cut}</b></span><span class="${need?'warn':''}">확인 필요<b>${need}</b></span><span>TAKES<b>${S.log.length}</b></span>`;
+  $('#logCnt').textContent=S.log.length||'';
+  $('#premiereBtn').textContent=S.confirmed?'다시 상영':'시사회 열기';
+}
+
+/* ---------- 콘티뉴이티 시트 ---------- */
+document.querySelectorAll('.labtabs button').forEach(b=>b.onclick=()=>{S.tab=b.dataset.tab;renderLab();});
+function cur(){return S.sel==null?null:S.frames.find(f=>f.k===S.sel);}
+function tagOf(s){return `<span class="tag ${{'확인 필요':'need','정정됨':'fixed','추가됨':'added','팀 확인':'team'}[s]||'draft'}">${s}</span>`;}
+
+function renderLab(hoverF){
+  document.querySelectorAll('.labtabs button').forEach(b=>b.classList.toggle('on',b.dataset.tab===S.tab));
+  const body=$('#labBody'); const comp=$('#composer');
+  if(S.tab==='log'){
+    comp.classList.remove('on');
+    body.innerHTML=`<div class="sheet-h"><span>TAKE LOG</span><span>${TEAM.full}</span></div>`+(S.log.length?`<ul class="log">${S.log.slice().reverse().map(l=>`<li><b>${esc(l.head)}</b> ${esc(l.time)}<span>${esc(l.text)}</span></li>`).join('')}</ul>`:'<p class="empty">아직 다시 찍은 장면이 없어요. 장면을 눌러 디렉터 노트를 남기면 여기에 테이크가 쌓여요.</p>');
+    return;
+  }
+  const f=hoverF||cur();
+  if(!f||f.k==='t'){
+    comp.classList.remove('on');
+    const need=S.credits.find(c=>c.status==='확인 필요');
+    body.innerHTML=`<div class="sheet-h"><span>CONTINUITY REPORT</span><span>ROLL ${TEAM.short}</span></div>
+    <div class="intro"><h3>초안 필름이 나왔어요</h3><p>필름 위에 마우스를 올리면 장면이 보여요. 장면을 누르면 디렉터 노트로 그 장면을 다시 찍을 수 있어요.</p><p>틀리거나 보태고 싶은 연결이 있다면 편하게 고쳐 주세요.${need?` SCENE ${sceneNo(need.id)}은 작성자 기록이 엇갈려서 확인 필요로 표시했어요.`:''}</p></div>
+    <div class="legend"><span><i style="background:linear-gradient(160deg,color-mix(in srgb,var(--s-green) 60%,#120D0A),#100B08)"></i>팀원마다 다른 필름 톤으로 구분한 장면</span><span><i style="background:repeating-linear-gradient(135deg,var(--amber) 0 6px,var(--ink) 6px 12px)"></i>근거 확인이 필요한 장면</span><span><i style="background:#1E1B19;border:1.5px dashed #777"></i>삭제된 장면, 기록에 덜 남은 숨은 기여</span></div>`;
+    return;
+  }
+  const locked=!hoverF && S.sel!=null;
+  if(f.h){
+    const h=f.h;
+    body.innerHTML=`<div class="scene-no"><span>삭제된 장면</span><span>미공개</span></div><p class="scene-role">${esc(h.what)}</p><p class="scene-name">${esc(h.who)}</p><dl class="facts"><dt>근거</dt><dd>${esc(h.evidence)}</dd><dt>영향</dt><dd>${esc(h.impact)}</dd></dl>
+    ${locked?`<p class="empty" style="margin:0">본편 크레딧에는 이렇게 올라가요. “${esc(h.role)} - ${esc(h.who)}”</p><div class="row"><button class="btn red" id="addCut">본편에 넣기</button><button class="btn" id="desel">닫기</button></div>`:'<p class="empty" style="margin:0">눌러서 본편에 넣을 수 있어요.</p>'}`;
+    comp.classList.remove('on');
+    if(locked){$('#addCut').onclick=()=>addHidden(h.id);$('#desel').onclick=deselect;}
+    return;
+  }
+  const c=f.c;
+  const links=c.links.filter(byId).map(l=>`SCENE ${sceneNo(l)} ${esc(byId(l).names[0])}`).join(', ')||'없음';
+  body.innerHTML=`<div class="scene-no"><span>SCENE ${sceneNo(c.id)}</span><span>TAKE ${c.take}</span></div>
+    <p class="scene-role">${esc(c.role)}</p><p class="scene-name">${esc(c.names.join(', '))}</p>
+    <dl class="facts"><dt>근거</dt><dd>${esc(c.evidence)}</dd><dt>이어진 장면</dt><dd>${links}</dd><dt>상태</dt><dd>${tagOf(c.status)}</dd></dl>
+    ${locked?`<div class="row"><button class="btn" id="spliceBtn">다른 장면과 잇기</button><button class="btn" id="desel">닫기</button></div><div class="splice" id="spliceList" hidden></div>
+    <div class="notes-h">디렉터 노트</div><div class="thread" id="thread"></div><div class="chips" id="chips"></div>`:'<p class="empty" style="margin:0">눌러서 이 장면을 다시 찍을 수 있어요.</p>'}`;
+  comp.classList.toggle('on',locked);
+  if(!locked)return;
+  $('#compLbl').textContent=`SCENE ${sceneNo(c.id)} · TAKE ${c.take+1} 디렉터 노트`;
+  $('#desel').onclick=deselect;
+  $('#spliceBtn').onclick=()=>{const l=$('#spliceList');l.hidden=!l.hidden;l.innerHTML=S.credits.filter(o=>o.id!==c.id&&!c.links.includes(o.id)).map(o=>`<button data-sp="${o.id}">SCENE ${sceneNo(o.id)} ${esc(o.names[0])}</button>`).join('')||'<span class="empty">이미 모든 장면과 이어져 있어요.</span>';};
+  renderThread(c);
+}
+$('#labBody').addEventListener('click',e=>spliceClick(e));
+function spliceClick(e){const b=e.target.closest('[data-sp]');if(!b)return;const c=cur().c;const o=byId(+b.dataset.sp);
+  c.links.push(o.id); if(!o.links.includes(c.id))o.links.push(c.id);
+  logTake(`SCENE ${sceneNo(c.id)}과 ${sceneNo(o.id)} 잇기`,`${c.names[0]} 님과 ${o.names[0]} 님의 장면을 테이프로 이었어요.`);
+  renderLab(); toast(`SCENE ${sceneNo(c.id)}과 SCENE ${sceneNo(o.id)}을 이었어요`);}
+
+function chipsFor(c){
+  const l=[];
+  if(AG.on){if(c.status==='확인 필요')l.push('이 장면 기록이 엇갈리는 이유를 알려 줘');l.push('이 장면 근거가 된 기록을 더 찾아 줘');l.push('다른 팀원과 이어진 흐름이 있는지 봐 줘');return l.slice(0,2);}
+  if(c.id===2&&!c.names.includes('최하린'))l.push('이건 최하린 님 질문에서 시작됐어. 같이 연결해 줘');
+  if(c.status==='확인 필요')l.push('최하린 님이 11월 9일 채팅에 시안을 올렸어');
+  if(l.length===0){l.push('근거에 11월 10일 회의도 보태 줘');l.push('역할명을 ‘팀의 첫 질문을 맡은’으로 바꿔 줘');}
+  return l;
+}
+function renderThread(c){
+  const th=$('#thread'); if(!th)return;
+  th.innerHTML=S.thread.map((m,i)=>{
+    if(m.typing)return '<div class="m ag"><div class="dots"><i></i><i></i><i></i></div></div>';
+    if(m.from==='me')return `<div class="m me">${esc(m.text)}</div>`;
+    let h=`<div class="m ag">${m.paras.map(p=>`<p>${p}</p>`).join('')}`;
+    if(m.prop!=null){const p=S.props[m.prop];
+      h+=`<div class="takes"><div class="take old"><div><b>TAKE ${p.fromTake}</b><span>${esc(p.before)}</span></div></div><div class="take"><div><b>TAKE ${p.fromTake+1}</b><span>${esc(p.after)}</span></div></div></div>`;
+      h+=p.done?`<div class="acts"><span class="done">${esc(p.done)}</span></div>`:`<div class="acts"><button class="ok" data-ok="${m.prop}">OK 컷</button><button data-keep="${m.prop}">TAKE ${p.fromTake} 유지</button></div>`;}
+    return h+'</div>';
+  }).join('');
+  const chips=$('#chips'); chips.innerHTML=S.thread.some(m=>m.from==='me')?'':chipsFor(c).map(t=>`<button>${esc(t)}</button>`).join('');
+  chips.onclick=e=>{const b=e.target.closest('button');if(b)send(b.textContent);};
+  th.onclick=e=>{const ok=e.target.closest('[data-ok]'),kp=e.target.closest('[data-keep]');
+    if(ok)applyProp(+ok.dataset.ok); if(kp){S.props[+kp.dataset.keep].done=`TAKE ${S.props[+kp.dataset.keep].fromTake}을 그대로 두었어요`;renderThread(c);}};
+  const lb=$('#labBody'); lb.scrollTop=lb.scrollHeight;
+}
+
+const input=$('#input');
+input.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey&&!e.isComposing){e.preventDefault();send(input.value);}});
+input.addEventListener('input',()=>{input.style.height='auto';input.style.height=Math.min(input.scrollHeight,120)+'px';});
+$('#sendBtn').onclick=()=>send(input.value);
+
+function send(text){
+  text=text.trim(); const f=cur(); if(!text||!f||!f.c)return;
+  input.value='';input.style.height='auto';
+  S.thread.push({from:'me',text}); renderThread(f.c); reply(f.c,text);
+}
+async function say(c,paras,prop){
+  S.thread.push({typing:true}); renderThread(c); await wait(700);
+  S.thread=S.thread.filter(m=>!m.typing); S.thread.push({from:'ag',paras:Array.isArray(paras)?paras:[paras],prop}); if(cur()&&cur().c===c)renderThread(c);
+}
+function propose(c,change,paras){
+  const after=Object.assign({},c,change);
+  S.props.push({c,change,before:line(c)+` (${c.evidence})`,after:line(after)+` (${after.evidence})`,fromTake:c.take});
+  say(c,paras,S.props.length-1);
+}
+function reply(c,t){
+  if(AG.on){agentReply(c,t);return;}
+  const date=t.match(/(\d{1,2})\s*월\s*(\d{1,2})\s*일/); const ds=date?`${date[1]}월 ${date[2]}일`:null;
+  const quoted=t.match(/[“"‘'「](.+?)[”"’'」]/);
+  const other=members.find(m=>m.n!==c.names[0]&&t.includes(m.n));
+  if(c.id===2&&/최하린/.test(t)&&!c.names.includes('최하린')){
+    propose(c,{role:'최하린 님의 날카로운 문제 제기에서 시작해, 구체적인 기획 구조로 발전시킨',names:['이도윤','최하린'],evidence:'11월 4일 회의록, 기획서 v3',links:[...new Set([...c.links,4])]},
+      ['맞아요. 11월 4일 회의록에서 최하린 님이 ‘과정 기여가 사라지는 문제’를 먼저 짚은 기록이 확인돼요.','이렇게 다시 찍어 볼까요?']);return;}
+  if(c.status==='확인 필요'){
+    if(ds){propose(c,{evidence:`디자인 시안 v2, ${ds} ‘3조 작업방’ 채팅`,status:'정정됨'},[`${ds} ‘3조 작업방’ 채팅에서 최하린 님이 시안 v2를 올리며 박서아 님의 레퍼런스 폴더를 언급한 기록이 확인돼요.`,'근거를 바꾸고 확인 필요 표시를 풀까요?']);}
+    else say(c,'시안 파일의 작성자와 마지막 수정자가 달라서 기록이 엇갈려요. 최하린 님이 시안을 올린 날짜나 문서 이름을 알려 주시면 그 기록에서 먼저 확인할게요.');
+    return;}
+  if(quoted&&/(역할|문구|표현|바꿔|고쳐)/.test(t)){propose(c,{role:quoted[1]},['역할명을 이렇게 바꿔 볼게요. 근거는 그대로 둘게요.']);return;}
+  if(ds){propose(c,{evidence:`${c.evidence}, ${ds} 기록`},[`${ds} 기록에서 이 장면과 관련된 내용을 찾았어요.`,'근거에 이렇게 보탤까요?']);return;}
+  if(other&&/(이어|연결|덕분|시작|쓰였|바탕)/.test(t)){const oc=S.credits.find(x=>x.names[0]===other.n);
+    if(oc){propose(c,{links:[...new Set([...c.links,oc.id])],role:`${other.n} 님의 작업을 이어받아 ${c.role.replace(/^.*?님의 [^ ]+ /,'')}`},[`${other.n} 님의 장면(SCENE ${sceneNo(oc.id)})과 이어지는 흐름이 회의록과 문서 기록에서 보여요.`,'두 장면을 이어서 이렇게 다시 찍을까요?']);return;}}
+  say(c,'어떤 기록에서 확인할 수 있을까요? 날짜나 문서 이름, 또는 바꿀 문구를 따옴표로 알려 주시면 먼저 확인하고 다시 찍을게요.');
+}
+function applyProp(i){
+  const p=S.props[i]; if(p.done)return; const c=p.c;
+  Object.assign(c,p.change); if(!p.change.status)c.status='정정됨'; c.take++;
+  p.done=`OK 컷. SCENE ${sceneNo(c.id)} TAKE ${c.take}로 바꿨어요`;
+  logTake(`SCENE ${sceneNo(c.id)} TAKE ${c.take}`,p.after);
+  miniClap(`TAKE ${c.take}`);
+  const idx=S.frames.findIndex(f=>f.k==='c'+c.id); buildFrames('c'+c.id); S.els[idx]&&S.els[idx].classList.add('on');
+  renderMeta(); renderLab();
+}
+function addHidden(hid){
+  const h=S.hidden.find(x=>x.id===hid); if(!h||h.added)return; h.added=true;
+  const c={id:S.nextId++,role:h.role,names:[h.who],evidence:h.evidence,links:[],status:'추가됨',take:1,hidden:true};
+  S.credits.push(c); logTake(`SCENE ${sceneNo(c.id)} 본편 편입`,`${h.role} - ${h.who}`);
+  miniClap('본편 편입'); S.sel='c'+c.id; S.thread=[]; buildFrames('c'+c.id);
+  const i=S.frames.findIndex(f=>f.k===S.sel); focusFrame(i); renderMeta(); renderLab();
+}
+function logTake(head,text){const d=new Date();S.log.push({head,text,time:`${d.getHours()}:${String(d.getMinutes()).padStart(2,'0')}`});renderMeta();}
+function miniClap(t){const m=$('#miniclap');$('#mcText').textContent=t;const r=$('.lab').getBoundingClientRect();m.style.left=(r.left+r.width/2-60)+'px';m.style.top=(r.top+70)+'px';m.classList.remove('go');void m.offsetWidth;m.classList.add('go');setTimeout(clapSound,reduce?0:450);}
+function toast(t){const e=$('#toast');e.textContent=t;e.classList.add('on');clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove('on'),2200);}
+
+/* ---------- Premiere ---------- */
+$('#premiereBtn').onclick=()=>{
+  if(S.confirmed){playCredits();return;}
+  const need=S.credits.find(c=>c.status==='확인 필요');
+  if(need){const i=S.frames.findIndex(f=>f.k==='c'+need.id);selectFrame(i);
+    say(need,`SCENE ${sceneNo(need.id)}이 아직 확인 필요예요. 이 장면부터 정리하고 시사회를 열면 팀원들이 덜 헷갈릴 거예요. ${AG.on?'근거가 되는 날짜나 문서 이름을 알려 주시겠어요?':'시안을 올린 날짜를 알려 주시겠어요?'}`);return;}
+  openTheater();
+};
+async function openTheater(){
+  $('#seats').innerHTML=members.map(m=>`<div class="seat" data-m="${m.n}"><i></i><span>${m.n}${m.n===ME?' (나)':''}</span><small>확인 중</small></div>`).join('');
+  $('#mPlay').disabled=true; $('#modal').classList.add('on'); $('#mClose').focus();
+  for(const m of members){await wait(700);const s=document.querySelector(`.seat[data-m="${m.n}"]`);s.classList.add('ok');s.querySelector('small').textContent='확인했어요';}
+  S.confirmed=true; S.credits.forEach(c=>c.status='팀 확인'); buildFrames(); renderMeta(); renderLab();
+  $('#mPlay').disabled=false; $('#mPlay').focus();
+}
+$('#mClose').onclick=()=>$('#modal').classList.remove('on');
+$('#mPlay').onclick=()=>{$('#modal').classList.remove('on');playCredits();};
+
+/* ---------- 4. Credit roll: 역할은 오른쪽, 이름은 왼쪽 ---------- */
+let anim=null, erRaf=0;
+/* 엔딩 롤: 크레딧을 긴 필름 띠(이미지)로 한 번 그린 뒤, 비스듬히 선 고리 모양 띠 위로 계속 흘려 보낸다 */
+function cssVar(v){const m=/var\((--[\w-]+)\)/.exec(v);return m?getComputedStyle(document.documentElement).getPropertyValue(m[1]).trim():v;}
+function wrapLines(x,text,maxW){const out=[];let line='';for(const ch of String(text)){const t=line+ch;if(x.measureText(t).width>maxW&&line){out.push(line);line=ch.trimStart();}else line=t;}if(line)out.push(line);return out;}
+function drawStrip(list,BW,CH){
+  const no=i=>String(i+1).padStart(2,'0');
+  const UI='"Pretendard Variable","Pretendard",sans-serif', CD='"Archivo Narrow","Pretendard Variable",sans-serif';
+  const C={ink:'#111111',film:'#2B1D16',filmD:'#160E0A',hole:'#F0F0EE',paper:'#FAFAF9',gap:'#F4F4F2',muted:'#6E6E69',
+    rb:['--s-red','--s-orange','--s-yellow','--s-green','--s-blue'].map(v=>cssVar(`var(${v})`))};
+  // 포스터 한 장 = 띠 너비를 꽉 채우는 카드. 장면마다 이름 → 역할 → (필름/그라데이션/패턴) 순서
+  const cards=[{k:'title',h:1.1}];
+  list.forEach((c,i)=>{cards.push({k:'name',c,i,h:1.05},{k:'role',c,i,h:.8},{k:['film','heat','pat'][i%3],c,i,h:.7});});
+  cards.push({k:'end',h:.9});
+  let y0=0; cards.forEach(cd=>{cd.y=y0;cd.hh=Math.round(CH*cd.h);y0+=cd.hh;});
+  const L=y0, dpr=Math.min(2,window.devicePixelRatio||1);
+  const cv=document.createElement('canvas'); cv.width=Math.round(BW*dpr); cv.height=Math.round(L*dpr);
+  const x=cv.getContext('2d'); x.scale(dpr,dpr);
+  cards.forEach(cd=>{
+    const y=cd.y, H=cd.hh, P=Math.round(BW*.06);
+    x.save(); x.beginPath(); x.rect(0,y,BW,H); x.clip();
+    const tint=cd.c?cssVar(look(cd.c.names[0]).tint):C.ink;
+    if(cd.k==='title'){x.fillStyle=C.ink;x.fillRect(0,y,BW,H);x.fillStyle='#fff';x.font=`700 ${H*.3}px ${CD}`;x.fillText('ENDING',P,y+H*.38);x.fillText('CREDITS',P,y+H*.66);
+      x.fillStyle='rgba(255,255,255,.55)';x.font=`700 ${H*.07}px ${CD}`;x.fillText(`${TEAM.full}  ·  ${list.length} SCENES`,P,y+H*.86);
+      C.rb.forEach((col,ri)=>{x.fillStyle=col;x.fillRect(BW-P-ri*14-12,y+P,10,H*.18);});}
+    if(cd.k==='name'){x.fillStyle=C.ink;x.fillRect(0,y,BW,H);const nm=cd.c.names.join(' ');const fs=H*.24;x.font=`900 ${fs}px ${UI}`;
+      for(let r=0;r<4;r++){const yy=y+P*.6+fs*(r+1)*.98;if(r===0){x.fillStyle='#fff';x.fillText(nm,P,yy);}else{x.strokeStyle='rgba(255,255,255,.92)';x.lineWidth=1.2;x.strokeText(nm,P,yy);}}
+      x.fillStyle=tint;x.fillRect(BW-P-H*.16,y+H-P-H*.16,H*.16,H*.16);
+      x.fillStyle='rgba(255,255,255,.6)';x.font=`700 ${H*.06}px ${CD}`;x.textAlign='right';x.fillText(`${cd.c.hidden?'HIDDEN':'SCENE'} ${no(cd.i)}`,BW-P,y+P+H*.05);x.textAlign='left';}
+    if(cd.k==='role'){x.fillStyle=tint;x.fillRect(0,y,BW,H);x.fillStyle='#fff';const fs=Math.round(H*.13);x.font=`800 ${fs}px ${UI}`;
+      wrapLines(x,cd.c.role,BW-P*2).slice(0,3).forEach((ln,li)=>x.fillText(ln,P,y+P+fs+li*fs*1.28));
+      x.globalAlpha=.85;x.font=`700 ${H*.075}px ${CD}`;x.fillText(cd.c.evidence,P,y+H-P*.8);x.globalAlpha=1;}
+    if(cd.k==='film'){x.fillStyle=C.film;x.fillRect(0,y,BW,H);x.fillStyle=C.hole;for(let hx=6;hx<BW-6;hx+=BW/16){x.fillRect(hx,y+5,BW/34,H*.07);x.fillRect(hx,y+H-5-H*.07,BW/34,H*.07);}
+      x.fillStyle=C.filmD;x.fillRect(P*.6,y+H*.18,BW-P*1.2,H*.64);x.fillStyle='#D8CDBA';x.font=`700 ${H*.08}px ${CD}`;x.fillText(`SCENE ${no(cd.i)}  ·  TAKE ${cd.c.take}`,P,y+H*.32);
+      x.fillStyle=tint;x.font=`700 ${H*.42}px ${CD}`;x.textAlign='right';x.fillText(no(cd.i),BW-P,y+H*.74);x.textAlign='left';}
+    if(cd.k==='heat'){const g=x.createLinearGradient(0,y,0,y+H);[[0,C.ink],[.3,C.rb[0]],[.46,C.rb[1]],[.6,C.rb[2]],[.74,'#F4F1E8'],[1,C.rb[4]]].forEach(s=>g.addColorStop(s[0],s[1]));
+      x.fillStyle=g;x.fillRect(0,y,BW,H);for(let lx=0;lx<BW;lx+=BW/9){x.fillStyle='rgba(0,0,0,.10)';x.fillRect(lx,y,1.5,H);}
+      x.fillStyle='#fff';x.font=`700 ${H*.08}px ${CD}`;x.fillText(cd.c.names.join(' ').toUpperCase()+'  —  '+cd.c.evidence,P,y+H-P*.7);}
+    if(cd.k==='pat'){x.fillStyle=C.paper;x.fillRect(0,y,BW,H);const s=H/3.2;
+      for(let gy=0;gy<4;gy++)for(let gx=0;gx<Math.ceil(BW/s)+1;gx++){const cx=gx*s+(gy%2?s/2:0),cy=y+gy*s+s*.15;x.strokeStyle=C.ink;x.lineWidth=1.4;x.beginPath();x.arc(cx,cy,s*.32,0,Math.PI*2);x.stroke();
+        x.fillStyle=tint;x.beginPath();x.arc(cx+s*.18,cy-s*.12,s*.12,0,Math.PI*2);x.fill();}
+      x.fillStyle=C.ink;x.fillRect(P,y+H-P-H*.2,BW*.46,H*.2);x.fillStyle='#fff';x.font=`800 ${H*.1}px ${UI}`;x.fillText(cd.c.names.join(' '),P+8,y+H-P-H*.055);}
+    if(cd.k==='end'){x.fillStyle=C.paper;x.fillRect(0,y,BW,H);x.fillStyle=C.ink;x.font=`700 ${H*.24}px ${CD}`;x.fillText('THANK YOU',P,y+H*.42);
+      x.fillStyle=C.muted;x.font=`600 ${H*.08}px ${UI}`;x.fillText('함께 만들어 주셔서 고맙습니다',P,y+H*.6);
+      C.rb.forEach((col,ri)=>{x.fillStyle=col;x.fillRect(P+ri*(BW-P*2)/5,y+H*.72,(BW-P*2)/5,H*.07);});}
+    x.restore();
+    x.fillStyle=C.gap; x.fillRect(0,y,BW,2.5);   // 포스터 사이 얇은 흰 선
+  });
+  return {url:cv.toDataURL('image/png'),L};
+}
+async function playCredits(){
+  const main=S.credits.filter(c=>!c.hidden), hid=S.credits.filter(c=>c.hidden), list=[...main,...hid];
+  let er=$('#er');
+  if(!er){er=document.createElement('div');er.className='er';er.id='er';
+    er.innerHTML='<div class="er-meta"><i></i><span>ENDING CREDITS · <b>'+esc(TEAM.full)+'</b></span></div><div class="er-stage"><div class="er-loop" id="erLoop"></div></div>';
+    $('#rollfs').insertBefore(er,$('#endcard'));}
+  $('#endcard').classList.remove('on'); $('#track').style.display='none'; er.style.display='';
+  $('#rollfs').classList.add('on'); $('#skipBtn').style.display='';
+  try{await document.fonts.ready;}catch(e){}
+  // 레퍼런스 비율: 고리 전체 높이 대비 띠 너비 ≈ 0.66, 위아래 말림 반지름 ≈ 높이의 0.12
+  const ST=Math.round(Math.min(innerHeight*.62,innerWidth*.7)), R=Math.round(ST*.11), BW=Math.round((ST+2*R)*.54);
+  const CH=Math.round(BW*.42);
+  const {url,L}=drawStrip(list,BW,CH);
+  const total=2*ST+2*Math.PI*R, SL=3, n=Math.ceil(total/SL), sl=total/n;
+  const loop=$('#erLoop'); loop.style.setProperty('--bw',BW+'px'); loop.style.setProperty('--er-img',`url(${url})`);
+  let html=''; for(let k=0;k<n;k++) html+=`<div class="er-sl" style="height:${(sl+.7).toFixed(2)}px;background-image:var(--er-img);background-size:${BW}px ${L}px"></div>`;
+  loop.innerHTML=html;
+  const els=[...loop.children];
+  if(reduce){showEnd();return;}
+  // 스타디움형 고리: 앞면(직선, 아래로) → 아래 말림 → 뒷면(직선, 위로) → 위 말림
+  const place=s=>{
+    s=((s%total)+total)%total;
+    if(s<ST) return [-ST/2+s, R, 0];
+    s-=ST; if(s<Math.PI*R){const th=s/R; return [ST/2+R*Math.sin(th), R*Math.cos(th), -th];}
+    s-=Math.PI*R; if(s<ST) return [ST/2-s, -R, -Math.PI];
+    s-=ST; const th=s/R; return [-ST/2-R*Math.sin(th), -R*Math.cos(th), -Math.PI-th];
+  };
+  const START=ST+Math.PI*R+ST/2; // 이음매는 뒷면 가운데
+  for(let k=0;k<n;k++){
+    const [y,z,rx]=place(START+k*sl), el=els[k];
+    el.style.transform=`translate3d(0,${(y-sl/2).toFixed(2)}px,${z.toFixed(2)}px) rotateX(${(rx*180/Math.PI).toFixed(2)}deg)`;
+    const f=Math.cos(rx); el.style.setProperty('--sh',(f>0?(1-f)*.22:.16+(-f)*.06).toFixed(3));
+  }
+  // 카메라: 레퍼런스처럼 고정. 마우스로 잡아 돌리면 관성으로 돌다가 원래 각도로 돌아온다
+  const BASE={z:22,x:-12,y:-42};
+  const cam={x:0,y:0,vx:0,vy:0,drag:false,px:0,py:0};
+  er.onpointerdown=e=>{cam.drag=true;cam.px=e.clientX;cam.py=e.clientY;cam.vx=cam.vy=0;er.classList.add('drag');er.setPointerCapture(e.pointerId);};
+  er.onpointermove=e=>{if(!cam.drag)return;const dx=e.clientX-cam.px,dy=e.clientY-cam.py;cam.px=e.clientX;cam.py=e.clientY;cam.y+=dx*.4;cam.x-=dy*.4;const cl=v=>Math.max(-7,Math.min(7,v));cam.vy=cl(dx*.4);cam.vx=cl(-dy*.4);};
+  er.onpointerup=er.onpointercancel=()=>{cam.drag=false;er.classList.remove('drag');};
+  const speed=ST*.27;   // 앞면을 약 3.7초에 지나가는 일정한 속도
+  const dur=Math.max(26,list.length*6)*1000;
+  let t0=null, last=0, el=0;
+  cancelAnimationFrame(erRaf);
+  const frame=t=>{
+    if(t0==null){t0=t;last=t;}
+    const dt=Math.min(.05,(t-last)/1000); last=t; el+=dt;
+    if(!cam.drag){cam.x+=cam.vx;cam.y+=cam.vy;cam.vx*=.92;cam.vy*=.92;
+      if(Math.abs(cam.vx)<.05&&Math.abs(cam.vy)<.05){const ty=Math.round(cam.y/360)*360;cam.x+=(0-cam.x)*.035;cam.y+=(ty-cam.y)*.035;}}
+    cam.x=Math.max(-70,Math.min(70,cam.x));
+    loop.style.transform=`rotateZ(${BASE.z}deg) rotateX(${(BASE.x+cam.x).toFixed(2)}deg) rotateY(${(BASE.y+cam.y).toFixed(2)}deg)`;
+    const off=el*speed;
+    for(let k=0;k<n;k++) els[k].style.backgroundPositionY=(off-k*sl).toFixed(1)+'px';
+    if(el*1000<dur) erRaf=requestAnimationFrame(frame); else showEnd();
+  };
+  erRaf=requestAnimationFrame(frame);
+}
+function showEnd(){cancelAnimationFrame(erRaf);if(anim){anim.cancel();anim=null;}const er=$('#er');if(er)er.style.display='none';$('#track').style.display='none';$('#skipBtn').style.display='none';$('#endcard').classList.add('on');}
+$('#skipBtn').onclick=showEnd;
+$('#replayBtn').onclick=playCredits;
+$('#backRoomBtn').onclick=()=>$('#rollfs').classList.remove('on');
+$('#exportBtn').onclick=()=>toast('에이전트를 연결하면 PowerPoint 슬라이드로 내보내요');
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){if($('#rollfs').classList.contains('on'))showEnd();$('#modal').classList.remove('on');}});
+})();
+</script>
 </body>
 </html>
